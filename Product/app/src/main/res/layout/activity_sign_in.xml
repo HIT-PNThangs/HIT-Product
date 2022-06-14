@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    tools:context=".activity.SignInActivity">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_width="@dimen/_120sdp"
+        android:layout_height="@dimen/_120sdp"
+        android:layout_marginTop="@dimen/_36ssp"
+        android:elevation="@dimen/cardview_compat_inset_shadow"
+        android:src="@drawable/avatar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/_380sdp"
+        android:layout_marginStart="@dimen/_16sdp"
+        android:layout_marginTop="@dimen/_92sdp"
+        android:layout_marginEnd="@dimen/_16sdp"
+        android:background="@drawable/background1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <EditText
+            android:id="@+id/inputEmailSignIn"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_12sdp"
+            android:layout_marginTop="@dimen/_92sdp"
+            android:layout_marginEnd="@dimen/_12sdp"
+            android:ems="10"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:drawableStart="@drawable/ic_mail"
+            android:drawableTint="@color/drawable_tint"
+            android:drawablePadding="@dimen/_4sdp"
+            android:hint="@string/email"
+            android:fontFamily="@font/consola"
+            android:textSize="@dimen/_14ssp"
+            android:background="@drawable/background_edittext"
+            android:padding="10dp"
+            android:inputType="textPersonName"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="TextFields" />
+
+        <EditText
+            android:id="@+id/inputPassword"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_16sdp"
+            android:background="@drawable/background_edittext"
+            android:drawablePadding="@dimen/_4sdp"
+            android:ems="10"
+            android:gravity="center_vertical"
+            android:hint="@string/password"
+            android:fontFamily="@font/consola"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:importantForAutofill="no"
+            android:inputType="textPassword"
+            android:padding="10dp"
+            android:textSize="@dimen/_14ssp"
+            app:drawableStartCompat="@drawable/ic_password"
+            app:drawableTint="@color/drawable_tint"
+            app:layout_constraintEnd_toEndOf="@+id/inputEmailSignIn"
+            app:layout_constraintStart_toStartOf="@+id/inputEmailSignIn"
+            app:layout_constraintTop_toBottomOf="@+id/inputEmailSignIn"
+            tools:ignore="TextViewEdits" />
+
+        <ImageView
+            android:id="@+id/imgShowPassword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="15dp"
+            app:layout_constraintBottom_toBottomOf="@+id/inputPassword"
+            app:layout_constraintEnd_toEndOf="@+id/inputPassword"
+            app:layout_constraintTop_toTopOf="@+id/inputPassword"
+            app:srcCompat="@drawable/ic_close_eye"
+            app:tint="@color/drawable_tint" />
+
+        <Button
+            android:id="@+id/btLogin"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_36sdp"
+            android:layout_marginStart="@dimen/_50sdp"
+            android:layout_marginTop="@dimen/_16sdp"
+            android:layout_marginEnd="@dimen/_50sdp"
+            android:background="@drawable/background_button"
+            android:text="@string/login"
+            android:fontFamily="@font/consolab"
+            android:textColor="#ffffff"
+            android:textSize="@dimen/_14sdp"
+            app:layout_constraintEnd_toEndOf="@+id/inputPassword"
+            app:layout_constraintStart_toStartOf="@+id/inputPassword"
+            app:layout_constraintTop_toBottomOf="@+id/inputPassword"
+            tools:ignore="MissingConstraints,TextContrastCheck,TextContrastCheck" />
+
+        <TextView
+            android:id="@+id/forgetPassword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="@string/forget_password"
+            android:fontFamily="@font/consola"
+            android:textColor="@color/drawable_tint"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btLogin"
+            tools:ignore="TextContrastCheck" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingStart="@dimen/_24sdp"
+            android:paddingEnd="@dimen/_24sdp"
+            app:layout_constraintBottom_toTopOf="@+id/google"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/forgetPassword">
+
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="1dp"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:background="@color/m2"
+                android:backgroundTint="@color/line" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/consolab"
+                android:paddingStart="@dimen/_24sdp"
+                android:paddingEnd="@dimen/_24sdp"
+                android:text="@string/or"
+                android:textColor="@color/drawable_tint"
+                android:textSize="@dimen/_12sdp" />
+
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="1dp"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:background="@color/m2"
+                android:backgroundTint="@color/line" />
+        </LinearLayout>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/twitter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_24sdp"
+            android:background="@null"
+            android:backgroundTint="@null"
+            android:src="@mipmap/twitter"
+            app:layout_constraintBottom_toBottomOf="@+id/google"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/google"
+            app:maxImageSize="@dimen/_42sdp"
+            tools:ignore="SpeakableTextPresentCheck,ImageContrastCheck" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/google"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/_20sdp"
+            android:src="@mipmap/google"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/facebook"
+            app:layout_constraintStart_toEndOf="@+id/twitter"
+            app:maxImageSize="@dimen/_42sdp"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/facebook"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_24sdp"
+            android:src="@mipmap/facebook"
+            app:layout_constraintBottom_toBottomOf="@+id/google"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/google"
+            app:maxImageSize="@dimen/_42sdp"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/txtSignUp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_16sdp"
+        android:textColor="@color/drawable_tint"
+        android:text="@string/loginToSignUp"
+        android:fontFamily="@font/consola"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

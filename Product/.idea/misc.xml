@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/HIT-Product/Product/app/src/main/res/drawable-v24/background_edittext.xml" value="0.154" />
+        <entry key="..\:/HIT-Product/Product/app/src/main/res/drawable-v24/background_forget_password.xml" value="0.154" />
+        <entry key="..\:/HIT-Product/Product/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1955" />
+        <entry key="..\:/HIT-Product/Product/app/src/main/res/drawable/add_popular_custom.xml" value="0.181" />
+        <entry key="..\:/HIT-Product/Product/app/src/main/res/drawable/bachfround2.xml" value="0.1955" />
+        <entry key="..\:/HIT-Product/Product/app/src/main/res/drawable/background.xml" value="0.145" />
+        <entry key="..\:/HIT-Product/Product/app/src/main/res/drawable/background1.xml" value="0.1225" />
+        <entry key="..\:/HIT-Product/Product/app/src/main/res/drawable/background2.xml" value="0.1955" />
+        <entry key="..\:/HIT-Product/Product/app/src/main/res/drawable/background_button.xml" value="0.16799999999999998" />
+        <entry key="..\:/HIT-Product/Product/app/src/main/res/drawable/background_edittext.xml" value="0.1225" />
+        <entry key="..\:/HIT-Product/Product/app/src/main/res/drawable/background_image.xml" value="0.2385" />
+        <entry key="..\:/HIT-Product/Product/app/src/main/res/drawable/background_search.xml" value="0.1465" />
+        <entry key="..\:/HIT-Product/Product/app/src/main/res/drawable/background_sign_in.xml" value="0.2125" />
+        <entry key="..\:/HIT-Product/Product/app/src/main/res/drawable/background_textview.xml" value="0.181" />
+        <entry key="..\:/HIT-Product/Product/app/src/main/res/drawable/bg_burger.xml" value="0.181" />
+        <entry key="..\:/HIT-Product/Product/app/src/main/res/drawable/bg_burger_1.xml" value="0.1415" />
+        <entry key="..\:/HIT-Product/Product/app/src/main/res/drawable/bg_cream.xml" value="0.1415" />
+        <entry key="..\:/HIT-Product/Product/app/src/main/res/drawable/bg_cream_1.xml" value="0.1415" />
+        <entry key="..\:/HIT-Product/Product/app/src/main/res/drawable/bg_hotdog.xml" value="0.1415" />
+        <entry key="..\:/HIT-Product/Product/app/src/main/res/drawable/bg_hotdog_1.xml" value="0.1415" />
+        <entry key="..\:/HIT-Product/Product/app/src/main/res/drawable/bg_order.xml" value="0.181" />
+        <entry key="..\:/HIT-Product/Product/app/src/main/res/drawable/bg_pizza.xml" value="0.1415" />
+        <entry key="..\:/HIT-Product/Product/app/src/main/res/drawable/bg_pizza_1.xml" value="0.1415" />
+        <entry key="..\:/HIT-Product/Product/app/src/main/res/drawable/boder_bottom.xml" value="0.166" />
+        <entry key="..\:/HIT-Product/Product/app/src/main/res/drawable/circle_bg.xml" value="0.183" />
+        <entry key="..\:/HIT-Product/Product/app/src/main/res/drawable/custom_avatar.xml" value="0.183" />
+        <entry key="..\:/HIT-Product/Product/app/src/main/res/drawable/custom_btn_order_now.xml" value="0.183" />
+        <entry key="..\:/HIT-Product/Product/app/src/main/res/drawable/dialog_agree_background.xml" value="0.1955" />
+        <entry key="..\:/HIT-Product/Product/app/src/main/res/drawable/dialog_background.xml" value="0.1345" />
+        <entry key="..\:/HIT-Product/Product/app/src/main/res/drawable/dialog_cancel_background.xml" value="0.1955" />
+        <entry key="..\:/HIT-Product/Product/app/src/main/res/drawable/dialog_title.xml" value="0.1955" />
+        <entry key="..\:/HIT-Product/Product/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1955" />
+        <entry key="..\:/HIT-Product/Product/app/src/main/res/drawable/ic_person.xml" value="0.2125" />
+        <entry key="..\:/HIT-Product/Product/app/src/main/res/drawable/search_background.xml" value="0.181" />
+        <entry key="..\:/HIT-Product/Product/app/src/main/res/layout-v23/activity_sign_up.xml" value="0.25769927536231885" />
+        <entry key="..\:/HIT-Product/Product/app/src/main/res/layout-v23/fragment_second.xml" value="0.2740036231884058" />
+        <entry key="..\:/HIT-Product/Product/app/src/main/res/layout/activity_about_creme.xml" value="0.2" />
+        <entry key="..\:/HIT-Product/Product/app/src/main/res/layout/activity_begin.xml" value="0.275" />
+        <entry key="..\:/HIT-Product/Product/app/src/main/res/layout/activity_card.xml" value="0.264" />
+        <entry key="..\:/HIT-Product/Product/app/src/main/res/layout/activity_cropper.xml" value="0.1337386018237082" />
+        <entry key="..\:/HIT-Product/Product/app/src/main/res/layout/activity_main.xml" value="0.2" />
+        <entry key="..\:/HIT-Product/Product/app/src/main/res/layout/activity_search.xml" value="0.264" />
+        <entry key="..\:/HIT-Product/Product/app/src/main/res/layout/activity_show_detail.xml" value="0.25" />
+        <entry key="..\:/HIT-Product/Product/app/src/main/res/layout/activity_sign_in.xml" value="0.275" />
+        <entry key="..\:/HIT-Product/Product/app/src/main/res/layout/activity_sign_up.xml" value="0.275" />
+        <entry key="..\:/HIT-Product/Product/app/src/main/res/layout/activity_support_central.xml" value="0.26766304347826086" />
+        <entry key="..\:/HIT-Product/Product/app/src/main/res/layout/activity_update_information.xml" value="0.264" />
+        <entry key="..\:/HIT-Product/Product/app/src/main/res/layout/activity_voucher.xml" value="0.264" />
+        <entry key="..\:/HIT-Product/Product/app/src/main/res/layout/activity_wait.xml" value="0.23369565217391305" />
+        <entry key="..\:/HIT-Product/Product/app/src/main/res/layout/cart_item.xml" value="0.2740036231884058" />
+        <entry key="..\:/HIT-Product/Product/app/src/main/res/layout/category_item.xml" value="0.4" />
+        <entry key="..\:/HIT-Product/Product/app/src/main/res/layout/dialog_forget_password.xml" value="0.2859375" />
+        <entry key="..\:/HIT-Product/Product/app/src/main/res/layout/dialog_update_information.xml" value="0.2740036231884058" />
+        <entry key="..\:/HIT-Product/Product/app/src/main/res/layout/fragment_card.xml" value="0.264" />
+        <entry key="..\:/HIT-Product/Product/app/src/main/res/layout/fragment_expire_voucher.xml" value="0.26766304347826086" />
+        <entry key="..\:/HIT-Product/Product/app/src/main/res/layout/fragment_first.xml" value="0.2740036231884058" />
+        <entry key="..\:/HIT-Product/Product/app/src/main/res/layout/fragment_home.xml" value="0.275" />
+        <entry key="..\:/HIT-Product/Product/app/src/main/res/layout/fragment_introduce.xml" value="0.1337386018237082" />
+        <entry key="..\:/HIT-Product/Product/app/src/main/res/layout/fragment_notification.xml" value="0.1337386018237082" />
+        <entry key="..\:/HIT-Product/Product/app/src/main/res/layout/fragment_order.xml" value="0.264" />
+        <entry key="..\:/HIT-Product/Product/app/src/main/res/layout/fragment_person.xml" value="0.264" />
+        <entry key="..\:/HIT-Product/Product/app/src/main/res/layout/fragment_second.xml" value="0.2740036231884058" />
+        <entry key="..\:/HIT-Product/Product/app/src/main/res/layout/fragment_sign_in.xml" value="0.275" />
+        <entry key="..\:/HIT-Product/Product/app/src/main/res/layout/fragment_sign_up.xml" value="0.275" />
+        <entry key="..\:/HIT-Product/Product/app/src/main/res/layout/fragment_used_voucher.xml" value="0.26766304347826086" />
+        <entry key="..\:/HIT-Product/Product/app/src/main/res/layout/fragment_valid_voucher.xml" value="0.26766304347826086" />
+        <entry key="..\:/HIT-Product/Product/app/src/main/res/layout/popular_item.xml" value="0.4" />
+        <entry key="..\:/HIT-Product/Product/app/src/main/res/layout/product_item.xml" value="0.275" />
+        <entry key="..\:/HIT-Product/Product/app/src/main/res/menu/navigation.xml" value="0.275" />
+        <entry key="..\:/HIT-Product/Product/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1305" />
+        <entry key="..\:/HIT-Product/Product/app/src/main/res/xml/style.xml" value="0.275" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>

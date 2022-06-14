@@ -1,0 +1,51 @@
+<resources>
+    <string name="app_name">Product</string>
+    <string name="username">Username</string>
+    <string name="login">Login</string>
+    <string name="password">Password</string>
+    <string name="forget_password">Forget Your Password?</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="txtLogin">Do you have an account? Login</string>
+    <string name="home">Home</string>
+    <string name="person">Person</string>
+    <string name="notification">Notification</string>
+    <string name="order">Order</string>
+    <string name="agree">Agree</string>
+    <string name="cancel">Cancel</string>
+    <string name="retrieve_password">Retrieve Password</string>
+    <string name="or">OR</string>
+    <string name="loginToSignUp">Don\'t Have Account? Sign Up</string>
+    <string name="email">Email</string>
+    <string name="voucher">Ví Voucher</string>
+    <string name="order_now">Order now</string>
+    <string name="order_and_eat">Order and eat</string>
+    <string name="search">Search</string>
+    <string name="category">Categories</string>
+    <string name="popular">Popular</string>
+    <string name="add_to_cart">Add to Cart</string>
+    <string name="description">Description</string>
+    <string name="change_avatar">Change Avatar</string>
+    <string name="update_information">Update Information</string>
+    <string name="update">Update</string>
+    <string name="add_image">Add Image</string>
+    <string name="my_cart">My Cart</string>
+    <string name="check_out">Check Out</string>
+    <string name="about_creme">About Creme</string>
+    <string name="creme">CREME</string>
+    <string name="txt_creme">Creme là sàn giao dịch thương mại điện tử cung cấp các dịch vụ tiện ích như: kem, pizza ... Creme có thể đáp ứng nhu cầu về đồ ăn vặt của bạn chỉ trong một vài bước đơn giản</string>
+    <string name="txtAddress">Đại học Công Nghiệp Hà Nội, P.Minh Khai, Bắc Từ Liêm, Hà Nội, Việt Nam</string>
+    <string name="title_activity_voucher">VoucherActivity</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="support_central">Trung tâm hỗ trợ</string>
+</resources>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="@dimen/_12sdp"
+    android:layout_marginStart="@dimen/_4ssp"
+    android:layout_marginEnd="@dimen/_4ssp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/name_popular"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Cheese Burger"
+            android:fontFamily="@font/consola"
+            android:maxLines="1"
+            android:textSize="@dimen/_12sdp"
+            android:gravity="center"
+            android:textColor="#000"
+            android:textStyle="bold"
+            android:layout_marginTop="@dimen/_8ssp"/>
+
+        <ImageView
+            android:id="@+id/img_popular"
+            android:layout_width="@dimen/_100sdp"
+            android:layout_height="@dimen/_90sdp"
+            android:scaleType="fitXY"
+            android:src="@drawable/burger_popular"/>
+
+        <TextView
+            android:id="@+id/price_popular"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0.0Đ"
+            android:fontFamily="@font/consola"
+            android:textStyle="normal"
+            android:textColor="@color/m1"
+            android:textSize="@dimen/_12sdp"
+            android:gravity="center"
+            android:layout_gravity="center"/>
+
+        <TextView
+            android:id="@+id/add_to_cart"
+            android:layout_width="@dimen/_60sdp"
+            android:layout_height="wrap_content"
+            android:text="+Add"
+            android:textStyle="bold"
+            android:fontFamily="@font/consola"
+            android:background="@drawable/add_popular_custom"
+            android:layout_gravity="center"
+            android:textColor="@color/white"
+            android:layout_margin="@dimen/_5sdp"
+            android:gravity="center" />
+    </LinearLayout>
+</androidx.cardview.widget.CardView>
