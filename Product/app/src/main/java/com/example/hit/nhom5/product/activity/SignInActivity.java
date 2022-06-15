@@ -32,17 +32,16 @@ import java.util.regex.Pattern;
 public class SignInActivity extends AppCompatActivity {
 
     private ActivitySignInBinding binding;
-    private ProgressDialog dialog;
-    private static final String EMAIL_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
-            + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+    private static final String EMAIL_PATTERN =
+            "^[a-z][a-z0-9_\\.]{5,32}@[a-z0-9]{2,}(\\.[a-z0-9]{2,4}){1}$";
 
+    private final String PASSWORD_PATTERN =
+            "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#&()–[{}]:;',?/*~$^+=<>]).{8,20}$";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivitySignInBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
-        dialog = new ProgressDialog(this);
 
         setListener();
     }
@@ -93,8 +92,11 @@ public class SignInActivity extends AppCompatActivity {
         return Pattern.compile(EMAIL_PATTERN).matcher(email).matches();
     }
 
-    private void Login () {
+    public boolean isPassword(String password) {
+        return Pattern.compile(PASSWORD_PATTERN).matcher(password).matches();
+    }
 
+    private void Login () {
         String email = binding.inputEmailSignIn.getText().toString();
         String password = binding.inputPassword.getText().toString();
 
@@ -104,23 +106,25 @@ public class SignInActivity extends AppCompatActivity {
             showToast("Enter valid email");
         } else if(password.isEmpty()) {
             showToast("Enter password");
+        } else if(!isPassword(password)) {
+            showToast("Enter valid password");
         } else {
             FirebaseAuth auth = FirebaseAuth.getInstance();
 
-            dialog.show();
+            binding.progressBar3.setVisibility(View.VISIBLE);
 
             auth.signInWithEmailAndPassword(email, password)
                     .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
-                            dialog.dismiss();
+                            binding.progressBar3.setVisibility(View.INVISIBLE);
 
                             if (task.isSuccessful()) {
                                 startActivity(new Intent(SignInActivity.this, MainActivity.class));
                                 overridePendingTransition(0, 0);
                                 finishAffinity();
                             } else {
-                                showToast("Authentication failed.");
+                                showToast("Login failed.");
                             }
                         }
                     });
@@ -129,6 +133,7 @@ public class SignInActivity extends AppCompatActivity {
 
     private void onClickForgetPassword() {
         Dialog dialog = new Dialog(SignInActivity.this);
+
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.dialog_forget_password);
         dialog.setCanceledOnTouchOutside(false);
@@ -174,7 +179,7 @@ public class SignInActivity extends AppCompatActivity {
     }
 
     private void resetPassword(String str) {
-        dialog.show();
+        binding.progressBar3.setVisibility(View.VISIBLE);
 
         FirebaseAuth auth = FirebaseAuth.getInstance();
 
@@ -182,8 +187,12 @@ public class SignInActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if(task.isSuccessful()) {
+                    binding.progressBar3.setVisibility(View.VISIBLE);
+
                     showToast("Check your email to reset your password!");
                 } else {
+                    binding.progressBar3.setVisibility(View.VISIBLE);
+
                     showToast("Try again! Something wrong happened");
                 }
             }

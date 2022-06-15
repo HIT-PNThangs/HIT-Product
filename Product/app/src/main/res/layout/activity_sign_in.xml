@@ -195,6 +195,17 @@
             app:maxImageSize="@dimen/_42sdp"
             tools:ignore="SpeakableTextPresentCheck" />
 
+        <ProgressBar
+            android:id="@+id/progressBar3"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="@+id/btLogin"
+            app:layout_constraintEnd_toEndOf="@+id/btLogin"
+            app:layout_constraintStart_toStartOf="@+id/btLogin"
+            app:layout_constraintTop_toTopOf="@+id/btLogin" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView
