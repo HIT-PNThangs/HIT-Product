@@ -6,6 +6,7 @@ import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -35,8 +36,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class HomeFragment extends Fragment {
-    public HomeFragment() {
-    }
+    public HomeFragment() { }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -70,13 +70,16 @@ public class HomeFragment extends Fragment {
                 RecyclerView.HORIZONTAL,
                 false));
 
+        ProgressBar progressBar = view.findViewById(R.id.progressBar);
 
+        progressBar.setVisibility(View.VISIBLE);
         ApiServer.apiServer.getAllProduct().enqueue(new Callback<AllProduct>() {
             @Override
             public void onResponse(@NonNull Call<AllProduct> call, @NonNull Response<AllProduct> response) {
                 AllProduct allProduct = response.body();
 
                 if (allProduct != null && response.isSuccessful()) {
+                    progressBar.setVisibility(View.INVISIBLE);
 
                     List<Product> list = allProduct.getData();
                     Collections.sort(list, new Comparator<Product>() {

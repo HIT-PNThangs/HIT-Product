@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -34,7 +35,6 @@ import retrofit2.Response;
 public class SearchActivity extends AppCompatActivity {
 
     ActivitySearchBinding binding;
-    ProgressDialog dialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,8 +48,6 @@ public class SearchActivity extends AppCompatActivity {
     }
 
     private void init() {
-        dialog = new ProgressDialog(this);
-
         binding.recyclerviewCategory.setLayoutManager(new LinearLayoutManager(getApplicationContext(),
                 RecyclerView.HORIZONTAL,
                 false));
@@ -73,6 +71,8 @@ public class SearchActivity extends AppCompatActivity {
                 false));
 
         if(category != null) {
+            binding.progressBar2.setVisibility(View.VISIBLE);
+
             ApiServer.apiServer.getDataCategories(category.getId()).enqueue(new Callback<DataCategories>() {
                 @Override
                 public void onResponse(Call<DataCategories> call, Response<DataCategories> response) {
@@ -80,7 +80,7 @@ public class SearchActivity extends AppCompatActivity {
                     DataCategories dataCategories = response.body();
 
                     if(dataCategories != null && response.isSuccessful()) {
-                        dialog.dismiss();
+                        binding.progressBar2.setVisibility(View.INVISIBLE);
 
                         ProductAdapter adapter = new ProductAdapter(dataCategories.getData(), getApplicationContext());
                         binding.recyclerViewSearch.setAdapter(adapter);
@@ -103,7 +103,7 @@ public class SearchActivity extends AppCompatActivity {
                 }
             });
         } else {
-            dialog.show();
+            binding.progressBar2.setVisibility(View.VISIBLE);
 
             ApiServer.apiServer.getAllProduct().enqueue(new Callback<AllProduct>() {
                 @Override
@@ -111,7 +111,7 @@ public class SearchActivity extends AppCompatActivity {
                     AllProduct allProduct = response.body();
 
                     if(allProduct != null && response.isSuccessful()) {
-                        dialog.dismiss();
+                        binding.progressBar2.setVisibility(View.INVISIBLE);
 
                         List<Product> list = allProduct.getData();
                         Collections.sort(list, new Comparator<Product>() {
