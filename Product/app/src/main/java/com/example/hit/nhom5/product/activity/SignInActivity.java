@@ -2,7 +2,6 @@ package com.example.hit.nhom5.product.activity;
 
 import android.annotation.SuppressLint;
 import android.app.Dialog;
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -30,13 +29,14 @@ import com.google.firebase.auth.FirebaseAuth;
 import java.util.regex.Pattern;
 
 public class SignInActivity extends AppCompatActivity {
-
     private ActivitySignInBinding binding;
+
     private static final String EMAIL_PATTERN =
             "^[a-z][a-z0-9_\\.]{5,32}@[a-z0-9]{2,}(\\.[a-z0-9]{2,4}){1}$";
 
     private final String PASSWORD_PATTERN =
             "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#&()–[{}]:;',?/*~$^+=<>]).{8,20}$";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -112,12 +112,14 @@ public class SignInActivity extends AppCompatActivity {
             FirebaseAuth auth = FirebaseAuth.getInstance();
 
             binding.progressBar3.setVisibility(View.VISIBLE);
+            binding.btLogin.setVisibility(View.INVISIBLE);
 
             auth.signInWithEmailAndPassword(email, password)
                     .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             binding.progressBar3.setVisibility(View.INVISIBLE);
+                            binding.btLogin.setVisibility(View.VISIBLE);
 
                             if (task.isSuccessful()) {
                                 startActivity(new Intent(SignInActivity.this, MainActivity.class));
