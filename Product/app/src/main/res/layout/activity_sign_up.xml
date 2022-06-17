@@ -7,34 +7,194 @@
     android:background="@drawable/background"
     tools:context=".activity.SignUpActivity">
 
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:layout_width="@dimen/_120sdp"
-        android:layout_height="@dimen/_120sdp"
-        android:layout_marginTop="@dimen/_30ssp"
-        android:elevation="@dimen/cardview_compat_inset_shadow"
-        android:src="@drawable/avatar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+<!--    <de.hdodenhof.circleimageview.CircleImageView-->
+<!--        android:layout_width="@dimen/_120sdp"-->
+<!--        android:layout_height="@dimen/_120sdp"-->
+<!--        android:layout_marginTop="@dimen/_30ssp"-->
+<!--        android:elevation="@dimen/cardview_compat_inset_shadow"-->
+<!--        android:src="@drawable/avatar"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent" />-->
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
         android:layout_width="0dp"
-        android:layout_height="@dimen/_380sdp"
+        android:layout_height="@dimen/_400sdp"
         android:layout_marginStart="@dimen/_16sdp"
-        android:layout_marginTop="@dimen/_92sdp"
         android:layout_marginEnd="@dimen/_16sdp"
         android:background="@drawable/background1"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
+
+        <!--        <EditText-->
+        <!--            android:id="@+id/inputFirstName"-->
+        <!--            android:layout_width="@dimen/_130sdp"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_marginStart="@dimen/_12sdp"-->
+        <!--            android:layout_marginTop="@dimen/_92sdp"-->
+        <!--            android:background="@drawable/background_edittext"-->
+        <!--            android:drawableStart="@drawable/ic_person"-->
+        <!--            android:drawablePadding="@dimen/_4sdp"-->
+        <!--            android:drawableTint="@color/drawable_tint"-->
+        <!--            android:ellipsize="end"-->
+        <!--            android:ems="10"-->
+        <!--            android:fontFamily="@font/consola"-->
+        <!--            android:gravity="center_vertical"-->
+        <!--            android:hint="@string/first_name"-->
+        <!--            android:imeOptions="actionNext"-->
+        <!--            android:importantForAutofill="no"-->
+        <!--            android:inputType="textPersonName"-->
+        <!--            android:maxLines="1"-->
+        <!--            android:padding="@dimen/_8ssp"-->
+        <!--            android:textColor="@color/black"-->
+        <!--            android:textSize="@dimen/_14ssp"-->
+        <!--            app:layout_constraintStart_toStartOf="parent"-->
+        <!--            app:layout_constraintTop_toTopOf="parent"-->
+        <!--            tools:ignore="UnusedAttribute" />-->
+
+        <!--        <EditText-->
+        <!--            android:id="@+id/inputLastName"-->
+        <!--            android:layout_width="@dimen/_120sdp"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_marginStart="@dimen/_8sdp"-->
+        <!--            android:layout_marginEnd="@dimen/_16sdp"-->
+        <!--            android:background="@drawable/background_edittext"-->
+        <!--            android:drawableStart="@drawable/ic_person"-->
+        <!--            android:drawablePadding="@dimen/_4sdp"-->
+        <!--            android:drawableTint="@color/drawable_tint"-->
+        <!--            android:ellipsize="end"-->
+        <!--            android:ems="10"-->
+        <!--            android:fontFamily="@font/consola"-->
+        <!--            android:gravity="center_vertical"-->
+        <!--            android:hint="@string/last_name"-->
+        <!--            android:imeOptions="actionNext"-->
+        <!--            android:importantForAutofill="no"-->
+        <!--            android:inputType="textPersonName"-->
+        <!--            android:maxLines="1"-->
+        <!--            android:padding="@dimen/_8ssp"-->
+        <!--            android:textColor="@color/black"-->
+        <!--            android:textSize="@dimen/_14ssp"-->
+        <!--            app:layout_constraintBottom_toBottomOf="@+id/inputFirstName"-->
+        <!--            app:layout_constraintEnd_toEndOf="parent"-->
+        <!--            app:layout_constraintStart_toEndOf="@+id/inputFirstName"-->
+        <!--            app:layout_constraintTop_toTopOf="@+id/inputFirstName"-->
+        <!--            tools:ignore="UnusedAttribute" />-->
+
+        <!--        <EditText-->
+        <!--            android:id="@+id/inputEmailSignUp"-->
+        <!--            android:layout_width="0dp"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_marginTop="@dimen/_16sdp"-->
+        <!--            android:background="@drawable/background_edittext"-->
+        <!--            android:drawableStart="@drawable/ic_mail"-->
+        <!--            android:drawablePadding="@dimen/_4sdp"-->
+        <!--            android:drawableTint="@color/drawable_tint"-->
+        <!--            android:ellipsize="end"-->
+        <!--            android:ems="10"-->
+        <!--            android:fontFamily="@font/consola"-->
+        <!--            android:hint="@string/email"-->
+        <!--            android:imeOptions="actionNext"-->
+        <!--            android:importantForAutofill="no"-->
+        <!--            android:inputType="textEmailAddress"-->
+        <!--            android:maxLines="1"-->
+        <!--            android:padding="@dimen/_8ssp"-->
+        <!--            android:textColor="@color/black"-->
+        <!--            android:textSize="@dimen/_14ssp"-->
+        <!--            app:layout_constraintEnd_toEndOf="@+id/inputLastName"-->
+        <!--            app:layout_constraintStart_toStartOf="@+id/inputFirstName"-->
+        <!--            app:layout_constraintTop_toBottomOf="@+id/inputFirstName"-->
+        <!--            tools:ignore="UnusedAttribute" />-->
+
+        <!--        <EditText-->
+        <!--            android:id="@+id/inputPassword"-->
+        <!--            android:layout_width="0dp"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_marginTop="@dimen/_16sdp"-->
+        <!--            android:background="@drawable/background_edittext"-->
+        <!--            android:drawableStart="@drawable/ic_password"-->
+        <!--            android:drawablePadding="@dimen/_4sdp"-->
+        <!--            android:drawableTint="@color/drawable_tint"-->
+        <!--            android:ems="10"-->
+        <!--            android:hint="@string/password"-->
+        <!--            android:fontFamily="@font/consola"-->
+        <!--            android:maxLines="1"-->
+        <!--            android:ellipsize="end"-->
+        <!--            android:imeOptions="actionNext"-->
+        <!--            android:importantForAutofill="no"-->
+        <!--            android:inputType="textPassword"-->
+        <!--            android:maxLength="16"-->
+        <!--            android:padding="@dimen/_8ssp"-->
+        <!--            android:textColor="@color/black"-->
+        <!--            android:textSize="@dimen/_14ssp"-->
+        <!--            app:layout_constraintEnd_toEndOf="@+id/inputEmailSignUp"-->
+        <!--            app:layout_constraintStart_toStartOf="@+id/inputEmailSignUp"-->
+        <!--            app:layout_constraintTop_toBottomOf="@+id/inputEmailSignUp"-->
+        <!--            tools:ignore="UnusedAttribute" />-->
+
+        <!--        <EditText-->
+        <!--            android:id="@+id/inputConfirmPassword"-->
+        <!--            android:layout_width="0dp"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_marginTop="@dimen/_16sdp"-->
+        <!--            android:background="@drawable/background_edittext"-->
+        <!--            android:drawableStart="@drawable/ic_password"-->
+        <!--            android:drawablePadding="@dimen/_4sdp"-->
+        <!--            android:drawableTint="@color/drawable_tint"-->
+        <!--            android:ems="10"-->
+        <!--            android:hint="@string/confirm_password"-->
+        <!--            android:fontFamily="@font/consola"-->
+        <!--            android:maxLines="1"-->
+        <!--            android:ellipsize="end"-->
+        <!--            android:imeOptions="actionNext"-->
+        <!--            android:importantForAutofill="no"-->
+        <!--            android:inputType="textPassword"-->
+        <!--            android:maxLength="16"-->
+        <!--            android:padding="@dimen/_8ssp"-->
+        <!--            android:textColor="@color/black"-->
+        <!--            android:textSize="@dimen/_14ssp"-->
+        <!--            app:layout_constraintEnd_toEndOf="@+id/inputPassword"-->
+        <!--            app:layout_constraintStart_toStartOf="@+id/inputPassword"-->
+        <!--            app:layout_constraintTop_toBottomOf="@+id/inputPassword"-->
+        <!--            tools:ignore="UnusedAttribute" />-->
+
+        <!--        <Button-->
+        <!--            android:id="@+id/btSignUp"-->
+        <!--            android:layout_width="0dp"-->
+        <!--            android:layout_height="@dimen/_40ssp"-->
+        <!--            android:layout_marginStart="@dimen/_60sdp"-->
+        <!--            android:layout_marginTop="@dimen/_16sdp"-->
+        <!--            android:layout_marginEnd="@dimen/_60sdp"-->
+        <!--            android:fontFamily="@font/consolab"-->
+        <!--            android:background="@drawable/background_button"-->
+        <!--            android:text="@string/sign_up"-->
+        <!--            android:textColor="#ffffff"-->
+        <!--            android:textSize="@dimen/_14sdp"-->
+        <!--            app:layout_constraintEnd_toEndOf="@+id/inputConfirmPassword"-->
+        <!--            app:layout_constraintStart_toStartOf="@+id/inputConfirmPassword"-->
+        <!--            app:layout_constraintTop_toBottomOf="@+id/inputConfirmPassword" />-->
+
+        <!--        <ProgressBar-->
+        <!--            android:id="@+id/progressBar4"-->
+        <!--            style="?android:attr/progressBarStyle"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:visibility="invisible"-->
+        <!--            app:layout_constraintBottom_toBottomOf="@+id/btSignUp"-->
+        <!--            app:layout_constraintEnd_toEndOf="@+id/btSignUp"-->
+        <!--            app:layout_constraintStart_toStartOf="@+id/btSignUp"-->
+        <!--            app:layout_constraintTop_toTopOf="@+id/btSignUp" />-->
+        <!--    </androidx.constraintlayout.widget.ConstraintLayout>-->
+
 
         <EditText
             android:id="@+id/inputFirstName"
             android:layout_width="@dimen/_130sdp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_12sdp"
-            android:layout_marginTop="@dimen/_92sdp"
+            android:layout_marginTop="@dimen/_40sdp"
             android:background="@drawable/background_edittext"
             android:drawableStart="@drawable/ic_person"
             android:drawablePadding="@dimen/_4sdp"
@@ -117,15 +277,15 @@
             android:drawableStart="@drawable/ic_password"
             android:drawablePadding="@dimen/_4sdp"
             android:drawableTint="@color/drawable_tint"
-            android:ems="10"
-            android:hint="@string/password"
-            android:fontFamily="@font/consola"
-            android:maxLines="1"
             android:ellipsize="end"
+            android:ems="10"
+            android:fontFamily="@font/consola"
+            android:hint="@string/password"
             android:imeOptions="actionNext"
             android:importantForAutofill="no"
             android:inputType="textPassword"
             android:maxLength="16"
+            android:maxLines="1"
             android:padding="@dimen/_8ssp"
             android:textColor="@color/black"
             android:textSize="@dimen/_14ssp"
@@ -143,15 +303,15 @@
             android:drawableStart="@drawable/ic_password"
             android:drawablePadding="@dimen/_4sdp"
             android:drawableTint="@color/drawable_tint"
-            android:ems="10"
-            android:hint="@string/confirm_password"
-            android:fontFamily="@font/consola"
-            android:maxLines="1"
             android:ellipsize="end"
+            android:ems="10"
+            android:fontFamily="@font/consola"
+            android:hint="@string/confirm_password"
             android:imeOptions="actionNext"
             android:importantForAutofill="no"
             android:inputType="textPassword"
             android:maxLength="16"
+            android:maxLines="1"
             android:padding="@dimen/_8ssp"
             android:textColor="@color/black"
             android:textSize="@dimen/_14ssp"
@@ -167,14 +327,91 @@
             android:layout_marginStart="@dimen/_60sdp"
             android:layout_marginTop="@dimen/_16sdp"
             android:layout_marginEnd="@dimen/_60sdp"
-            android:fontFamily="@font/consolab"
             android:background="@drawable/background_button"
+            android:fontFamily="@font/consolab"
             android:text="@string/sign_up"
             android:textColor="#ffffff"
             android:textSize="@dimen/_14sdp"
             app:layout_constraintEnd_toEndOf="@+id/inputConfirmPassword"
             app:layout_constraintStart_toStartOf="@+id/inputConfirmPassword"
             app:layout_constraintTop_toBottomOf="@+id/inputConfirmPassword" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingStart="@dimen/_24sdp"
+            android:paddingEnd="@dimen/_24sdp"
+            app:layout_constraintBottom_toTopOf="@+id/google"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btSignUp">
+
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="1dp"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:background="@color/m2"
+                android:backgroundTint="@color/line" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/consolab"
+                android:paddingStart="@dimen/_24sdp"
+                android:paddingEnd="@dimen/_24sdp"
+                android:text="@string/or"
+                android:textColor="@color/drawable_tint"
+                android:textSize="@dimen/_12sdp" />
+
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="1dp"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:background="@color/m2"
+                android:backgroundTint="@color/line" />
+        </LinearLayout>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/twitter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_24sdp"
+            android:background="@null"
+            android:backgroundTint="@null"
+            android:src="@mipmap/twitter"
+            app:layout_constraintBottom_toBottomOf="@+id/google"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/google"
+            app:maxImageSize="@dimen/_42sdp"
+            tools:ignore="SpeakableTextPresentCheck,ImageContrastCheck" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/google"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/_20sdp"
+            android:src="@mipmap/google"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/facebook"
+            app:layout_constraintStart_toEndOf="@+id/twitter"
+            app:maxImageSize="@dimen/_42sdp"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/facebook"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_24sdp"
+            android:src="@mipmap/facebook"
+            app:layout_constraintBottom_toBottomOf="@+id/google"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/google"
+            app:maxImageSize="@dimen/_42sdp"
+            tools:ignore="SpeakableTextPresentCheck" />
 
         <ProgressBar
             android:id="@+id/progressBar4"
@@ -186,6 +423,28 @@
             app:layout_constraintEnd_toEndOf="@+id/btSignUp"
             app:layout_constraintStart_toStartOf="@+id/btSignUp"
             app:layout_constraintTop_toTopOf="@+id/btSignUp" />
+
+        <ImageView
+            android:id="@+id/imgShowPassword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_12sdp"
+            app:layout_constraintBottom_toBottomOf="@+id/inputPassword"
+            app:layout_constraintEnd_toEndOf="@+id/inputPassword"
+            app:layout_constraintTop_toTopOf="@+id/inputPassword"
+            app:srcCompat="@drawable/ic_close_eye"
+            app:tint="@color/drawable_tint" />
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_12sdp"
+            app:layout_constraintBottom_toBottomOf="@+id/inputConfirmPassword"
+            app:layout_constraintEnd_toEndOf="@+id/inputConfirmPassword"
+            app:layout_constraintTop_toTopOf="@+id/inputConfirmPassword"
+            app:srcCompat="@drawable/ic_close_eye"
+            app:tint="@color/drawable_tint" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView

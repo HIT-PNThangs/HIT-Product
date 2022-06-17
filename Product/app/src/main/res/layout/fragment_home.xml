@@ -19,7 +19,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_16sdp"
             android:layout_marginStart="@dimen/_12sdp"
-            android:text="Nguyetbm"
+            android:text=""
             android:textColor="@color/m1"
             android:textSize="@dimen/_16sdp"
             android:textStyle="bold"

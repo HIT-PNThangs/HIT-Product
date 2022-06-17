@@ -17,10 +17,21 @@ public class SupportCentralActivity extends AppCompatActivity {
         binding = ActivitySupportCentralBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        setListener();
+    }
+
+    private void setListener() {
         binding.back.setOnClickListener(v -> {
             onBackPressed();
             overridePendingTransition(0, 0);
             finish();
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(0, 0);
+        finish();
     }
 }

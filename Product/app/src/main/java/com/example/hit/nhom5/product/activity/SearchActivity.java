@@ -1,6 +1,5 @@
 package com.example.hit.nhom5.product.activity;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
@@ -80,7 +79,7 @@ public class SearchActivity extends AppCompatActivity {
                     DataCategories dataCategories = response.body();
 
                     if(dataCategories != null && response.isSuccessful()) {
-                        binding.progressBar2.setVisibility(View.INVISIBLE);
+                        binding.progressBar2.setVisibility(View.GONE);
 
                         ProductAdapter adapter = new ProductAdapter(dataCategories.getData(), getApplicationContext());
                         binding.recyclerViewSearch.setAdapter(adapter);
@@ -111,7 +110,7 @@ public class SearchActivity extends AppCompatActivity {
                     AllProduct allProduct = response.body();
 
                     if(allProduct != null && response.isSuccessful()) {
-                        binding.progressBar2.setVisibility(View.INVISIBLE);
+                        binding.progressBar2.setVisibility(View.GONE);
 
                         List<Product> list = allProduct.getData();
                         Collections.sort(list, new Comparator<Product>() {
@@ -160,5 +159,12 @@ public class SearchActivity extends AppCompatActivity {
         list.add(new Category(4, R.drawable.burger_icon, "Burger", "burger_icon"));
 
         return list;
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(0, 0);
+        finish();
     }
 }

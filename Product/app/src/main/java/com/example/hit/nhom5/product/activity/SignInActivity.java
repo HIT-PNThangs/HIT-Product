@@ -20,7 +20,9 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.hit.nhom5.product.R;
+import com.example.hit.nhom5.product.api_interface.ApiServer;
 import com.example.hit.nhom5.product.databinding.ActivitySignInBinding;
+import com.example.hit.nhom5.product.model.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -28,10 +30,14 @@ import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.regex.Pattern;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class SignInActivity extends AppCompatActivity {
     private ActivitySignInBinding binding;
 
-    private static final String EMAIL_PATTERN =
+    private final String EMAIL_PATTERN =
             "^[a-z][a-z0-9_\\.]{5,32}@[a-z0-9]{2,}(\\.[a-z0-9]{2,4}){1}$";
 
     private final String PASSWORD_PATTERN =
@@ -62,7 +68,7 @@ public class SignInActivity extends AppCompatActivity {
             @SuppressLint("ResourceAsColor")
             @Override
             public void onClick(View v) {
-                if(binding.inputPassword.getTransformationMethod().equals(HideReturnsTransformationMethod.getInstance())) {
+                if (binding.inputPassword.getTransformationMethod().equals(HideReturnsTransformationMethod.getInstance())) {
                     binding.inputPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
                     binding.imgShowPassword.setImageResource(R.drawable.ic_close_eye);
                     binding.inputPassword.setSelection(binding.inputPassword.getText().toString().length());
@@ -96,40 +102,47 @@ public class SignInActivity extends AppCompatActivity {
         return Pattern.compile(PASSWORD_PATTERN).matcher(password).matches();
     }
 
-    private void Login () {
+    private void Login() {
         String email = binding.inputEmailSignIn.getText().toString();
         String password = binding.inputPassword.getText().toString();
 
-        if(email.isEmpty()) {
+        if (email.isEmpty()) {
             showToast("Enter email");
-        } else if(!isEmail(email)) {
+        } else if (!isEmail(email)) {
             showToast("Enter valid email");
-        } else if(password.isEmpty()) {
+        } else if (password.isEmpty()) {
             showToast("Enter password");
-        } else if(!isPassword(password)) {
+        } else if (!isPassword(password)) {
             showToast("Enter valid password");
         } else {
-            FirebaseAuth auth = FirebaseAuth.getInstance();
-
             binding.progressBar3.setVisibility(View.VISIBLE);
             binding.btLogin.setVisibility(View.INVISIBLE);
 
-            auth.signInWithEmailAndPassword(email, password)
-                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                        @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) {
-                            binding.progressBar3.setVisibility(View.INVISIBLE);
-                            binding.btLogin.setVisibility(View.VISIBLE);
+            FirebaseAuth auth = FirebaseAuth.getInstance();
+            auth.signInWithEmailAndPassword(email, password);
 
-                            if (task.isSuccessful()) {
-                                startActivity(new Intent(SignInActivity.this, MainActivity.class));
-                                overridePendingTransition(0, 0);
-                                finishAffinity();
-                            } else {
-                                showToast("Login failed.");
-                            }
-                        }
-                    });
+            ApiServer.apiServer.getUserByEmail(email).enqueue(new Callback<User>() {
+                @Override
+                public void onResponse(Call<User> call, Response<User> response) {
+                    binding.progressBar3.setVisibility(View.GONE);
+                    binding.btLogin.setVisibility(View.VISIBLE);
+
+                    if(response.isSuccessful() && response.body() != null) {
+                        Intent intent = new Intent(SignInActivity.this, MainActivity.class);
+                        startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP));
+                        overridePendingTransition(0, 0);
+                        finishAffinity();
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<User> call, Throwable t) {
+                    binding.progressBar3.setVisibility(View.GONE);
+                    binding.btLogin.setVisibility(View.VISIBLE);
+
+                    showToast("Login Failure.");
+                }
+            });
         }
     }
 
@@ -165,9 +178,9 @@ public class SignInActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String strEmail = edtDialogEmail.getText().toString().trim();
 
-                if(strEmail.isEmpty()) {
+                if (strEmail.isEmpty()) {
                     showToast("Enter email");
-                } else if(!isEmail(strEmail)) {
+                } else if (!isEmail(strEmail)) {
                     showToast("Enter valid email");
                 } else {
                     resetPassword(strEmail);
@@ -188,13 +201,11 @@ public class SignInActivity extends AppCompatActivity {
         auth.sendPasswordResetEmail(str).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
-                if(task.isSuccessful()) {
-                    binding.progressBar3.setVisibility(View.VISIBLE);
+                binding.progressBar3.setVisibility(View.GONE);
 
+                if (task.isSuccessful()) {
                     showToast("Check your email to reset your password!");
                 } else {
-                    binding.progressBar3.setVisibility(View.VISIBLE);
-
                     showToast("Try again! Something wrong happened");
                 }
             }
@@ -205,7 +216,7 @@ public class SignInActivity extends AppCompatActivity {
     private long backPressedTime;
     @Override
     public void onBackPressed() {
-        if(backPressedTime + 2000 > System.currentTimeMillis()) {
+        if (backPressedTime + 2000 > System.currentTimeMillis()) {
             mToast.cancel();
             super.onBackPressed();
             return;

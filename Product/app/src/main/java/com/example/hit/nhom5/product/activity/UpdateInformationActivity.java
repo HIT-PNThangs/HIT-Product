@@ -39,7 +39,10 @@ public class UpdateInformationActivity extends AppCompatActivity {
             pickImage.launch(intent);
         });
 
-        binding.btCancel.setOnClickListener(v -> finish());
+        binding.btCancel.setOnClickListener(v -> {
+            finish();
+            overridePendingTransition(0, 0);
+        });
 
         binding.btUpdate.setOnClickListener(v -> Update());
     }
@@ -75,5 +78,12 @@ public class UpdateInformationActivity extends AppCompatActivity {
         } else if(!binding.dialogPassword.getText().toString().trim().equals(binding.dialogConfirmPassword.getText().toString().trim())) {
             showToast("Password && Confirm password must be same");
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(0, 0);
+        finish();
     }
 }

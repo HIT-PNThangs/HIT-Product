@@ -22,9 +22,17 @@ import com.example.hit.nhom5.product.adapter.PopularAdapter;
 import com.example.hit.nhom5.product.api_interface.ApiServer;
 import com.example.hit.nhom5.product.model.AllProduct;
 import com.example.hit.nhom5.product.model.Category;
+import com.example.hit.nhom5.product.model.Firebase;
 import com.example.hit.nhom5.product.model.Product;
+import com.example.hit.nhom5.product.model.User;
 import com.example.hit.nhom5.product.my_interface.CategoryItemOnClick;
 import com.example.hit.nhom5.product.my_interface.PopularItemOnClick;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -50,16 +58,14 @@ public class HomeFragment extends Fragment {
                 false));
 
         CategoryAdapter categoryAdapter = new CategoryAdapter(getListCategory());
-
         recyclerView.setAdapter(categoryAdapter);
-
         categoryAdapter.setOnClickCategory(new CategoryItemOnClick() {
             @Override
             public void onClickItemCategory(Category category) {
                 Intent intent = new Intent(getActivity(), SearchActivity.class);
                 intent.putExtra("categoryItem", (Parcelable) category);
-                System.out.println("Before " + category.toString());
                 startActivity(intent);
+                getActivity().overridePendingTransition(0, 0);
             }
         });
 
@@ -79,7 +85,7 @@ public class HomeFragment extends Fragment {
                 AllProduct allProduct = response.body();
 
                 if (allProduct != null && response.isSuccessful()) {
-                    progressBar.setVisibility(View.INVISIBLE);
+                    progressBar.setVisibility(View.GONE);
 
                     List<Product> list = allProduct.getData();
                     Collections.sort(list, new Comparator<Product>() {
@@ -102,6 +108,7 @@ public class HomeFragment extends Fragment {
                             Intent intent = new Intent(getActivity(), ShowDetailActivity.class);
                             intent.putExtra("popularItem", (Parcelable) product);
                             startActivity(intent);
+                            getActivity().overridePendingTransition(0, 0);
                         }
                     });
                 }
@@ -117,6 +124,31 @@ public class HomeFragment extends Fragment {
         TextView search = view.findViewById(R.id.search);
         search.setOnClickListener(v -> {
             startActivity(new Intent(getContext(), SearchActivity.class));
+            getActivity().overridePendingTransition(0, 0);
+        });
+
+        FirebaseAuth auth = FirebaseAuth.getInstance();
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference reference = database.getReference().child("Users").child(auth.getUid().toString());
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                Firebase firebase = snapshot.getValue(Firebase.class);
+
+                StringBuilder fullName = new StringBuilder();
+
+                fullName.append(firebase.getFirstName());
+                fullName.append(" ");
+                fullName.append(firebase.getLastName());
+
+                TextView userName = view.findViewById(R.id.txtName);
+                userName.setText(fullName.toString());
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
         });
 
         return view;

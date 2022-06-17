@@ -35,7 +35,7 @@ public class WaitActivity extends AppCompatActivity {
                 public void run() {
                     nextActivity();
                 }
-            }, 2000);
+            }, 1500);
         } else {
             // Network disconnect
             Toast.makeText(this, "Network disconnect", Toast.LENGTH_SHORT).show();

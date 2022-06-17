@@ -38,4 +38,13 @@ public class ShoppingSession {
     public void setCarts(List<Cart> carts) {
         this.carts = carts;
     }
+
+    @Override
+    public String toString() {
+        return "ShoppingSession{" +
+                "shoppingSessionId=" + shoppingSessionId +
+                ", total=" + total +
+                ", carts=" + carts +
+                '}';
+    }
 }
