@@ -1,5 +1,6 @@
 package com.example.hit.nhom5.product.adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -66,6 +67,12 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
     @Override
     public int getItemCount() {
         return list == null ? 0 : list.size();
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    public void filterList(List<Product> filterList) {
+        list = filterList;
+        notifyDataSetChanged();
     }
 
     public static class ProductViewHolder extends RecyclerView.ViewHolder {

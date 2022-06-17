@@ -8,6 +8,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
@@ -22,6 +23,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.hit.nhom5.product.R;
 import com.example.hit.nhom5.product.api_interface.ApiServer;
 import com.example.hit.nhom5.product.databinding.ActivitySignInBinding;
+import com.example.hit.nhom5.product.model.Login;
+import com.example.hit.nhom5.product.model.LoginResponse;
 import com.example.hit.nhom5.product.model.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -121,25 +124,34 @@ public class SignInActivity extends AppCompatActivity {
             FirebaseAuth auth = FirebaseAuth.getInstance();
             auth.signInWithEmailAndPassword(email, password);
 
-            ApiServer.apiServer.getUserByEmail(email).enqueue(new Callback<User>() {
+            ApiServer.apiServer.login(new Login(email, password)).enqueue(new Callback<LoginResponse>() {
                 @Override
-                public void onResponse(Call<User> call, Response<User> response) {
-                    binding.progressBar3.setVisibility(View.GONE);
-                    binding.btLogin.setVisibility(View.VISIBLE);
+                public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
+                    LoginResponse loginResponse = response.body();
 
-                    if(response.isSuccessful() && response.body() != null) {
+                    if(response.isSuccessful() && loginResponse != null) {
+                        binding.progressBar3.setVisibility(View.GONE);
+                        binding.btLogin.setVisibility(View.VISIBLE);
+
                         Intent intent = new Intent(SignInActivity.this, MainActivity.class);
                         startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP));
                         overridePendingTransition(0, 0);
                         finishAffinity();
+                    } else {
+                        binding.progressBar3.setVisibility(View.GONE);
+                        binding.btLogin.setVisibility(View.VISIBLE);
+                        Log.d("Sign In: ", Integer.toString(response.code()).toString());
+                        Log.d("Sign In: ", response.message());
+
+                        showToast("Login Failure.");
                     }
                 }
 
                 @Override
-                public void onFailure(Call<User> call, Throwable t) {
+                public void onFailure(Call<LoginResponse> call, Throwable t) {
                     binding.progressBar3.setVisibility(View.GONE);
                     binding.btLogin.setVisibility(View.VISIBLE);
-
+                    Log.d("Sign In: ", t.getMessage());
                     showToast("Login Failure.");
                 }
             });

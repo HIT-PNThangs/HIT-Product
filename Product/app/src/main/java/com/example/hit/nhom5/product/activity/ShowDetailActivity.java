@@ -27,6 +27,7 @@ public class ShowDetailActivity extends AppCompatActivity {
 
     private void init() {
         Product product = getIntent().getParcelableExtra("popularItem");
+
         binding.txtTitle.setText(product.getProductName());
         binding.txtPrice.setText(product.getPrice());
         binding.txtDescription.setText(product.getDescribe());
@@ -53,6 +54,8 @@ public class ShowDetailActivity extends AppCompatActivity {
             overridePendingTransition(0, 0);
             finish();
         });
+
+        binding.back.setOnClickListener(v -> onBackPressed());
     }
 
     @Override

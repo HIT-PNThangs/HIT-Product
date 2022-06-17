@@ -3,6 +3,8 @@ package com.example.hit.nhom5.product.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 
 import androidx.annotation.NonNull;
@@ -69,26 +71,50 @@ public class SearchActivity extends AppCompatActivity {
                 RecyclerView.VERTICAL,
                 false));
 
-        if(category != null) {
+        if (category != null) {
             binding.progressBar2.setVisibility(View.VISIBLE);
 
             ApiServer.apiServer.getDataCategories(category.getId()).enqueue(new Callback<DataCategories>() {
                 @Override
-                public void onResponse(Call<DataCategories> call, Response<DataCategories> response) {
+                public void onResponse(@NonNull Call<DataCategories> call, @NonNull Response<DataCategories> response) {
 
                     DataCategories dataCategories = response.body();
 
-                    if(dataCategories != null && response.isSuccessful()) {
+                    if (dataCategories != null && response.isSuccessful()) {
                         binding.progressBar2.setVisibility(View.GONE);
 
                         ProductAdapter adapter = new ProductAdapter(dataCategories.getData(), getApplicationContext());
                         binding.recyclerViewSearch.setAdapter(adapter);
 
+                        binding.inputSearch.addTextChangedListener(new TextWatcher() {
+                            @Override
+                            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+                            }
+
+                            @Override
+                            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+                            }
+
+                            @Override
+                            public void afterTextChanged(Editable editable) {
+                                List<Product> filteredList = new ArrayList<>();
+
+                                for (Product item : dataCategories.getData()) {
+                                    if (item.getProductName().toLowerCase().contains(editable.toString().toLowerCase()))
+                                        filteredList.add(item);
+                                }
+
+                                adapter.filterList(filteredList);
+                            }
+                        });
+
                         adapter.setProductItemOnClick(new ProductItemOnClick() {
                             @Override
                             public void onClickProduct(Product product) {
                                 Intent intent = new Intent(getApplicationContext(), ShowDetailActivity.class);
-                                intent.putExtra("categoryItem", (Parcelable) category);
+                                intent.putExtra("popularItem", (Parcelable) product);
                                 startActivity(intent);
                                 overridePendingTransition(0, 0);
                             }
@@ -97,7 +123,7 @@ public class SearchActivity extends AppCompatActivity {
                 }
 
                 @Override
-                public void onFailure(Call<DataCategories> call, Throwable t) {
+                public void onFailure(@NonNull Call<DataCategories> call, @NonNull Throwable t) {
 
                 }
             });
@@ -109,7 +135,7 @@ public class SearchActivity extends AppCompatActivity {
                 public void onResponse(@NonNull Call<AllProduct> call, @NonNull Response<AllProduct> response) {
                     AllProduct allProduct = response.body();
 
-                    if(allProduct != null && response.isSuccessful()) {
+                    if (allProduct != null && response.isSuccessful()) {
                         binding.progressBar2.setVisibility(View.GONE);
 
                         List<Product> list = allProduct.getData();
@@ -124,10 +150,35 @@ public class SearchActivity extends AppCompatActivity {
 
                         binding.recyclerViewSearch.setAdapter(adapter);
 
+                        binding.inputSearch.addTextChangedListener(new TextWatcher() {
+                            @Override
+                            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+                            }
+
+                            @Override
+                            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+                            }
+
+                            @Override
+                            public void afterTextChanged(Editable editable) {
+                                List<Product> filteredList = new ArrayList<>();
+
+                                for (Product item : list) {
+                                    if (item.getProductName().toLowerCase().contains(editable.toString().toLowerCase()))
+                                        filteredList.add(item);
+                                }
+
+                                adapter.filterList(filteredList);
+                            }
+                        });
+
                         adapter.setProductItemOnClick(new ProductItemOnClick() {
                             @Override
                             public void onClickProduct(Product product) {
                                 Intent intent = new Intent(getApplicationContext(), ShowDetailActivity.class);
+                                intent.putExtra("popularItem", product);
                                 startActivity(intent);
                                 overridePendingTransition(0, 0);
                             }
@@ -136,8 +187,7 @@ public class SearchActivity extends AppCompatActivity {
                 }
 
                 @Override
-                public void onFailure(Call<AllProduct> call, Throwable t) {
-
+                public void onFailure(@NonNull Call<AllProduct> call, @NonNull Throwable t) {
                 }
             });
         }

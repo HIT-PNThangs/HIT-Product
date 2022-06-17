@@ -189,6 +189,7 @@ public class SignUpActivity extends AppCompatActivity {
                 public void onFailure(Call<SignUpResponse> call, Throwable t) {
                     binding.progressBar4.setVisibility(View.GONE);
                     binding.btSignUp.setVisibility(View.VISIBLE);
+
                     Toast.makeText(getApplicationContext(), "Sign Up Failure.", Toast.LENGTH_LONG).show();
                 }
             });
