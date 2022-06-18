@@ -3,6 +3,7 @@ package com.example.hit.nhom5.product.fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +21,7 @@ import com.example.hit.nhom5.product.activity.ShowDetailActivity;
 import com.example.hit.nhom5.product.adapter.CategoryAdapter;
 import com.example.hit.nhom5.product.adapter.PopularAdapter;
 import com.example.hit.nhom5.product.api_interface.ApiServer;
+import com.example.hit.nhom5.product.databinding.FragmentHomeBinding;
 import com.example.hit.nhom5.product.model.AllProduct;
 import com.example.hit.nhom5.product.model.Category;
 import com.example.hit.nhom5.product.model.Firebase;
@@ -44,21 +46,56 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class HomeFragment extends Fragment {
-    public HomeFragment() { }
+    public HomeFragment() {
+
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_home, container, false);
+        FragmentHomeBinding binding = FragmentHomeBinding.inflate(inflater, container, false);
+
+        FirebaseAuth auth = FirebaseAuth.getInstance();
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference reference = database.getReference().child("Users").child(auth.getUid().toString());
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                Firebase firebase = snapshot.getValue(Firebase.class);
+
+                if(firebase != null) {
+                    StringBuilder fullName = new StringBuilder();
+
+                    fullName.append(firebase.getFirstName());
+                    fullName.append(" ");
+                    fullName.append(firebase.getLastName());
+
+                    binding.txtName.setText(fullName.toString());
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.d("Home: ", error.toString());
+            }
+        });
+
+        binding.txtName.setOnClickListener(v -> startActivity(new Intent(getActivity(), PersonFragment.class)));
+        binding.image.setOnClickListener(v -> startActivity(new Intent(getActivity(), PersonFragment.class)));
+
+        // Search
+        binding.search.setOnClickListener(v -> {
+            startActivity(new Intent(getContext(), SearchActivity.class));
+            getActivity().overridePendingTransition(0, 0);
+        });
 
         // Category
-        RecyclerView recyclerView = view.findViewById(R.id.recycler_category);
-        recyclerView.setLayoutManager(new
+        binding.recyclerCategory.setLayoutManager(new
                 LinearLayoutManager(getContext(),
                 RecyclerView.HORIZONTAL,
                 false));
 
         CategoryAdapter categoryAdapter = new CategoryAdapter(getListCategory());
-        recyclerView.setAdapter(categoryAdapter);
+        binding.recyclerCategory.setAdapter(categoryAdapter);
         categoryAdapter.setOnClickCategory(new CategoryItemOnClick() {
             @Override
             public void onClickItemCategory(Category category) {
@@ -70,22 +107,19 @@ public class HomeFragment extends Fragment {
         });
 
         // Popular
-        RecyclerView recyclerViewPopular = view.findViewById(R.id.recycler_popular);
-        recyclerViewPopular.setLayoutManager(new
+         binding.recyclerCategory.setLayoutManager(new
                 LinearLayoutManager(getContext(),
                 RecyclerView.HORIZONTAL,
                 false));
 
-        ProgressBar progressBar = view.findViewById(R.id.progressBar);
-
-        progressBar.setVisibility(View.VISIBLE);
+        binding.progressBar.setVisibility(View.VISIBLE);
         ApiServer.apiServer.getAllProduct().enqueue(new Callback<AllProduct>() {
             @Override
             public void onResponse(@NonNull Call<AllProduct> call, @NonNull Response<AllProduct> response) {
                 AllProduct allProduct = response.body();
 
                 if (allProduct != null && response.isSuccessful()) {
-                    progressBar.setVisibility(View.GONE);
+                    binding.progressBar.setVisibility(View.GONE);
 
                     List<Product> list = allProduct.getData();
                     Collections.sort(list, new Comparator<Product>() {
@@ -100,7 +134,7 @@ public class HomeFragment extends Fragment {
 
                     PopularAdapter adapter = new PopularAdapter(list1, getActivity());
 
-                    recyclerViewPopular.setAdapter(adapter);
+                    binding.recyclerPopular.setAdapter(adapter);
 
                     adapter.setPopularItemOnClick(new PopularItemOnClick() {
                         @Override
@@ -120,38 +154,7 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        // Search
-        TextView search = view.findViewById(R.id.search);
-        search.setOnClickListener(v -> {
-            startActivity(new Intent(getContext(), SearchActivity.class));
-            getActivity().overridePendingTransition(0, 0);
-        });
-
-        FirebaseAuth auth = FirebaseAuth.getInstance();
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference reference = database.getReference().child("Users").child(auth.getUid().toString());
-        reference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                Firebase firebase = snapshot.getValue(Firebase.class);
-
-                StringBuilder fullName = new StringBuilder();
-
-                fullName.append(firebase.getFirstName());
-                fullName.append(" ");
-                fullName.append(firebase.getLastName());
-
-                TextView userName = view.findViewById(R.id.txtName);
-                userName.setText(fullName.toString());
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-
-        return view;
+        return binding.getRoot();
     }
 
     public List<Category> getListCategory() {

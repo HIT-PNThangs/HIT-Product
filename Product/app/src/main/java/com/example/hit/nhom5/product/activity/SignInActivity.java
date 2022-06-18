@@ -40,12 +40,6 @@ import retrofit2.Response;
 public class SignInActivity extends AppCompatActivity {
     private ActivitySignInBinding binding;
 
-    private final String EMAIL_PATTERN =
-            "^[a-z][a-z0-9_\\.]{5,32}@[a-z0-9]{2,}(\\.[a-z0-9]{2,4}){1}$";
-
-    private final String PASSWORD_PATTERN =
-            "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#&()–[{}]:;',?/*~$^+=<>]).{8,20}$";
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -98,10 +92,12 @@ public class SignInActivity extends AppCompatActivity {
     }
 
     public boolean isEmail(String email) {
+        String EMAIL_PATTERN = "^[a-z][a-z0-9_\\.]{5,32}@[a-z0-9]{2,}(\\.[a-z0-9]{2,4}){1}$";
         return Pattern.compile(EMAIL_PATTERN).matcher(email).matches();
     }
 
     public boolean isPassword(String password) {
+        String PASSWORD_PATTERN = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#&()–[{}]:;',?/*~$^+=<>]).{8,20}$";
         return Pattern.compile(PASSWORD_PATTERN).matcher(password).matches();
     }
 
@@ -126,7 +122,7 @@ public class SignInActivity extends AppCompatActivity {
 
             ApiServer.apiServer.login(new Login(email, password)).enqueue(new Callback<LoginResponse>() {
                 @Override
-                public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
+                public void onResponse(@NonNull Call<LoginResponse> call, @NonNull Response<LoginResponse> response) {
                     LoginResponse loginResponse = response.body();
 
                     if(response.isSuccessful() && loginResponse != null) {
@@ -148,7 +144,7 @@ public class SignInActivity extends AppCompatActivity {
                 }
 
                 @Override
-                public void onFailure(Call<LoginResponse> call, Throwable t) {
+                public void onFailure(@NonNull Call<LoginResponse> call, @NonNull Throwable t) {
                     binding.progressBar3.setVisibility(View.GONE);
                     binding.btLogin.setVisibility(View.VISIBLE);
                     Log.d("Sign In: ", t.getMessage());
@@ -218,7 +214,7 @@ public class SignInActivity extends AppCompatActivity {
                 if (task.isSuccessful()) {
                     showToast("Check your email to reset your password!");
                 } else {
-                    showToast("Try again! Something wrong happened");
+                    showToast("Try again! Something wrong happened.");
                 }
             }
         });

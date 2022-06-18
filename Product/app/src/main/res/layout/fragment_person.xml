@@ -14,7 +14,7 @@
         android:layout_height="wrap_content">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraint1"
+            android:id="@+id/image"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_100sdp"
             android:background="@drawable/background"
@@ -63,9 +63,9 @@
             android:background="@drawable/boder_bottom"
             android:paddingTop="@dimen/_10sdp"
             android:paddingBottom="@dimen/_10sdp"
-            app:layout_constraintEnd_toEndOf="@+id/constraint1"
-            app:layout_constraintStart_toStartOf="@+id/constraint1"
-            app:layout_constraintTop_toBottomOf="@+id/constraint1">
+            app:layout_constraintEnd_toEndOf="@+id/image"
+            app:layout_constraintStart_toStartOf="@+id/image"
+            app:layout_constraintTop_toBottomOf="@+id/image">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -239,7 +239,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_20sdp"
                 android:fontFamily="@font/consola"
-                android:text="Ứng dụng cho chủ quán"
+                android:text="Chức năng của chủ quán"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_12ssp"
                 app:layout_constraintBottom_toBottomOf="parent"
