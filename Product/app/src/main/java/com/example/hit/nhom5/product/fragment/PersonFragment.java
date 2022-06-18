@@ -14,6 +14,8 @@ import androidx.fragment.app.Fragment;
 
 import com.example.hit.nhom5.product.R;
 import com.example.hit.nhom5.product.activity.AboutCremeActivity;
+import com.example.hit.nhom5.product.activity.AddressActivity;
+import com.example.hit.nhom5.product.activity.SettingActivity;
 import com.example.hit.nhom5.product.activity.SignInActivity;
 import com.example.hit.nhom5.product.activity.SupportCentralActivity;
 import com.example.hit.nhom5.product.activity.UpdateInformationActivity;
@@ -50,14 +52,16 @@ public class PersonFragment extends Fragment {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 Firebase firebase = snapshot.getValue(Firebase.class);
 
-                StringBuilder fullName = new StringBuilder();
+                if(firebase != null) {
+                    StringBuilder fullName = new StringBuilder();
 
-                fullName.append(firebase.getFirstName());
-                fullName.append(" ");
-                fullName.append(firebase.getLastName());
+                    fullName.append(firebase.getFirstName());
+                    fullName.append(" ");
+                    fullName.append(firebase.getLastName());
 
-                binding.txtUserName.setText(fullName.toString());
-                binding.txtEmail.setText(firebase.getEmail());
+                    binding.txtUserName.setText(fullName.toString());
+                    binding.txtEmail.setText(firebase.getEmail());
+                }
             }
 
             @Override
@@ -85,12 +89,6 @@ public class PersonFragment extends Fragment {
             startActivity(new Intent(getActivity(), SignInActivity.class));
         });
 
-        binding.aboutCreme.setOnClickListener(v -> {
-            startActivity(new Intent(getActivity(), AboutCremeActivity.class).
-                    addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP));
-
-            getActivity().overridePendingTransition(0 ,0);
-        });
 
         binding.voucher.setOnClickListener(v -> {
             startActivity(new Intent(getActivity(), VoucherActivity.class).
@@ -99,8 +97,29 @@ public class PersonFragment extends Fragment {
             getActivity().overridePendingTransition(0 ,0);
         });
 
+        binding.address.setOnClickListener(v -> {
+            startActivity(new Intent(getActivity(), AddressActivity.class).
+                    addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP));
+
+            getActivity().overridePendingTransition(0 ,0);
+        });
+
         binding.support.setOnClickListener(v -> {
             startActivity(new Intent(getActivity(), SupportCentralActivity.class).
+                    addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP));
+
+            getActivity().overridePendingTransition(0 ,0);
+        });
+
+        binding.setting.setOnClickListener(v -> {
+            startActivity(new Intent(getActivity(), SettingActivity.class).
+                    addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP));
+
+            getActivity().overridePendingTransition(0 ,0);
+        });
+
+        binding.aboutCreme.setOnClickListener(v -> {
+            startActivity(new Intent(getActivity(), AboutCremeActivity.class).
                     addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP));
 
             getActivity().overridePendingTransition(0 ,0);

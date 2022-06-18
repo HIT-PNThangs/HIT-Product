@@ -17,6 +17,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Product">
         <activity
+            android:name=".activity.AddressActivity"
+            android:exported="false" />
+        <activity
             android:name=".activity.SettingActivity"
             android:exported="false" />
         <activity

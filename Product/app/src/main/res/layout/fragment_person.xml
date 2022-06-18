@@ -14,7 +14,7 @@
         android:layout_height="wrap_content">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/image"
+            android:id="@+id/ConstrainLayout1"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_100sdp"
             android:background="@drawable/background"
@@ -63,9 +63,9 @@
             android:background="@drawable/boder_bottom"
             android:paddingTop="@dimen/_10sdp"
             android:paddingBottom="@dimen/_10sdp"
-            app:layout_constraintEnd_toEndOf="@+id/image"
-            app:layout_constraintStart_toStartOf="@+id/image"
-            app:layout_constraintTop_toBottomOf="@+id/image">
+            app:layout_constraintEnd_toEndOf="@+id/ConstrainLayout1"
+            app:layout_constraintStart_toStartOf="@+id/ConstrainLayout1"
+            app:layout_constraintTop_toBottomOf="@+id/ConstrainLayout1">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -290,7 +290,7 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintLayout7"
+            android:id="@+id/setting"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/boder_bottom"
@@ -329,9 +329,9 @@
             android:background="@drawable/boder_bottom"
             android:paddingTop="@dimen/_10sdp"
             android:paddingBottom="@dimen/_10sdp"
-            app:layout_constraintEnd_toEndOf="@+id/constraintLayout7"
-            app:layout_constraintStart_toStartOf="@+id/constraintLayout7"
-            app:layout_constraintTop_toBottomOf="@+id/constraintLayout7">
+            app:layout_constraintEnd_toEndOf="@+id/setting"
+            app:layout_constraintStart_toStartOf="@+id/setting"
+            app:layout_constraintTop_toBottomOf="@+id/setting">
 
             <TextView
                 android:layout_width="wrap_content"
