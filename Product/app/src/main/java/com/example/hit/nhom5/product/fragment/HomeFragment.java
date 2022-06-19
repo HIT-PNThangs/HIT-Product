@@ -79,8 +79,8 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        binding.txtName.setOnClickListener(v -> startActivity(new Intent(getActivity(), PersonFragment.class)));
-        binding.image.setOnClickListener(v -> startActivity(new Intent(getActivity(), PersonFragment.class)));
+//        binding.txtName.setOnClickListener(v -> startActivity(new Intent(getContext(), PersonFragment.class)));
+//        binding.image.setOnClickListener(v ->  startActivity(new Intent(getContext(), PersonFragment.class)));
 
         // Search
         binding.search.setOnClickListener(v -> {

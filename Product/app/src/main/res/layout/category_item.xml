@@ -19,7 +19,7 @@
             android:id="@+id/img_category"
             android:layout_width="@dimen/_55sdp"
             android:layout_height="@dimen/_55sdp"
-            android:layout_margin="@dimen/_4sdp"
+            android:layout_margin="@dimen/_6sdp"
             android:scaleType="center"
             android:layout_gravity="center"/>
 
@@ -29,7 +29,7 @@
             android:layout_height="wrap_content"
             android:textSize="@dimen/_12sdp"
             android:text="Burger"
-            android:fontFamily="@font/consola"
+            android:fontFamily="@font/roboto_regular"
             android:textColor="@color/drawable_tint"
             android:layout_gravity="center"
             android:gravity="center"/>

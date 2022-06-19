@@ -9,11 +9,12 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
         <TextView
             android:id="@+id/textView5"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/consolab"
+            android:fontFamily="@font/roboto_bold"
             android:gravity="center"
             android:text="@string/my_cart"
             android:textColor="@color/m1"
@@ -27,8 +28,8 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_200sdp"
-            android:layout_marginTop="@dimen/_16sdp"
+            android:layout_height="@dimen/_250sdp"
+            android:layout_marginTop="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView5" />
@@ -49,10 +50,9 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textColor="@color/black"
-                android:fontFamily="@font/consola"
+                android:fontFamily="@font/roboto_light"
                 android:text="Items Total:"
-                android:textSize="@dimen/_16ssp"
-                android:textStyle="bold" />
+                android:textSize="@dimen/_16ssp" />
 
             <TextView
                 android:id="@+id/totalFeeTxt"
@@ -60,9 +60,8 @@
                 android:layout_height="wrap_content"
                 android:text="$0"
                 android:textColor="@color/black"
-                android:fontFamily="@font/consola"
-                android:textSize="@dimen/_16ssp"
-                android:textStyle="bold" />
+                android:fontFamily="@font/roboto_light"
+                android:textSize="@dimen/_16ssp" />
         </LinearLayout>
 
         <LinearLayout
@@ -79,21 +78,19 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:fontFamily="@font/consola"
+                android:fontFamily="@font/roboto_light"
                 android:text="Delivery Services:"
                 android:textColor="@color/black"
-                android:textSize="@dimen/_16ssp"
-                android:textStyle="bold" />
+                android:textSize="@dimen/_16ssp" />
 
             <TextView
                 android:id="@+id/deliveryTxt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/consola"
+                android:fontFamily="@font/roboto_light"
                 android:text="$0"
                 android:textColor="@color/black"
-                android:textSize="@dimen/_16ssp"
-                android:textStyle="bold" />
+                android:textSize="@dimen/_16ssp" />
         </LinearLayout>
 
         <LinearLayout
@@ -110,21 +107,19 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:fontFamily="@font/consola"
+                android:fontFamily="@font/roboto_light"
                 android:text="Tax:"
                 android:textColor="@color/black"
-                android:textSize="@dimen/_16ssp"
-                android:textStyle="bold" />
+                android:textSize="@dimen/_16ssp" />
 
             <TextView
                 android:id="@+id/taxTxt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/consola"
+                android:fontFamily="@font/roboto_light"
                 android:textColor="@color/black"
                 android:text="$0"
-                android:textSize="@dimen/_16ssp"
-                android:textStyle="bold" />
+                android:textSize="@dimen/_16ssp" />
         </LinearLayout>
 
         <LinearLayout
@@ -141,34 +136,34 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:fontFamily="@font/consola"
+                android:fontFamily="@font/roboto_bold"
                 android:text="Total:"
                 android:textColor="@color/black"
-                android:textSize="@dimen/_18ssp"
-                android:textStyle="bold" />
+                android:textSize="@dimen/_18ssp" />
 
             <TextView
                 android:id="@+id/totalTxt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/consola"
+                android:fontFamily="@font/roboto_bold"
                 android:text="$0"
                 android:textColor="@color/black"
-                android:textSize="@dimen/_18ssp"
-                android:textStyle="bold" />
+                android:textSize="@dimen/_18ssp" />
         </LinearLayout>
 
         <TextView
             android:id="@+id/signUpPerson"
             android:layout_width="@dimen/_250sdp"
             android:layout_height="@dimen/_42sdp"
-            android:background="@drawable/custom_bg_logout_person"
-            android:fontFamily="@font/consolab"
             android:layout_marginTop="@dimen/_32sdp"
+            android:layout_marginBottom="@dimen/_12sdp"
+            android:background="@drawable/custom_bg_logout_person"
+            android:fontFamily="@font/roboto_bold"
             android:gravity="center"
             android:text="@string/check_out"
             android:textColor="@color/white"
             android:textSize="@dimen/_18ssp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout5" />

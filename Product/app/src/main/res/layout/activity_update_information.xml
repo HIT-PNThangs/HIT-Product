@@ -18,7 +18,7 @@
         android:layout_marginBottom="@dimen/_8sdp"
         android:gravity="center"
         android:textColor="@color/m1"
-        android:fontFamily="@font/consolab" />
+        android:fontFamily="@font/roboto_bold" />
 
     <FrameLayout
         android:id="@+id/layoutImage"
@@ -40,7 +40,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:fontFamily="@font/consola"
+            android:fontFamily="@font/roboto_regular"
             android:text="@string/add_image"
             android:textSize="@dimen/_10sdp" />
     </FrameLayout>
@@ -55,7 +55,7 @@
         android:drawableStart="@drawable/ic_person"
         android:drawablePadding="@dimen/_8sdp"
         android:drawableTint="@color/drawable_tint"
-        android:fontFamily="@font/consola"
+        android:fontFamily="@font/roboto_regular"
         android:hint="Name"
         android:imeOptions="actionDone"
         android:importantForAutofill="no"
@@ -73,7 +73,7 @@
         android:background="@drawable/background_search"
         android:layout_marginTop="@dimen/_8sdp"
         android:layout_marginBottom="@dimen/_8sdp"
-        android:fontFamily="@font/consola"
+        android:fontFamily="@font/roboto_regular"
         android:hint="@string/phone_number"
         android:imeOptions="actionDone"
         android:importantForAutofill="no"
@@ -91,7 +91,7 @@
         android:layout_marginTop="@dimen/_8sdp"
         android:drawablePadding="@dimen/_8sdp"
         android:drawableTint="@color/drawable_tint"
-        android:fontFamily="@font/consola"
+        android:fontFamily="@font/roboto_regular"
         android:hint="@string/password"
         android:imeOptions="actionDone"
         android:importantForAutofill="no"
@@ -109,7 +109,7 @@
         android:drawableStart="@drawable/ic_password"
         android:drawablePadding="@dimen/_8sdp"
         android:drawableTint="@color/drawable_tint"
-        android:fontFamily="@font/consola"
+        android:fontFamily="@font/roboto_regular"
         android:hint="@string/confirm_password"
         android:imeOptions="actionDone"
         android:importantForAutofill="no"
@@ -129,7 +129,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/_12sdp"
             android:background="@drawable/background_button"
-            android:fontFamily="@font/consolab"
+            android:fontFamily="@font/roboto_bold"
             android:paddingStart="@dimen/_25sdp"
             android:paddingEnd="@dimen/_25sdp"
             android:text="@string/cancel"
@@ -147,7 +147,7 @@
             android:layout_marginEnd="@dimen/_4sdp"
             android:layout_marginBottom="@dimen/_8sdp"
             android:background="@drawable/background_button"
-            android:fontFamily="@font/consolab"
+            android:fontFamily="@font/roboto_bold"
             android:paddingStart="@dimen/_25sdp"
             android:paddingEnd="@dimen/_25sdp"
             android:text="@string/update"

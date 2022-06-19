@@ -16,4 +16,11 @@ public class AddressActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
     }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(0, 0);
+        finish();
+    }
 }
