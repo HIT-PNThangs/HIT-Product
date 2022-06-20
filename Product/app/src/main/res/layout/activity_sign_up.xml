@@ -20,11 +20,12 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <EditText
-            android:id="@+id/inputFirstName"
-            android:layout_width="@dimen/_130sdp"
+            android:id="@+id/inputName"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_12sdp"
+            android:layout_marginStart="12dp"
             android:layout_marginTop="@dimen/_40sdp"
+            android:layout_marginEnd="12dp"
             android:background="@drawable/background_edittext"
             android:drawableStart="@drawable/ic_person"
             android:drawablePadding="@dimen/_4sdp"
@@ -33,7 +34,7 @@
             android:ems="10"
             android:fontFamily="@font/roboto_regular"
             android:gravity="center_vertical"
-            android:hint="@string/first_name"
+            android:hint="@string/name"
             android:imeOptions="actionNext"
             android:importantForAutofill="no"
             android:inputType="textPersonName"
@@ -41,36 +42,9 @@
             android:padding="@dimen/_8ssp"
             android:textColor="@color/black"
             android:textSize="@dimen/_14ssp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="UnusedAttribute" />
-
-        <EditText
-            android:id="@+id/inputLastName"
-            android:layout_width="@dimen/_120sdp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_8sdp"
-            android:layout_marginEnd="@dimen/_16sdp"
-            android:background="@drawable/background_edittext"
-            android:drawableStart="@drawable/ic_person"
-            android:drawablePadding="@dimen/_4sdp"
-            android:drawableTint="@color/drawable_tint"
-            android:ellipsize="end"
-            android:ems="10"
-            android:fontFamily="@font/roboto_regular"
-            android:gravity="center_vertical"
-            android:hint="@string/last_name"
-            android:imeOptions="actionNext"
-            android:importantForAutofill="no"
-            android:inputType="textPersonName"
-            android:maxLines="1"
-            android:padding="@dimen/_8ssp"
-            android:textColor="@color/black"
-            android:textSize="@dimen/_14ssp"
-            app:layout_constraintBottom_toBottomOf="@+id/inputFirstName"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/inputFirstName"
-            app:layout_constraintTop_toTopOf="@+id/inputFirstName"
             tools:ignore="UnusedAttribute" />
 
         <EditText
@@ -93,9 +67,9 @@
             android:padding="@dimen/_8ssp"
             android:textColor="@color/black"
             android:textSize="@dimen/_14ssp"
-            app:layout_constraintEnd_toEndOf="@+id/inputLastName"
-            app:layout_constraintStart_toStartOf="@+id/inputFirstName"
-            app:layout_constraintTop_toBottomOf="@+id/inputFirstName"
+            app:layout_constraintEnd_toEndOf="@+id/inputName"
+            app:layout_constraintStart_toStartOf="@+id/inputName"
+            app:layout_constraintTop_toBottomOf="@+id/inputName"
             tools:ignore="UnusedAttribute" />
 
         <EditText
@@ -166,83 +140,6 @@
             app:layout_constraintStart_toStartOf="@+id/inputConfirmPassword"
             app:layout_constraintTop_toBottomOf="@+id/inputConfirmPassword" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingStart="@dimen/_24sdp"
-            android:paddingEnd="@dimen/_24sdp"
-            app:layout_constraintBottom_toTopOf="@+id/google"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btSignUp">
-
-            <View
-                android:layout_width="wrap_content"
-                android:layout_height="1dp"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:background="@color/m2"
-                android:backgroundTint="@color/line" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:fontFamily="@font/roboto_regular"
-                android:paddingStart="@dimen/_24sdp"
-                android:paddingEnd="@dimen/_24sdp"
-                android:text="@string/or"
-                android:textColor="@color/drawable_tint"
-                android:textSize="@dimen/_12sdp" />
-
-            <View
-                android:layout_width="wrap_content"
-                android:layout_height="1dp"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:background="@color/m2"
-                android:backgroundTint="@color/line" />
-        </LinearLayout>
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/twitter"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_24sdp"
-            android:background="@null"
-            android:backgroundTint="@null"
-            android:src="@mipmap/twitter"
-            app:layout_constraintBottom_toBottomOf="@+id/google"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/google"
-            app:maxImageSize="@dimen/_42sdp"
-            tools:ignore="SpeakableTextPresentCheck,ImageContrastCheck" />
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/google"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/_20sdp"
-            android:src="@mipmap/google"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/facebook"
-            app:layout_constraintStart_toEndOf="@+id/twitter"
-            app:maxImageSize="@dimen/_42sdp"
-            tools:ignore="SpeakableTextPresentCheck" />
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/facebook"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/_24sdp"
-            android:src="@mipmap/facebook"
-            app:layout_constraintBottom_toBottomOf="@+id/google"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/google"
-            app:maxImageSize="@dimen/_42sdp"
-            tools:ignore="SpeakableTextPresentCheck" />
-
         <ProgressBar
             android:id="@+id/progressBar4"
             style="?android:attr/progressBarStyle"
@@ -275,6 +172,8 @@
             app:layout_constraintTop_toTopOf="@+id/inputConfirmPassword"
             app:srcCompat="@drawable/ic_close_eye"
             app:tint="@color/drawable_tint" />
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView
@@ -282,10 +181,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_12sdp"
-        android:textSize="@dimen/_10sdp"
         android:fontFamily="@font/roboto_regular"
         android:text="@string/txtLogin"
         android:textColor="@color/drawable_tint"
+        android:textSize="@dimen/_10sdp"
         app:layout_constraintEnd_toEndOf="@+id/constraintLayout"
         app:layout_constraintStart_toStartOf="@+id/constraintLayout"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />

@@ -105,11 +105,22 @@
             app:layout_constraintTop_toBottomOf="@+id/inputPassword"
             tools:ignore="MissingConstraints,TextContrastCheck,TextContrastCheck" />
 
+        <ProgressBar
+            android:id="@+id/progressBar3"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="@+id/btLogin"
+            app:layout_constraintEnd_toEndOf="@+id/btLogin"
+            app:layout_constraintStart_toStartOf="@+id/btLogin"
+            app:layout_constraintTop_toTopOf="@+id/btLogin" />
+
         <TextView
             android:id="@+id/forgetPassword"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="@dimen/_16sdp"
             android:fontFamily="@font/roboto_regular"
             android:text="@string/forget_password"
             android:textColor="@color/drawable_tint"
@@ -119,12 +130,13 @@
             tools:ignore="TextContrastCheck" />
 
         <LinearLayout
+            android:id="@+id/linearLayout6"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
+            android:layout_marginTop="@dimen/_16sdp"
             android:paddingStart="@dimen/_24sdp"
             android:paddingEnd="@dimen/_24sdp"
-            app:layout_constraintBottom_toTopOf="@+id/google"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/forgetPassword">
@@ -157,54 +169,45 @@
                 android:backgroundTint="@color/line" />
         </LinearLayout>
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/twitter"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_24sdp"
-            android:background="@null"
-            android:backgroundTint="@null"
-            android:src="@mipmap/twitter"
-            app:layout_constraintBottom_toBottomOf="@+id/google"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/google"
-            app:maxImageSize="@dimen/_42sdp"
-            tools:ignore="SpeakableTextPresentCheck,ImageContrastCheck" />
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/google"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/_20sdp"
-            android:src="@mipmap/google"
+            android:orientation="horizontal"
+            android:weightSum="2"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/facebook"
-            app:layout_constraintStart_toEndOf="@+id/twitter"
-            app:maxImageSize="@dimen/_42sdp"
-            tools:ignore="SpeakableTextPresentCheck" />
+            app:layout_constraintEnd_toEndOf="@+id/inputPassword"
+            app:layout_constraintStart_toStartOf="@+id/inputPassword"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout6">
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/facebook"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/_24sdp"
-            android:src="@mipmap/facebook"
-            app:layout_constraintBottom_toBottomOf="@+id/google"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/google"
-            app:maxImageSize="@dimen/_42sdp"
-            tools:ignore="SpeakableTextPresentCheck" />
+            <Button
+                android:id="@+id/btnGoogle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/_4sdp"
+                android:layout_weight="1"
+                android:background="@drawable/background_button1"
+                android:backgroundTint="@color/white"
+                android:drawableStart="@drawable/ic_google"
+                android:fontFamily="@font/roboto_bold"
+                android:padding="@dimen/_10sdp"
+                android:text="@string/google"
+                android:textColor="@color/black" />
 
-        <ProgressBar
-            android:id="@+id/progressBar3"
-            style="?android:attr/progressBarStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:visibility="invisible"
-            app:layout_constraintBottom_toBottomOf="@+id/btLogin"
-            app:layout_constraintEnd_toEndOf="@+id/btLogin"
-            app:layout_constraintStart_toStartOf="@+id/btLogin"
-            app:layout_constraintTop_toTopOf="@+id/btLogin" />
+            <Button
+                android:id="@+id/btnFacbook"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_4sdp"
+                android:layout_weight="1"
+                android:background="@drawable/background_button1"
+                android:backgroundTint="@color/fb_color"
+                android:drawableStart="@drawable/ic_facebook"
+                android:fontFamily="@font/roboto_bold"
+                android:padding="@dimen/_10sdp"
+                android:text="@string/facebook"
+                android:textColor="@color/white" />
+        </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -219,5 +222,4 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

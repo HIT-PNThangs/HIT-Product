@@ -12,6 +12,7 @@
         <entry key="..\:/HIT-Product/Product/app/src/main/res/drawable/background1.xml" value="0.1225" />
         <entry key="..\:/HIT-Product/Product/app/src/main/res/drawable/background2.xml" value="0.1955" />
         <entry key="..\:/HIT-Product/Product/app/src/main/res/drawable/background_button.xml" value="0.16799999999999998" />
+        <entry key="..\:/HIT-Product/Product/app/src/main/res/drawable/background_button1.xml" value="0.191" />
         <entry key="..\:/HIT-Product/Product/app/src/main/res/drawable/background_edittext.xml" value="0.1225" />
         <entry key="..\:/HIT-Product/Product/app/src/main/res/drawable/background_image.xml" value="0.2385" />
         <entry key="..\:/HIT-Product/Product/app/src/main/res/drawable/background_search.xml" value="0.1465" />
@@ -35,6 +36,7 @@
         <entry key="..\:/HIT-Product/Product/app/src/main/res/drawable/dialog_background.xml" value="0.1345" />
         <entry key="..\:/HIT-Product/Product/app/src/main/res/drawable/dialog_cancel_background.xml" value="0.1955" />
         <entry key="..\:/HIT-Product/Product/app/src/main/res/drawable/dialog_title.xml" value="0.1955" />
+        <entry key="..\:/HIT-Product/Product/app/src/main/res/drawable/ic_google.xml" value="0.191" />
         <entry key="..\:/HIT-Product/Product/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1955" />
         <entry key="..\:/HIT-Product/Product/app/src/main/res/drawable/ic_person.xml" value="0.2125" />
         <entry key="..\:/HIT-Product/Product/app/src/main/res/drawable/search_background.xml" value="0.181" />
@@ -49,7 +51,7 @@
         <entry key="..\:/HIT-Product/Product/app/src/main/res/layout/activity_search.xml" value="0.264" />
         <entry key="..\:/HIT-Product/Product/app/src/main/res/layout/activity_setting.xml" value="0.2755208333333333" />
         <entry key="..\:/HIT-Product/Product/app/src/main/res/layout/activity_show_detail.xml" value="0.25" />
-        <entry key="..\:/HIT-Product/Product/app/src/main/res/layout/activity_sign_in.xml" value="0.275" />
+        <entry key="..\:/HIT-Product/Product/app/src/main/res/layout/activity_sign_in.xml" value="0.264" />
         <entry key="..\:/HIT-Product/Product/app/src/main/res/layout/activity_sign_up.xml" value="0.275" />
         <entry key="..\:/HIT-Product/Product/app/src/main/res/layout/activity_support_central.xml" value="0.26766304347826086" />
         <entry key="..\:/HIT-Product/Product/app/src/main/res/layout/activity_update_information.xml" value="0.264" />

@@ -1,31 +1,22 @@
 package com.example.hit.nhom5.product.model;
 
 public class Firebase {
-    private String firstName, lastName, email;
+    private String name, email;
 
     public Firebase() {
     }
 
-    public Firebase(String firstName, String lastName, String email) {
-        this.firstName = firstName;
-        this.lastName = lastName;
+    public Firebase(String name, String email) {
+        this.name = name;
         this.email = email;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getName() {
+        return name;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getEmail() {

@@ -1,6 +1,5 @@
 package com.example.hit.nhom5.product.activity;
 
-import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Color;
@@ -25,11 +24,10 @@ import com.example.hit.nhom5.product.api_interface.ApiServer;
 import com.example.hit.nhom5.product.databinding.ActivitySignInBinding;
 import com.example.hit.nhom5.product.model.Login;
 import com.example.hit.nhom5.product.model.LoginResponse;
-import com.example.hit.nhom5.product.model.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.regex.Pattern;
 
@@ -39,6 +37,8 @@ import retrofit2.Response;
 
 public class SignInActivity extends AppCompatActivity {
     private ActivitySignInBinding binding;
+    FirebaseAuth auth;
+    FirebaseDatabase database;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,25 +46,23 @@ public class SignInActivity extends AppCompatActivity {
         binding = ActivitySignInBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        auth = FirebaseAuth.getInstance();
+        database = FirebaseDatabase.getInstance();
+
         setListener();
     }
 
     private void setListener() {
-        binding.txtSignUp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        binding.txtSignUp.setOnClickListener(v -> {
                 startActivity(new Intent(SignInActivity.this, SignUpActivity.class));
                 overridePendingTransition(0, 0);
                 finish();
             }
-        });
+        );
 
         binding.btLogin.setOnClickListener(v -> Login());
 
-        binding.imgShowPassword.setOnClickListener(new View.OnClickListener() {
-            @SuppressLint("ResourceAsColor")
-            @Override
-            public void onClick(View v) {
+        binding.imgShowPassword.setOnClickListener(v -> {
                 if (binding.inputPassword.getTransformationMethod().equals(HideReturnsTransformationMethod.getInstance())) {
                     binding.inputPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
                     binding.imgShowPassword.setImageResource(R.drawable.ic_close_eye);
@@ -75,16 +73,12 @@ public class SignInActivity extends AppCompatActivity {
                     binding.inputPassword.setSelection(binding.inputPassword.getText().toString().length());
                 }
             }
-        });
+        );
 
         binding.forgetPassword.setOnClickListener(v -> onClickForgetPassword());
 
-        binding.google.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onClickSignInGoogle();
-            }
-        });
+        binding.btnGoogle.setOnClickListener(v -> onClickSignInGoogle());
+        binding.btnFacbook.setOnClickListener(v -> onClickSignInFacebook());
     }
 
     private void showToast(String str) {
@@ -117,7 +111,6 @@ public class SignInActivity extends AppCompatActivity {
             binding.progressBar3.setVisibility(View.VISIBLE);
             binding.btLogin.setVisibility(View.INVISIBLE);
 
-            FirebaseAuth auth = FirebaseAuth.getInstance();
             auth.signInWithEmailAndPassword(email, password);
 
             ApiServer.apiServer.login(new Login(email, password)).enqueue(new Callback<LoginResponse>() {
@@ -188,7 +181,7 @@ public class SignInActivity extends AppCompatActivity {
 
                 if (strEmail.isEmpty()) {
                     showToast("Enter email");
-                } else if (!isEmail(strEmail)) {
+                } else if (isEmail(strEmail)) {
                     showToast("Enter valid email");
                 } else {
                     resetPassword(strEmail);
@@ -201,16 +194,16 @@ public class SignInActivity extends AppCompatActivity {
 
     }
 
-    private void resetPassword(String str) {
-        binding.progressBar3.setVisibility(View.VISIBLE);
+    private void onClickSignInFacebook() {
 
+    }
+
+    private void resetPassword(String str) {
         FirebaseAuth auth = FirebaseAuth.getInstance();
 
         auth.sendPasswordResetEmail(str).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
-                binding.progressBar3.setVisibility(View.GONE);
-
                 if (task.isSuccessful()) {
                     showToast("Check your email to reset your password!");
                 } else {

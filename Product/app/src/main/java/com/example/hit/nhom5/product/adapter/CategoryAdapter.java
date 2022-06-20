@@ -84,7 +84,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
         return categories != null ? categories.size() : 0;
     }
 
-    public class CategoryViewHolder extends RecyclerView.ViewHolder {
+    public static class CategoryViewHolder extends RecyclerView.ViewHolder {
         private ImageView imageCate;
         private TextView textView;
         CardView itemCardView;

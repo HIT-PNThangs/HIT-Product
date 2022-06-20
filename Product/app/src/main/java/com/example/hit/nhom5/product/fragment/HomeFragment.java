@@ -40,6 +40,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Objects;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -51,26 +52,19 @@ public class HomeFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         FragmentHomeBinding binding = FragmentHomeBinding.inflate(inflater, container, false);
 
         FirebaseAuth auth = FirebaseAuth.getInstance();
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference reference = database.getReference().child("Users").child(auth.getUid().toString());
+        DatabaseReference reference = database.getReference().child("Users").child(Objects.requireNonNull(auth.getUid()));
+
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 Firebase firebase = snapshot.getValue(Firebase.class);
 
-                if(firebase != null) {
-                    StringBuilder fullName = new StringBuilder();
-
-                    fullName.append(firebase.getFirstName());
-                    fullName.append(" ");
-                    fullName.append(firebase.getLastName());
-
-                    binding.txtName.setText(fullName.toString());
-                }
+                if(firebase != null) binding.txtName.setText(firebase.getName());
             }
 
             @Override
@@ -122,7 +116,7 @@ public class HomeFragment extends Fragment {
                     binding.progressBar.setVisibility(View.GONE);
 
                     List<Product> list = allProduct.getData();
-                    Collections.sort(list, new Comparator<Product>() {
+                    list.sort(new Comparator<Product>() {
                         @Override
                         public int compare(Product o1, Product o2) {
                             return o1.getPurchases() - o2.getPurchases();
@@ -149,8 +143,8 @@ public class HomeFragment extends Fragment {
             }
 
             @Override
-            public void onFailure(Call<AllProduct> call, Throwable t) {
-
+            public void onFailure(@NonNull Call<AllProduct> call, @NonNull Throwable t) {
+                Log.d("Home: ", t.getMessage());
             }
         });
 

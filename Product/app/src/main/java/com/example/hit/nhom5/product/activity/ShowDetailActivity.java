@@ -48,11 +48,11 @@ public class ShowDetailActivity extends AppCompatActivity {
         });
 
         binding.addToCart.setOnClickListener(v -> {
-            Intent intent = new Intent(getApplicationContext(), CardActivity.class);
-            intent.putExtra("orderNumber", numberOrder);
-            startActivity(intent);
-            overridePendingTransition(0, 0);
+//            Intent intent = new Intent(getApplicationContext(), CardActivity.class);
+//            intent.putExtra("orderNumber", numberOrder);
+//            startActivity(intent);
             finish();
+            overridePendingTransition(0, 0);
         });
 
         binding.back.setOnClickListener(v -> onBackPressed());

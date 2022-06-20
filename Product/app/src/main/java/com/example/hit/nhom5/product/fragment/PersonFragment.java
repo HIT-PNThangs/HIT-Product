@@ -2,17 +2,16 @@ package com.example.hit.nhom5.product.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.example.hit.nhom5.product.R;
 import com.example.hit.nhom5.product.activity.AboutCremeActivity;
 import com.example.hit.nhom5.product.activity.AddressActivity;
 import com.example.hit.nhom5.product.activity.SettingActivity;
@@ -29,12 +28,13 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.Objects;
+
 public class PersonFragment extends Fragment {
     private FragmentPersonBinding binding;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentPersonBinding.inflate(getLayoutInflater());
 
         return binding.getRoot();
@@ -46,27 +46,21 @@ public class PersonFragment extends Fragment {
 
         FirebaseAuth auth = FirebaseAuth.getInstance();
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference reference = database.getReference().child("Users").child(auth.getUid().toString());
+        DatabaseReference reference = database.getReference().child("Users").child(Objects.requireNonNull(auth.getUid()));
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 Firebase firebase = snapshot.getValue(Firebase.class);
 
                 if(firebase != null) {
-                    StringBuilder fullName = new StringBuilder();
-
-                    fullName.append(firebase.getFirstName());
-                    fullName.append(" ");
-                    fullName.append(firebase.getLastName());
-
-                    binding.txtUserName.setText(fullName.toString());
+                    binding.txtUserName.setText(firebase.getName());
                     binding.txtEmail.setText(firebase.getEmail());
                 }
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
+                Log.d("Person: ", error.getMessage());
             }
         });
 
