@@ -22,8 +22,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.hit.nhom5.product.R;
 import com.example.hit.nhom5.product.api_interface.ApiServer;
 import com.example.hit.nhom5.product.databinding.ActivitySignInBinding;
+import com.example.hit.nhom5.product.model.GetUserByEmailResponse;
 import com.example.hit.nhom5.product.model.Login;
 import com.example.hit.nhom5.product.model.LoginResponse;
+import com.example.hit.nhom5.product.model.User;
+import com.google.android.gms.common.api.Api;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -78,7 +81,6 @@ public class SignInActivity extends AppCompatActivity {
         binding.forgetPassword.setOnClickListener(v -> onClickForgetPassword());
 
         binding.btnGoogle.setOnClickListener(v -> onClickSignInGoogle());
-        binding.btnFacbook.setOnClickListener(v -> onClickSignInFacebook());
     }
 
     private void showToast(String str) {
@@ -122,10 +124,34 @@ public class SignInActivity extends AppCompatActivity {
                         binding.progressBar3.setVisibility(View.GONE);
                         binding.btLogin.setVisibility(View.VISIBLE);
 
-                        Intent intent = new Intent(SignInActivity.this, MainActivity.class);
-                        startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP));
-                        overridePendingTransition(0, 0);
-                        finishAffinity();
+                        ApiServer.apiServer.getUserByEmail(email).enqueue(new Callback<GetUserByEmailResponse>() {
+                            @Override
+                            public void onResponse(@NonNull Call<GetUserByEmailResponse> call, @NonNull Response<GetUserByEmailResponse> response) {
+                                if(response.body() != null && response.isSuccessful()) {
+                                    User user = response.body().getResult();
+
+                                    if(!user.getStatus()) {
+                                        Intent intent = new Intent(getApplicationContext(), UpdateInformationActivity.class);
+                                        startActivity(intent);
+                                        overridePendingTransition(0, 0);
+                                    } else {
+                                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                                        startActivity(intent);
+                                        overridePendingTransition(0, 0);
+                                    }
+                                } else {
+                                    showToast(response.message());
+                                    Log.d("Sign In", Integer.toString(response.code()));
+                                    Log.d("Sign In", response.message());
+                                }
+                            }
+
+                            @Override
+                            public void onFailure(@NonNull Call<GetUserByEmailResponse> call, @NonNull Throwable t) {
+                                showToast(t.getMessage());
+                                Log.d("Sign In", t.getMessage());
+                            }
+                        });
                     } else {
                         binding.progressBar3.setVisibility(View.GONE);
                         binding.btLogin.setVisibility(View.VISIBLE);
@@ -144,6 +170,35 @@ public class SignInActivity extends AppCompatActivity {
                     showToast("Login Failure.");
                 }
             });
+
+//            ApiServer.apiServer.getUserByEmail(email).enqueue(new Callback<GetUserByEmailResponse>() {
+//                @Override
+//                public void onResponse(@NonNull Call<GetUserByEmailResponse> call, @NonNull Response<GetUserByEmailResponse> response) {
+//                    if(response.body() != null && response.isSuccessful()) {
+//                        User user = response.body().getResult();
+//
+//                        if(!user.getStatus()) {
+//                            Intent intent = new Intent(getApplicationContext(), UpdateInformationActivity.class);
+//                            startActivity(intent);
+//                            overridePendingTransition(0, 0);
+//                        } else {
+//                            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+//                            startActivity(intent);
+//                            overridePendingTransition(0, 0);
+//                        }
+//                    } else {
+//                        showToast(response.message());
+//                        Log.d("Sign In", Integer.toString(response.code()));
+//                        Log.d("Sign In", response.message());
+//                    }
+//                }
+//
+//                @Override
+//                public void onFailure(@NonNull Call<GetUserByEmailResponse> call, @NonNull Throwable t) {
+//                    showToast(t.getMessage());
+//                    Log.d("Sign In", t.getMessage());
+//                }
+//            });
         }
     }
 
@@ -174,27 +229,20 @@ public class SignInActivity extends AppCompatActivity {
 
         btCancel.setOnClickListener(v -> dialog.cancel());
 
-        btAgree.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        btAgree.setOnClickListener(v -> {
                 String strEmail = edtDialogEmail.getText().toString().trim();
 
                 if (strEmail.isEmpty()) {
                     showToast("Enter email");
-                } else if (isEmail(strEmail)) {
+                } else if (!isEmail(strEmail)) {
                     showToast("Enter valid email");
                 } else {
                     resetPassword(strEmail);
                 }
-            }
-        });
+            });
     }
 
     private void onClickSignInGoogle() {
-
-    }
-
-    private void onClickSignInFacebook() {
 
     }
 

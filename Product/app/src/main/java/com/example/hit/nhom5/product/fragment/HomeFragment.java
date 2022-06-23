@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.hit.nhom5.product.R;
 import com.example.hit.nhom5.product.activity.SearchActivity;
 import com.example.hit.nhom5.product.activity.ShowDetailActivity;
+import com.example.hit.nhom5.product.activity.UpdateInformationActivity;
 import com.example.hit.nhom5.product.adapter.CategoryAdapter;
 import com.example.hit.nhom5.product.adapter.PopularAdapter;
 import com.example.hit.nhom5.product.api_interface.ApiServer;
@@ -47,9 +48,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class HomeFragment extends Fragment {
-    public HomeFragment() {
-
-    }
+    public HomeFragment() { }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -64,7 +63,9 @@ public class HomeFragment extends Fragment {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 Firebase firebase = snapshot.getValue(Firebase.class);
 
-                if(firebase != null) binding.txtName.setText(firebase.getName());
+                if(firebase != null) {
+                    binding.txtName.setText(firebase.getName());
+                }
             }
 
             @Override
@@ -73,8 +74,9 @@ public class HomeFragment extends Fragment {
             }
         });
 
-//        binding.txtName.setOnClickListener(v -> startActivity(new Intent(getContext(), PersonFragment.class)));
-//        binding.image.setOnClickListener(v ->  startActivity(new Intent(getContext(), PersonFragment.class)));
+
+//        binding.txtName.setOnClickListener(v -> startActivity(new Intent(getActivity().getApplicationContext(), PersonFragment.class)));
+//        binding.image.setOnClickListener(v ->  startActivity(new Intent(getActivity().getApplicationContext(), PersonFragment.class)));
 
         // Search
         binding.search.setOnClickListener(v -> {

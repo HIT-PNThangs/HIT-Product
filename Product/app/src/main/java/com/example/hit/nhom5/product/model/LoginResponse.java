@@ -10,12 +10,12 @@ public class LoginResponse {
     private String message;
 
     @SerializedName("result")
-    private LoginDTO result;
+    private LoginResult result;
 
     public LoginResponse() {
     }
 
-    public LoginResponse(Integer status, String message, LoginDTO result) {
+    public LoginResponse(Integer status, String message, LoginResult result) {
         this.status = status;
         this.message = message;
         this.result = result;
@@ -37,11 +37,11 @@ public class LoginResponse {
         this.message = message;
     }
 
-    public LoginDTO getResult() {
+    public LoginResult getResult() {
         return result;
     }
 
-    public void setResult(LoginDTO result) {
+    public void setResult(LoginResult result) {
         this.result = result;
     }
 }

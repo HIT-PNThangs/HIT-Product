@@ -1,13 +1,13 @@
 package com.example.hit.nhom5.product.model;
 
-public class LoginDTO {
+public class LoginResult {
     private String username;
     private String jwt;
 
-    public LoginDTO() {
+    public LoginResult() {
     }
 
-    public LoginDTO(String username, String jwt) {
+    public LoginResult(String username, String jwt) {
         this.username = username;
         this.jwt = jwt;
     }
