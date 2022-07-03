@@ -3,6 +3,8 @@ package com.example.hit.nhom5.product.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import androidx.annotation.NonNull;
+
 import java.util.List;
 
 public class User implements Parcelable {
@@ -152,6 +154,7 @@ public class User implements Parcelable {
         this.uid = uid;
     }
 
+    @NonNull
     @Override
     public String toString() {
         return "User{" +

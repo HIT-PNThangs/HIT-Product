@@ -18,8 +18,7 @@
         app:backgroundTint="@color/white"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="ContentDescription,HardcodedText,SpeakableTextPresentCheck"
-        android:contentDescription="TODO" />
+        tools:ignore="ContentDescription,HardcodedText,SpeakableTextPresentCheck" />
 
     <androidx.appcompat.widget.SearchView
         android:id="@+id/input_search"

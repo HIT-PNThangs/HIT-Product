@@ -57,25 +57,25 @@ public class SignInActivity extends AppCompatActivity {
 
     private void setListener() {
         binding.txtSignUp.setOnClickListener(v -> {
-                startActivity(new Intent(SignInActivity.this, SignUpActivity.class));
-                overridePendingTransition(0, 0);
-                finish();
-            }
+                    startActivity(new Intent(SignInActivity.this, SignUpActivity.class));
+                    overridePendingTransition(0, 0);
+                    finish();
+                }
         );
 
         binding.btLogin.setOnClickListener(v -> Login());
 
         binding.imgShowPassword.setOnClickListener(v -> {
-                if (binding.inputPassword.getTransformationMethod().equals(HideReturnsTransformationMethod.getInstance())) {
-                    binding.inputPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
-                    binding.imgShowPassword.setImageResource(R.drawable.ic_close_eye);
-                    binding.inputPassword.setSelection(binding.inputPassword.getText().toString().length());
-                } else {
-                    binding.inputPassword.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
-                    binding.imgShowPassword.setImageResource(R.drawable.ic_eye);
-                    binding.inputPassword.setSelection(binding.inputPassword.getText().toString().length());
+                    if (binding.inputPassword.getTransformationMethod().equals(HideReturnsTransformationMethod.getInstance())) {
+                        binding.inputPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                        binding.imgShowPassword.setImageResource(R.drawable.ic_close_eye);
+                        binding.inputPassword.setSelection(binding.inputPassword.getText().toString().length());
+                    } else {
+                        binding.inputPassword.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                        binding.imgShowPassword.setImageResource(R.drawable.ic_eye);
+                        binding.inputPassword.setSelection(binding.inputPassword.getText().toString().length());
+                    }
                 }
-            }
         );
 
         binding.forgetPassword.setOnClickListener(v -> onClickForgetPassword());
@@ -120,17 +120,17 @@ public class SignInActivity extends AppCompatActivity {
                 public void onResponse(@NonNull Call<LoginResponse> call, @NonNull Response<LoginResponse> response) {
                     LoginResponse loginResponse = response.body();
 
-                    if(response.isSuccessful() && loginResponse != null) {
+                    if (response.isSuccessful() && loginResponse != null) {
                         binding.progressBar3.setVisibility(View.GONE);
                         binding.btLogin.setVisibility(View.VISIBLE);
 
                         ApiServer.apiServer.getUserByEmail(email).enqueue(new Callback<GetUserByEmailResponse>() {
                             @Override
                             public void onResponse(@NonNull Call<GetUserByEmailResponse> call, @NonNull Response<GetUserByEmailResponse> response) {
-                                if(response.body() != null && response.isSuccessful()) {
+                                if (response.body() != null && response.isSuccessful()) {
                                     User user = response.body().getResult();
 
-                                    if(!user.getStatus()) {
+                                    if (!user.getStatus()) {
                                         Intent intent = new Intent(getApplicationContext(), UpdateInformationActivity.class);
                                         startActivity(intent);
                                         overridePendingTransition(0, 0);
@@ -230,16 +230,16 @@ public class SignInActivity extends AppCompatActivity {
         btCancel.setOnClickListener(v -> dialog.cancel());
 
         btAgree.setOnClickListener(v -> {
-                String strEmail = edtDialogEmail.getText().toString().trim();
+            String strEmail = edtDialogEmail.getText().toString().trim();
 
-                if (strEmail.isEmpty()) {
-                    showToast("Enter email");
-                } else if (!isEmail(strEmail)) {
-                    showToast("Enter valid email");
-                } else {
-                    resetPassword(strEmail);
-                }
-            });
+            if (strEmail.isEmpty()) {
+                showToast("Enter email");
+            } else if (!isEmail(strEmail)) {
+                showToast("Enter valid email");
+            } else {
+                resetPassword(strEmail);
+            }
+        });
     }
 
     private void onClickSignInGoogle() {
@@ -249,20 +249,18 @@ public class SignInActivity extends AppCompatActivity {
     private void resetPassword(String str) {
         FirebaseAuth auth = FirebaseAuth.getInstance();
 
-        auth.sendPasswordResetEmail(str).addOnCompleteListener(new OnCompleteListener<Void>() {
-            @Override
-            public void onComplete(@NonNull Task<Void> task) {
-                if (task.isSuccessful()) {
-                    showToast("Check your email to reset your password!");
-                } else {
-                    showToast("Try again! Something wrong happened.");
-                }
+        auth.sendPasswordResetEmail(str).addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                showToast("Check your email to reset your password!");
+            } else {
+                showToast("Try again! Something wrong happened.");
             }
         });
     }
 
     private Toast mToast;
     private long backPressedTime;
+
     @Override
     public void onBackPressed() {
         if (backPressedTime + 2000 > System.currentTimeMillis()) {

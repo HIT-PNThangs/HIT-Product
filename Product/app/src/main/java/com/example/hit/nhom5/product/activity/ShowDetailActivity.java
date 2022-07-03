@@ -25,12 +25,13 @@ public class ShowDetailActivity extends AppCompatActivity {
         setListener();
     }
 
+    @SuppressLint("SetTextI18n")
     private void init() {
         Product product = getIntent().getParcelableExtra("popularItem");
 
-        binding.txtTitle.setText(product.getProductName());
-        binding.txtPrice.setText(product.getPrice());
-        binding.txtDescription.setText(product.getDescribe());
+        binding.name.setText(product.getProductName());
+        binding.price.setText(product.getPrice());
+        binding.purchases.setText("Đã bán " + product.getPurchases().toString());
         Glide.with(getApplicationContext()).load(product.getImage()).into(binding.pictureFood);
     }
 
@@ -47,7 +48,7 @@ public class ShowDetailActivity extends AppCompatActivity {
             binding.numberOrderTxt.setText(numberOrder.toString());
         });
 
-        binding.addToCart.setOnClickListener(v -> {
+        binding.linearLayout.setOnClickListener(v -> {
 //            Intent intent = new Intent(getApplicationContext(), CardActivity.class);
 //            intent.putExtra("orderNumber", numberOrder);
 //            startActivity(intent);

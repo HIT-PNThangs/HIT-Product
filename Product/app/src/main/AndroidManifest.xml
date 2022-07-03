@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.hit.nhom5.product">
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
@@ -18,16 +17,20 @@
         android:theme="@style/Theme.Product">
         <activity
             android:name=".activity.AddressActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/FullScreen" />
         <activity
             android:name=".activity.SettingActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/FullScreen" />
         <activity
             android:name=".activity.SupportCentralActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/FullScreen" />
         <activity
             android:name=".activity.VoucherActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/FullScreen" />
         <activity
             android:name=".activity.AboutCremeActivity"
             android:exported="false"
