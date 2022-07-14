@@ -6,17 +6,147 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragment.NotificationFragment">
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/notification"
-        android:textSize="@dimen/_40sdp"
-        android:textStyle="bold"
-        android:textColor="@color/black"
-        app:layout_constraintBottom_toBottomOf="parent"
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout4"
+        android:layout_width="match_parent"
+        android:layout_height="67dp"
+        android:background="@drawable/boder_bottom"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
 
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:text="Thông báo"
+            android:textSize="@dimen/_18sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout8"
+        android:layout_width="match_parent"
+        android:layout_height="67dp"
+        android:background="@drawable/boder_bottom"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout4">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginStart="24dp"
+            android:src="@drawable/ic_percent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView13"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="Khuyến mại"
+            android:textSize="@dimen/_14sdp"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView"
+            app:layout_constraintStart_toEndOf="@+id/imageView"
+            app:layout_constraintTop_toTopOf="@+id/imageView" />
+
+        <ImageView
+            android:id="@+id/imageView4"
+            android:layout_width="8dp"
+            android:layout_height="15dp"
+            android:layout_marginEnd="24dp"
+            android:src="@drawable/arrow"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout11"
+        android:layout_width="match_parent"
+        android:layout_height="67dp"
+        android:background="@drawable/boder_bottom"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout8">
+
+        <ImageView
+            android:id="@+id/imageView6"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginStart="24dp"
+            android:src="@drawable/ic_news"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="Tin tức"
+            android:textSize="@dimen/_14sdp"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView6"
+            app:layout_constraintStart_toEndOf="@+id/imageView6"
+            app:layout_constraintTop_toTopOf="@+id/imageView6" />
+
+        <ImageView
+            android:id="@+id/imageView7"
+            android:layout_width="8dp"
+            android:layout_height="15dp"
+            android:layout_marginEnd="24dp"
+            android:src="@drawable/arrow"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="67dp"
+        android:background="@drawable/boder_bottom"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout11">
+
+        <ImageView
+            android:id="@+id/imageView9"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginStart="24dp"
+            android:src="@drawable/ic_update"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView15"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="Cập nhật Creme"
+            android:textSize="@dimen/_14sdp"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView9"
+            app:layout_constraintStart_toEndOf="@+id/imageView9"
+            app:layout_constraintTop_toTopOf="@+id/imageView9" />
+
+        <ImageView
+            android:id="@+id/imageView10"
+            android:layout_width="8dp"
+            android:layout_height="15dp"
+            android:layout_marginEnd="24dp"
+            android:src="@drawable/arrow"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

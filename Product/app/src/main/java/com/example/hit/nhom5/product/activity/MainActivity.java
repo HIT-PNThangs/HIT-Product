@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -15,6 +16,7 @@ import com.example.hit.nhom5.product.R;
 import com.example.hit.nhom5.product.adapter.NavigationAdapter;
 import com.example.hit.nhom5.product.databinding.ActivityMainBinding;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -29,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
         init();
 
         setListener();
+
     }
 
     private void init() {
@@ -84,6 +87,7 @@ public class MainActivity extends AppCompatActivity {
                         binding.viewPager.setCurrentItem(1);
                         break;
 
+
                     case R.id.order:
                         binding.viewPager.setCurrentItem(2);
                         break;
@@ -91,6 +95,8 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.person:
                         binding.viewPager.setCurrentItem(3);
                         break;
+
+
                 }
 
                 return true;
@@ -104,6 +110,7 @@ public class MainActivity extends AppCompatActivity {
             overridePendingTransition(0, 0);
         });
     }
+
 
     private Toast mToast;
     private long backPressedTime;
