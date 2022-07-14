@@ -8,6 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -44,7 +45,7 @@ public class PopularAdapter extends RecyclerView.Adapter<PopularAdapter.PopularV
         holder.name.setText(list.get(position).getProductName());
         Glide.with(context).load(list.get(position).getImage()).into(holder.image);
         holder.price.setText(list.get(position).getPrice());
-        holder.add.setOnClickListener(v -> popularItemOnClick.onClickItemPopular(list.get(position)));
+        holder.cardView.setOnClickListener(v -> popularItemOnClick.onClickItemPopular(list.get(position)));
     }
 
     @Override
@@ -53,8 +54,9 @@ public class PopularAdapter extends RecyclerView.Adapter<PopularAdapter.PopularV
     }
 
     public static class PopularViewHolder extends RecyclerView.ViewHolder {
-        TextView name, price, add;
+        TextView name, price;
         ImageView image;
+        CardView cardView;
 
         public PopularViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -62,7 +64,7 @@ public class PopularAdapter extends RecyclerView.Adapter<PopularAdapter.PopularV
             name = itemView.findViewById(R.id.name_popular);
             image = itemView.findViewById(R.id.img_popular);
             price = itemView.findViewById(R.id.price_popular);
-            add  = itemView.findViewById(R.id.add_to_cart);
+            cardView = itemView.findViewById(R.id.popular);
         }
     }
 }

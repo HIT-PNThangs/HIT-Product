@@ -26,6 +26,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.io.FileDescriptor;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 import java.util.regex.Pattern;
 
 import retrofit2.Call;
@@ -35,18 +36,17 @@ import retrofit2.Response;
 public class SignUpActivity extends AppCompatActivity {
 
     private ActivitySignUpBinding binding;
-
-    private final String EMAIL_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
-            + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
-
-    private final String PASSWORD_PATTERN =
-            "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#&()–[{}]:;',?/*~$^+=<>]).{8,20}$";
+    FirebaseAuth auth;
+    FirebaseDatabase database;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivitySignUpBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        auth = FirebaseAuth.getInstance();
+        database = FirebaseDatabase.getInstance();
 
         setListener();
     }
@@ -60,35 +60,27 @@ public class SignUpActivity extends AppCompatActivity {
 
         binding.btSignUp.setOnClickListener(v -> SignUp());
 
-        binding.imgShowPassword.setOnClickListener(new View.OnClickListener() {
-            @SuppressLint("ResourceAsColor")
-            @Override
-            public void onClick(View v) {
-                if (binding.inputPassword.getTransformationMethod().equals(HideReturnsTransformationMethod.getInstance())) {
-                    binding.inputPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
-                    binding.imgShowPassword.setImageResource(R.drawable.ic_close_eye);
-                    binding.inputPassword.setSelection(binding.inputPassword.getText().toString().length());
-                } else {
-                    binding.inputPassword.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
-                    binding.imgShowPassword.setImageResource(R.drawable.ic_eye);
-                    binding.inputPassword.setSelection(binding.inputPassword.getText().toString().length());
-                }
+        binding.imgShowPassword.setOnClickListener(v -> {
+            if (binding.inputPassword.getTransformationMethod().equals(HideReturnsTransformationMethod.getInstance())) {
+                binding.inputPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                binding.imgShowPassword.setImageResource(R.drawable.ic_close_eye);
+                binding.inputPassword.setSelection(binding.inputPassword.getText().toString().length());
+            } else {
+                binding.inputPassword.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                binding.imgShowPassword.setImageResource(R.drawable.ic_eye);
+                binding.inputPassword.setSelection(binding.inputPassword.getText().toString().length());
             }
         });
 
-        binding.imageView3.setOnClickListener(new View.OnClickListener() {
-            @SuppressLint("ResourceAsColor")
-            @Override
-            public void onClick(View v) {
-                if (binding.inputConfirmPassword.getTransformationMethod().equals(HideReturnsTransformationMethod.getInstance())) {
-                    binding.inputConfirmPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
-                    binding.imageView3.setImageResource(R.drawable.ic_close_eye);
-                    binding.inputConfirmPassword.setSelection(binding.inputConfirmPassword.getText().toString().length());
-                } else {
-                    binding.inputConfirmPassword.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
-                    binding.imageView3.setImageResource(R.drawable.ic_eye);
-                    binding.inputConfirmPassword.setSelection(binding.inputConfirmPassword.getText().toString().length());
-                }
+        binding.imageView3.setOnClickListener(v -> {
+            if (binding.inputConfirmPassword.getTransformationMethod().equals(HideReturnsTransformationMethod.getInstance())) {
+                binding.inputConfirmPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                binding.imageView3.setImageResource(R.drawable.ic_close_eye);
+                binding.inputConfirmPassword.setSelection(binding.inputConfirmPassword.getText().toString().length());
+            } else {
+                binding.inputConfirmPassword.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                binding.imageView3.setImageResource(R.drawable.ic_eye);
+                binding.inputConfirmPassword.setSelection(binding.inputConfirmPassword.getText().toString().length());
             }
         });
     }
@@ -98,26 +90,25 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     public boolean isEmail(String email) {
+        String EMAIL_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
         return Pattern.compile(EMAIL_PATTERN).matcher(email).matches();
     }
 
     public boolean isPassword(String password) {
+        String PASSWORD_PATTERN = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#&()–[{}]:;',?/*~$^+=<>]).{8,20}$";
         return Pattern.compile(PASSWORD_PATTERN).matcher(password).matches();
     }
 
     private boolean isValidSignUpDetails() {
-        String strFirstName = binding.inputFirstName.getText().toString().trim();
-        String strLastName = binding.inputLastName.getText().toString().trim();
+        String strName = binding.inputName.getText().toString().trim();
         String strEmail = binding.inputEmailSignUp.getText().toString().trim();
         String strPassword = binding.inputPassword.getText().toString().trim();
         String strConfirmPassword = binding.inputPassword.getText().toString().trim();
 
         boolean is = false;
 
-        if (strFirstName.isEmpty()) {
+        if (strName.isEmpty()) {
             showToast("Enter first name");
-        } else if (strLastName.isEmpty()) {
-            showToast("Enter last name");
         } else if (strEmail.isEmpty()) {
             showToast("Enter email");
         } else if (!isEmail(strEmail)) {
@@ -137,18 +128,15 @@ public class SignUpActivity extends AppCompatActivity {
 
     private void SignUp() {
         if (isValidSignUpDetails()) {
-            String firstName = binding.inputFirstName.getText().toString().trim();
-            String lastName = binding.inputLastName.getText().toString().trim();
+            String name = binding.inputName.getText().toString().trim();
             String email = binding.inputEmailSignUp.getText().toString().trim();
             String password = binding.inputPassword.getText().toString().trim();
-
-            FirebaseAuth mAuth = FirebaseAuth.getInstance();
-            FirebaseDatabase database = FirebaseDatabase.getInstance();
 
             binding.progressBar4.setVisibility(View.VISIBLE);
             binding.btSignUp.setVisibility(View.INVISIBLE);
 
-            mAuth.createUserWithEmailAndPassword(email, password)
+            // Create user on Firebase
+            auth.createUserWithEmailAndPassword(email, password)
                     .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
@@ -156,41 +144,45 @@ public class SignUpActivity extends AppCompatActivity {
                                 binding.progressBar4.setVisibility(View.GONE);
                                 binding.btSignUp.setVisibility(View.VISIBLE);
 
-                                HashMap<String, String> map = new HashMap<>();
-                                map.put("firstName", firstName);
-                                map.put("lastName", lastName);
+                                HashMap<String, Object> map = new HashMap<>();
+                                map.put("name", name);
                                 map.put("email", email);
+                                map.put("status", false);
 
-                                String id = task.getResult().getUser().getUid().toString();
-
+                                String id = Objects.requireNonNull(task.getResult().getUser()).getUid();
                                 database.getReference().child("Users").child(id).setValue(map);
                             }
                         }
                     });
 
-            ApiServer.apiServer.signUp(new SignUp(firstName, lastName, email, password)).enqueue(new Callback<SignUpResponse>() {
+            // Create user on Database
+            SignUp signUp = new SignUp(name, email, password);
+            ApiServer.apiServer.signUp(signUp).enqueue(new Callback<SignUpResponse>() {
                 @Override
-                public void onResponse(Call<SignUpResponse> call, Response<SignUpResponse> response) {
-                    if (response.isSuccessful()) {
-                        binding.progressBar4.setVisibility(View.GONE);
-                        binding.btSignUp.setVisibility(View.VISIBLE);
+                public void onResponse(@NonNull Call<SignUpResponse> call, @NonNull Response<SignUpResponse> response) {
+                    binding.progressBar4.setVisibility(View.GONE);
+                    binding.btSignUp.setVisibility(View.VISIBLE);
 
+                    if (response.isSuccessful()) {
                         Intent intent = new Intent(SignUpActivity.this, SignInActivity.class);
                         startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP));
                         overridePendingTransition(0, 0);
                         finishAffinity();
                     } else {
-                        binding.progressBar4.setVisibility(View.GONE);
-                        binding.btSignUp.setVisibility(View.VISIBLE);
+                        Log.d("Sign Up: ", Integer.toString(response.code()));
+                        Log.d("Sign Up: ", response.message());
+                        if(!response.message().isEmpty()) showToast(response.message());
                     }
                 }
 
                 @Override
-                public void onFailure(Call<SignUpResponse> call, Throwable t) {
+                public void onFailure(@NonNull Call<SignUpResponse> call, @NonNull Throwable t) {
                     binding.progressBar4.setVisibility(View.GONE);
                     binding.btSignUp.setVisibility(View.VISIBLE);
 
-                    Toast.makeText(getApplicationContext(), "Sign Up Failure.", Toast.LENGTH_LONG).show();
+//                    showToast("Sign Up Failure.");
+                    showToast(t.getMessage());
+                    Log.d("Sign Up", "onFailure: " + t.getMessage());
                 }
             });
         }

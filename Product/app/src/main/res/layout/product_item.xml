@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/productLayout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -23,7 +24,7 @@
         android:layout_marginStart="@dimen/_16sdp"
         android:layout_marginTop="@dimen/_8sdp"
         android:layout_marginEnd="@dimen/_8sdp"
-        android:fontFamily="@font/consolab"
+        android:fontFamily="@font/roboto_regular"
         android:maxLines="2"
         android:text="Pizza"
         android:textColor="@color/black"
@@ -37,7 +38,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_4sdp"
-        android:fontFamily="@font/consola"
+        android:fontFamily="@font/roboto_regular"
         android:text="999+"
         android:textColor="@color/drawable_tint"
         app:layout_constraintStart_toStartOf="@+id/product_name"
@@ -47,7 +48,7 @@
         android:id="@+id/product_price"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/consolab"
+        android:fontFamily="@font/roboto_regular"
         android:text="150,000đ"
         android:textColor="@color/m1"
         android:textSize="@dimen/_16ssp"
