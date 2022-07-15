@@ -8,11 +8,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
 import com.example.hit.nhom5.product.databinding.ActivityShowDetailBinding;
+import com.example.hit.nhom5.product.model.Cart;
 import com.example.hit.nhom5.product.model.Product;
 
 public class ShowDetailActivity extends AppCompatActivity {
     ActivityShowDetailBinding binding;
     Integer numberOrder = 1;
+    Product product;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,11 +29,11 @@ public class ShowDetailActivity extends AppCompatActivity {
 
     @SuppressLint("SetTextI18n")
     private void init() {
-        Product product = getIntent().getParcelableExtra("popularItem");
+        product = getIntent().getParcelableExtra("popularItem");
 
         binding.name.setText(product.getProductName());
         binding.price.setText(product.getPrice());
-        binding.purchases.setText("Đã bán " + product.getPurchases().toString());
+        binding.purchases.setText("Đã bán: " + product.getPurchases().toString());
         Glide.with(getApplicationContext()).load(product.getImage()).into(binding.pictureFood);
     }
 
@@ -48,10 +50,11 @@ public class ShowDetailActivity extends AppCompatActivity {
             binding.numberOrderTxt.setText(numberOrder.toString());
         });
 
-        binding.linearLayout.setOnClickListener(v -> {
-//            Intent intent = new Intent(getApplicationContext(), CardActivity.class);
-//            intent.putExtra("orderNumber", numberOrder);
-//            startActivity(intent);
+        binding.orderNow.setOnClickListener(v -> {
+            Cart cart = new Cart(numberOrder, product);
+
+
+
             finish();
             overridePendingTransition(0, 0);
         });

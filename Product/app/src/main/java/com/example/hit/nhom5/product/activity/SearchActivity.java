@@ -5,8 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.View;
 
 import androidx.annotation.NonNull;
@@ -59,15 +57,12 @@ public class SearchActivity extends AppCompatActivity {
 
         CategoryAdapter categoryAdapter = new CategoryAdapter(getListCategory());
         binding.recyclerviewCategory.setAdapter(categoryAdapter);
-        categoryAdapter.setOnClickCategory(new CategoryItemOnClick() {
-            @Override
-            public void onClickItemCategory(Category category) {
-                Intent intent = new Intent(getApplicationContext(), SearchActivity.class);
-                intent.putExtra("categoryItem", (Parcelable) category);
-                startActivity(intent);
-                overridePendingTransition(0, 0);
-                finish();
-            }
+        categoryAdapter.setOnClickCategory(category -> {
+            Intent intent = new Intent(getApplicationContext(), SearchActivity.class);
+            intent.putExtra("categoryItem", (Parcelable) category);
+            startActivity(intent);
+            overridePendingTransition(0, 0);
+            finish();
         });
 
         Category category = getIntent().getParcelableExtra("categoryItem");
@@ -110,14 +105,11 @@ public class SearchActivity extends AppCompatActivity {
                             }
                         });
 
-                        adapter.setProductItemOnClick(new ProductItemOnClick() {
-                            @Override
-                            public void onClickProduct(Product product) {
-                                Intent intent = new Intent(getApplicationContext(), ShowDetailActivity.class);
-                                intent.putExtra("popularItem", (Parcelable) product);
-                                startActivity(intent);
-                                overridePendingTransition(0, 0);
-                            }
+                        adapter.setProductItemOnClick(product -> {
+                            Intent intent = new Intent(getApplicationContext(), ShowDetailActivity.class);
+                            intent.putExtra("popularItem", (Parcelable) product);
+                            startActivity(intent);
+                            overridePendingTransition(0, 0);
                         });
                     }
                 }
@@ -139,12 +131,7 @@ public class SearchActivity extends AppCompatActivity {
                         binding.progressBar2.setVisibility(View.GONE);
 
                         List<Product> list = allProduct.getData();
-                        Collections.sort(list, new Comparator<Product>() {
-                            @Override
-                            public int compare(Product o1, Product o2) {
-                                return o2.getPurchases() - o1.getPurchases();
-                            }
-                        });
+                        list.sort((o1, o2) -> o2.getPurchases() - o1.getPurchases());
 
                         ProductAdapter adapter = new ProductAdapter(list, getApplicationContext());
                         binding.recyclerViewSearch.setAdapter(adapter);
@@ -167,14 +154,11 @@ public class SearchActivity extends AppCompatActivity {
                             }
                         });
 
-                        adapter.setProductItemOnClick(new ProductItemOnClick() {
-                            @Override
-                            public void onClickProduct(Product product) {
-                                Intent intent = new Intent(getApplicationContext(), ShowDetailActivity.class);
-                                intent.putExtra("popularItem", product);
-                                startActivity(intent);
-                                overridePendingTransition(0, 0);
-                            }
+                        adapter.setProductItemOnClick(product -> {
+                            Intent intent = new Intent(getApplicationContext(), ShowDetailActivity.class);
+                            intent.putExtra("popularItem", product);
+                            startActivity(intent);
+                            overridePendingTransition(0, 0);
                         });
                     }
                 }

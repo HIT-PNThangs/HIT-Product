@@ -25,7 +25,7 @@
             app:backgroundTint="@color/white"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="SpeakableTextPresentCheck" />
+            tools:ignore="ContentDescription,SpeakableTextPresentCheck" />
 
         <TextView
             android:id="@+id/textView6"
@@ -39,7 +39,8 @@
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@+id/back"
             app:layout_constraintStart_toEndOf="@+id/back"
-            app:layout_constraintTop_toTopOf="@+id/back" />
+            app:layout_constraintTop_toTopOf="@+id/back"
+            tools:ignore="HardcodedText" />
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tabLayout"

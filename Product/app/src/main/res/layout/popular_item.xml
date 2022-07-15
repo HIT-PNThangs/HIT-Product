@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/popular"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/popular"
-    app:cardCornerRadius="@dimen/_12sdp"
     android:layout_marginStart="@dimen/_4ssp"
-    android:layout_marginEnd="@dimen/_4ssp">
+    android:layout_marginEnd="@dimen/_4ssp"
+    app:cardCornerRadius="@dimen/_12sdp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -17,45 +18,48 @@
             android:id="@+id/name_popular"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Cheese Burger"
+            android:layout_marginTop="@dimen/_8ssp"
             android:fontFamily="@font/roboto_regular"
-            android:maxLines="1"
-            android:textSize="@dimen/_12sdp"
             android:gravity="center"
+            android:maxLines="1"
+            android:text="Cheese Burger"
             android:textColor="#000"
+            android:textSize="@dimen/_12sdp"
             android:textStyle="bold"
-            android:layout_marginTop="@dimen/_8ssp"/>
+            tools:ignore="HardcodedText" />
 
         <ImageView
             android:id="@+id/img_popular"
             android:layout_width="@dimen/_100sdp"
             android:layout_height="@dimen/_90sdp"
             android:scaleType="fitXY"
-            android:src="@drawable/burger_popular"/>
+            android:src="@drawable/burger_popular" />
 
         <TextView
             android:id="@+id/price_popular"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="0.0Đ"
+            android:layout_gravity="center"
             android:fontFamily="@font/roboto_regular"
-            android:textStyle="normal"
+            android:gravity="center"
+            android:text="0.0Đ"
             android:textColor="@color/m1"
             android:textSize="@dimen/_12sdp"
-            android:gravity="center"
-            android:layout_gravity="center"/>
+            android:textStyle="normal"
+            tools:ignore="HardcodedText" />
 
         <TextView
             android:id="@+id/add_to_cart"
             android:layout_width="@dimen/_60sdp"
             android:layout_height="wrap_content"
-            android:text="+Add"
-            android:textStyle="bold"
-            android:fontFamily="@font/roboto_regular"
-            android:background="@drawable/add_popular_custom"
             android:layout_gravity="center"
-            android:textColor="@color/white"
             android:layout_margin="@dimen/_5sdp"
-            android:gravity="center" />
+            android:background="@drawable/add_popular_custom"
+            android:fontFamily="@font/roboto_regular"
+            android:gravity="center"
+            android:text="+Add"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            tools:ignore="HardcodedText" />
     </LinearLayout>
 </androidx.cardview.widget.CardView>

@@ -24,18 +24,18 @@
         android:id="@+id/input_search"
         android:layout_width="0dp"
         android:layout_height="@dimen/_40sdp"
-        android:iconifiedByDefault="false"
         android:layout_marginStart="@dimen/_12sdp"
         android:layout_marginEnd="@dimen/_12sdp"
         android:background="@drawable/background_search"
         android:fontFamily="@font/roboto_light"
+        android:iconifiedByDefault="false"
         android:textSize="@dimen/_14sdp"
-        app:queryBackground="@null"
-        app:submitBackground="@null"
         app:layout_constraintBottom_toBottomOf="@+id/back"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/back"
-        app:layout_constraintTop_toTopOf="@+id/back" />
+        app:layout_constraintTop_toTopOf="@+id/back"
+        app:queryBackground="@null"
+        app:submitBackground="@null" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerviewCategory"
@@ -50,6 +50,7 @@
         android:id="@+id/view"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_16sdp"
+        android:layout_marginTop="@dimen/_8sdp"
         android:background="@color/background_search"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -59,6 +60,7 @@
         android:id="@+id/recyclerViewSearch"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginTop="@dimen/_8sdp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/recyclerviewCategory"
         app:layout_constraintStart_toStartOf="@+id/recyclerviewCategory"

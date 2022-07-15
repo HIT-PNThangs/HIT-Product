@@ -27,7 +27,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="SpeakableTextPresentCheck" />
+            tools:ignore="ContentDescription,SpeakableTextPresentCheck" />
 
         <TextView
             android:id="@+id/textView6"
@@ -94,10 +94,10 @@
             android:id="@+id/textView9"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@string/txtAddress"
             android:layout_marginTop="@dimen/_8sdp"
-            android:gravity="center"
             android:fontFamily="@font/roboto_medium"
+            android:gravity="center"
+            android:text="@string/txtAddress"
             android:textColor="@color/black"
             android:textSize="@dimen/_13sdp"
             app:layout_constraintEnd_toEndOf="@+id/textView12"
