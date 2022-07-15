@@ -1,4 +1,4 @@
-package com.example.hit.nhom5.product;
+package com.example.hit.nhom5.product.fragment;
 
 import android.os.Bundle;
 
@@ -8,22 +8,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.hit.nhom5.product.R;
 
-public class fragment_purchase extends Fragment {
-
-
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-
+public class PromotionFragment extends Fragment {
+    public PromotionFragment() {
+        // Required empty public constructor
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_purchase, container, false);
+        return inflater.inflate(R.layout.fragment_promotion, container, false);
     }
 }

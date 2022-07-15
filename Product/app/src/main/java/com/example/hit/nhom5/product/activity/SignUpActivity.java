@@ -1,6 +1,5 @@
 package com.example.hit.nhom5.product.activity;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.method.HideReturnsTransformationMethod;
@@ -23,9 +22,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
 
-import java.io.FileDescriptor;
 import java.util.HashMap;
-import java.util.Map;
 import java.util.Objects;
 import java.util.regex.Pattern;
 
@@ -121,7 +118,8 @@ public class SignUpActivity extends AppCompatActivity {
             showToast("Enter confirm password");
         } else if (!strPassword.equals(strConfirmPassword)) {
             showToast("Password && Confirm password must be same");
-        } else is = true;
+        } else
+            is = true;
 
         return is;
     }
@@ -137,54 +135,53 @@ public class SignUpActivity extends AppCompatActivity {
 
             // Create user on Firebase
             auth.createUserWithEmailAndPassword(email, password)
-                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                        @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) {
-                            if (task.isSuccessful()) {
-                                binding.progressBar4.setVisibility(View.GONE);
-                                binding.btSignUp.setVisibility(View.VISIBLE);
+                    .addOnCompleteListener(this, task -> {
+                        if (task.isSuccessful()) {
+                            binding.progressBar4.setVisibility(View.GONE);
+                            binding.btSignUp.setVisibility(View.VISIBLE);
 
-                                HashMap<String, Object> map = new HashMap<>();
-                                map.put("name", name);
-                                map.put("email", email);
-                                map.put("status", false);
+                            HashMap<String, Object> map = new HashMap<>();
 
-                                String id = Objects.requireNonNull(task.getResult().getUser()).getUid();
-                                database.getReference().child("Users").child(id).setValue(map);
-                            }
+                            map.put("name", name);
+                            map.put("email", email);
+                            map.put("status", false);
+
+                            String id = Objects.requireNonNull(task.getResult().getUser()).getUid();
+                            database.getReference().child("Users").child(id).setValue(map);
                         }
                     });
 
-            // Create user on Database
-            SignUp signUp = new SignUp(name, email, password);
-            ApiServer.apiServer.signUp(signUp).enqueue(new Callback<SignUpResponse>() {
-                @Override
-                public void onResponse(@NonNull Call<SignUpResponse> call, @NonNull Response<SignUpResponse> response) {
-                    binding.progressBar4.setVisibility(View.GONE);
-                    binding.btSignUp.setVisibility(View.VISIBLE);
-
-                    if (response.isSuccessful()) {
-                        Intent intent = new Intent(SignUpActivity.this, SignInActivity.class);
-                        startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP));
-                        overridePendingTransition(0, 0);
-                        finishAffinity();
-                    } else {
-                        Log.d("Sign Up: ", Integer.toString(response.code()));
-                        Log.d("Sign Up: ", response.message());
-                        if(!response.message().isEmpty()) showToast(response.message());
-                    }
-                }
-
-                @Override
-                public void onFailure(@NonNull Call<SignUpResponse> call, @NonNull Throwable t) {
-                    binding.progressBar4.setVisibility(View.GONE);
-                    binding.btSignUp.setVisibility(View.VISIBLE);
-
-//                    showToast("Sign Up Failure.");
-                    showToast(t.getMessage());
-                    Log.d("Sign Up", "onFailure: " + t.getMessage());
-                }
-            });
+//            // Create user on Database
+//            SignUp signUp = new SignUp(name, email, password);
+//
+//            ApiServer.apiServer.signUp(signUp).enqueue(new Callback<SignUpResponse>() {
+//                @Override
+//                public void onResponse(@NonNull Call<SignUpResponse> call, @NonNull Response<SignUpResponse> response) {
+//                    binding.progressBar4.setVisibility(View.GONE);
+//                    binding.btSignUp.setVisibility(View.VISIBLE);
+//
+//                    if (response.isSuccessful()) {
+//                        Intent intent = new Intent(SignUpActivity.this, SignInActivity.class);
+//                        startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP));
+//                        overridePendingTransition(0, 0);
+//                        finishAffinity();
+//                    } else {
+//                        Log.d("Sign Up: ", Integer.toString(response.code()));
+//                        Log.d("Sign Up: ", response.message());
+//                        if (!response.message().isEmpty())
+//                            showToast(response.message());
+//                    }
+//                }
+//
+//                @Override
+//                public void onFailure(@NonNull Call<SignUpResponse> call, @NonNull Throwable t) {
+//                    binding.progressBar4.setVisibility(View.GONE);
+//                    binding.btSignUp.setVisibility(View.VISIBLE);
+//
+//                    showToast(t.getMessage());
+//                    Log.d("Sign Up", "onFailure: " + t.getMessage());
+//                }
+//            });
         }
     }
 

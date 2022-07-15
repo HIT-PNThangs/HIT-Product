@@ -12,10 +12,10 @@ import com.example.hit.nhom5.product.R;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link fragment_update#newInstance} factory method to
+ * Use the {@link UpdateFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class fragment_update extends Fragment {
+public class UpdateFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -26,7 +26,7 @@ public class fragment_update extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public fragment_update() {
+    public UpdateFragment() {
         // Required empty public constructor
     }
 
@@ -39,8 +39,8 @@ public class fragment_update extends Fragment {
      * @return A new instance of fragment fragment_update.
      */
     // TODO: Rename and change types and number of parameters
-    public static fragment_update newInstance(String param1, String param2) {
-        fragment_update fragment = new fragment_update();
+    public static UpdateFragment newInstance(String param1, String param2) {
+        UpdateFragment fragment = new UpdateFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);

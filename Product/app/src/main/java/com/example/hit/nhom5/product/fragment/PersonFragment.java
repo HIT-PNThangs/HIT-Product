@@ -46,7 +46,8 @@ public class PersonFragment extends Fragment {
 
         FirebaseAuth auth = FirebaseAuth.getInstance();
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference reference = database.getReference().child("Users").child(Objects.requireNonNull(auth.getUid()));
+        DatabaseReference reference = database.getReference().child("Users")
+                .child(Objects.requireNonNull(auth.getUid()));
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
