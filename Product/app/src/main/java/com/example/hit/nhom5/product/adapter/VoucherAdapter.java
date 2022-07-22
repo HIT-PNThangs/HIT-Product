@@ -19,6 +19,8 @@ public class VoucherAdapter extends FragmentStateAdapter {
     @Override
     public Fragment createFragment(int position) {
         switch (position) {
+            case 0:
+                return new ValidVoucherFragment();
             case 1:
                 return new UsedVoucherFragment();
 

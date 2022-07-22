@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:scrollbars="vertical"
     android:orientation="vertical"
-    tools:context=".fragment_purchase">
+    tools:context=".fragment.fragment_purchase">
 
 
     <ScrollView

@@ -1,4 +1,4 @@
-package com.example.hit.nhom5.product;
+package com.example.hit.nhom5.product.fragment;
 
 import android.os.Bundle;
 
@@ -7,6 +7,8 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.example.hit.nhom5.product.R;
 
 
 public class fragment_purchase extends Fragment {

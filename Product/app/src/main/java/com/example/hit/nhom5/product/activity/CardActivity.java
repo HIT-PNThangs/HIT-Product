@@ -1,29 +1,19 @@
 package com.example.hit.nhom5.product.activity;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.hit.nhom5.product.R;
 import com.example.hit.nhom5.product.adapter.CartAdapter;
-import com.example.hit.nhom5.product.databinding.ActivityCardBinding;
-import com.example.hit.nhom5.product.fragment_purchase;
 import com.example.hit.nhom5.product.model.Card;
-import com.example.hit.nhom5.product.model.Product;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.zip.Inflater;
 
 public class CardActivity extends AppCompatActivity {
 
@@ -47,7 +37,7 @@ public class CardActivity extends AppCompatActivity {
 
         initview();
         recyclerCart();
-        buttonBuy();
+
 
 
 
@@ -85,15 +75,6 @@ public class CardActivity extends AppCompatActivity {
         scrollView=findViewById(R.id.scrollcart);
         btnbuy=findViewById(R.id.btnBuy);
     }
-    private void buttonBuy(){
-        btnbuy.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                FragmentTransaction fragmentTransaction=getSupportFragmentManager().beginTransaction();
-                fragmentTransaction.replace(R.id.frameLayout4,new fragment_purchase());
-                fragmentTransaction.commit();
-            }
-        });
-    }
+
 
 }
