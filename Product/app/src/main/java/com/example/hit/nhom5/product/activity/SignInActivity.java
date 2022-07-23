@@ -1,6 +1,5 @@
 package com.example.hit.nhom5.product.activity;
 
-import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Color;
@@ -21,30 +20,25 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.hit.nhom5.product.R;
-import com.example.hit.nhom5.product.api_interface.ApiServer;
 import com.example.hit.nhom5.product.databinding.ActivitySignInBinding;
-import com.example.hit.nhom5.product.model.Login;
-import com.example.hit.nhom5.product.model.LoginResponse;
 import com.example.hit.nhom5.product.model.User;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
+import java.util.Objects;
 import java.util.regex.Pattern;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class SignInActivity extends AppCompatActivity {
     private ActivitySignInBinding binding;
-
-    private final String EMAIL_PATTERN =
-            "^[a-z][a-z0-9_\\.]{5,32}@[a-z0-9]{2,}(\\.[a-z0-9]{2,4}){1}$";
-
-    private final String PASSWORD_PATTERN =
-            "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#&()–[{}]:;',?/*~$^+=<>]).{8,20}$";
+    FirebaseAuth auth;
+    FirebaseDatabase database;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,45 +46,38 @@ public class SignInActivity extends AppCompatActivity {
         binding = ActivitySignInBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        auth = FirebaseAuth.getInstance();
+        database = FirebaseDatabase.getInstance();
+
         setListener();
     }
 
     private void setListener() {
-        binding.txtSignUp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(SignInActivity.this, SignUpActivity.class));
-                overridePendingTransition(0, 0);
-                finish();
-            }
-        });
+        binding.txtSignUp.setOnClickListener(v -> {
+                    startActivity(new Intent(SignInActivity.this, SignUpActivity.class));
+                    overridePendingTransition(0, 0);
+                    finish();
+                }
+        );
 
         binding.btLogin.setOnClickListener(v -> Login());
 
-        binding.imgShowPassword.setOnClickListener(new View.OnClickListener() {
-            @SuppressLint("ResourceAsColor")
-            @Override
-            public void onClick(View v) {
-                if (binding.inputPassword.getTransformationMethod().equals(HideReturnsTransformationMethod.getInstance())) {
-                    binding.inputPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
-                    binding.imgShowPassword.setImageResource(R.drawable.ic_close_eye);
-                    binding.inputPassword.setSelection(binding.inputPassword.getText().toString().length());
-                } else {
-                    binding.inputPassword.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
-                    binding.imgShowPassword.setImageResource(R.drawable.ic_eye);
+        binding.imgShowPassword.setOnClickListener(v -> {
+                    if (binding.inputPassword.getTransformationMethod().equals(HideReturnsTransformationMethod.getInstance())) {
+                        binding.inputPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                        binding.imgShowPassword.setImageResource(R.drawable.ic_close_eye);
+                    } else {
+                        binding.inputPassword.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                        binding.imgShowPassword.setImageResource(R.drawable.ic_eye);
+                    }
+
                     binding.inputPassword.setSelection(binding.inputPassword.getText().toString().length());
                 }
-            }
-        });
+        );
 
         binding.forgetPassword.setOnClickListener(v -> onClickForgetPassword());
 
-        binding.google.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onClickSignInGoogle();
-            }
-        });
+        binding.btnGoogle.setOnClickListener(v -> onClickSignInGoogle());
     }
 
     private void showToast(String str) {
@@ -98,10 +85,12 @@ public class SignInActivity extends AppCompatActivity {
     }
 
     public boolean isEmail(String email) {
+        String EMAIL_PATTERN = "^[_A-Za-z0-9-+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
         return Pattern.compile(EMAIL_PATTERN).matcher(email).matches();
     }
 
     public boolean isPassword(String password) {
+        String PASSWORD_PATTERN = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#&()–[{}]:;',?/*~$^+=<>]).{8,20}$";
         return Pattern.compile(PASSWORD_PATTERN).matcher(password).matches();
     }
 
@@ -121,40 +110,153 @@ public class SignInActivity extends AppCompatActivity {
             binding.progressBar3.setVisibility(View.VISIBLE);
             binding.btLogin.setVisibility(View.INVISIBLE);
 
-            FirebaseAuth auth = FirebaseAuth.getInstance();
-            auth.signInWithEmailAndPassword(email, password);
+            auth.signInWithEmailAndPassword(email, password)
+                    .addOnCompleteListener(this, task -> database.getReference().child("Users")
+                            .child(Objects.requireNonNull(task.getResult().getUser()).getUid())
+                            .addListenerForSingleValueEvent(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                    User user = snapshot.getValue(User.class);
 
-            ApiServer.apiServer.login(new Login(email, password)).enqueue(new Callback<LoginResponse>() {
-                @Override
-                public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
-                    LoginResponse loginResponse = response.body();
+                                    if (user == null) {
+                                        showToast("Login Failure.");
+                                    } else {
+                                        Intent intent;
 
-                    if(response.isSuccessful() && loginResponse != null) {
-                        binding.progressBar3.setVisibility(View.GONE);
-                        binding.btLogin.setVisibility(View.VISIBLE);
+                                        if (!user.getStatus()) {
+                                            intent = new Intent(getApplicationContext(), UpdateInformationActivity.class);
+                                        } else {
+                                            intent = new Intent(getApplicationContext(), MainActivity.class);
+                                        }
 
-                        Intent intent = new Intent(SignInActivity.this, MainActivity.class);
-                        startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP));
-                        overridePendingTransition(0, 0);
-                        finishAffinity();
-                    } else {
-                        binding.progressBar3.setVisibility(View.GONE);
-                        binding.btLogin.setVisibility(View.VISIBLE);
-                        Log.d("Sign In: ", Integer.toString(response.code()).toString());
-                        Log.d("Sign In: ", response.message());
+                                        startActivity(intent);
+                                        overridePendingTransition(0, 0);
+                                    }
+                                }
 
-                        showToast("Login Failure.");
-                    }
-                }
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError error) {
 
-                @Override
-                public void onFailure(Call<LoginResponse> call, Throwable t) {
-                    binding.progressBar3.setVisibility(View.GONE);
-                    binding.btLogin.setVisibility(View.VISIBLE);
-                    Log.d("Sign In: ", t.getMessage());
-                    showToast("Login Failure.");
-                }
-            });
+                                }
+                            }))
+                    .addOnFailureListener(this, e -> {
+                        Log.d("Sign In: ", e.getMessage());
+                        showToast("Sign in: " + e.getMessage());
+                    });
+
+//            database.getReference().child("Users")
+//                    .child(auth.getUid())
+//                    .addListenerForSingleValueEvent(new ValueEventListener() {
+//                        @Override
+//                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                            User user = snapshot.getValue(User.class);
+//
+//                            if (user == null) {
+//                                showToast("Login Failure.");
+//                            } else {
+//                                Intent intent;
+//
+//                                if (!user.getStatus()) {
+//                                    intent = new Intent(getApplicationContext(), UpdateInformationActivity.class);
+//                                } else {
+//                                    intent = new Intent(getApplicationContext(), MainActivity.class);
+//                                }
+//
+//                                startActivity(intent);
+//                                overridePendingTransition(0, 0);
+//                            }
+//                        }
+//
+//                        @Override
+//                        public void onCancelled(@NonNull DatabaseError error) {
+//
+//                        }
+//                    });
+
+//            ApiServer.apiServer.login(new Login(email, password)).enqueue(new Callback<LoginResponse>() {
+//                @Override
+//                public void onResponse(@NonNull Call<LoginResponse> call, @NonNull Response<LoginResponse> response) {
+//                    LoginResponse loginResponse = response.body();
+//
+//                    if (response.isSuccessful() && loginResponse != null) {
+//                        binding.progressBar3.setVisibility(View.GONE);
+//                        binding.btLogin.setVisibility(View.VISIBLE);
+//
+//                        ApiServer.apiServer.getUserByEmail(email).enqueue(new Callback<GetUserByEmailResponse>() {
+//                            @Override
+//                            public void onResponse(@NonNull Call<GetUserByEmailResponse> call, @NonNull Response<GetUserByEmailResponse> response) {
+//                                if (response.body() != null && response.isSuccessful()) {
+//                                    User user = response.body().getResult();
+//
+//                                    if (!user.getStatus()) {
+//                                        Intent intent = new Intent(getApplicationContext(), UpdateInformationActivity.class);
+//                                        startActivity(intent);
+//                                        overridePendingTransition(0, 0);
+//                                    } else {
+//                                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+//                                        startActivity(intent);
+//                                        overridePendingTransition(0, 0);
+//                                    }
+//                                } else {
+//                                    showToast(response.message());
+//                                    Log.d("Sign In", Integer.toString(response.code()));
+//                                    Log.d("Sign In", response.message());
+//                                }
+//                            }
+//
+//                            @Override
+//                            public void onFailure(@NonNull Call<GetUserByEmailResponse> call, @NonNull Throwable t) {
+//                                showToast(t.getMessage());
+//                                Log.d("Sign In", t.getMessage());
+//                            }
+//                        });
+//                    } else {
+//                        binding.progressBar3.setVisibility(View.GONE);
+//                        binding.btLogin.setVisibility(View.VISIBLE);
+//                        Log.d("Sign In: ", Integer.toString(response.code()).toString());
+//                        Log.d("Sign In: ", response.message());
+//
+//                        showToast("Login Failure.");
+//                    }
+//                }
+//
+//                @Override
+//                public void onFailure(@NonNull Call<LoginResponse> call, @NonNull Throwable t) {
+//                    binding.progressBar3.setVisibility(View.GONE);
+//                    binding.btLogin.setVisibility(View.VISIBLE);
+//                    Log.d("Sign In: ", t.getMessage());
+//                    showToast("Login Failure.");
+//                }
+//            });
+
+//            ApiServer.apiServer.getUserByEmail(email).enqueue(new Callback<GetUserByEmailResponse>() {
+//                @Override
+//                public void onResponse(@NonNull Call<GetUserByEmailResponse> call, @NonNull Response<GetUserByEmailResponse> response) {
+//                    if(response.body() != null && response.isSuccessful()) {
+//                        User user = response.body().getResult();
+//
+//                        if(!user.getStatus()) {
+//                            Intent intent = new Intent(getApplicationContext(), UpdateInformationActivity.class);
+//                            startActivity(intent);
+//                            overridePendingTransition(0, 0);
+//                        } else {
+//                            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+//                            startActivity(intent);
+//                            overridePendingTransition(0, 0);
+//                        }
+//                    } else {
+//                        showToast(response.message());
+//                        Log.d("Sign In", Integer.toString(response.code()));
+//                        Log.d("Sign In", response.message());
+//                    }
+//                }
+//
+//                @Override
+//                public void onFailure(@NonNull Call<GetUserByEmailResponse> call, @NonNull Throwable t) {
+//                    showToast(t.getMessage());
+//                    Log.d("Sign In", t.getMessage());
+//                }
+//            });
         }
     }
 
@@ -185,18 +287,15 @@ public class SignInActivity extends AppCompatActivity {
 
         btCancel.setOnClickListener(v -> dialog.cancel());
 
-        btAgree.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String strEmail = edtDialogEmail.getText().toString().trim();
+        btAgree.setOnClickListener(v -> {
+            String strEmail = edtDialogEmail.getText().toString().trim();
 
-                if (strEmail.isEmpty()) {
-                    showToast("Enter email");
-                } else if (!isEmail(strEmail)) {
-                    showToast("Enter valid email");
-                } else {
-                    resetPassword(strEmail);
-                }
+            if (strEmail.isEmpty()) {
+                showToast("Enter email");
+            } else if (!isEmail(strEmail)) {
+                showToast("Enter valid email");
+            } else {
+                resetPassword(strEmail);
             }
         });
     }
@@ -206,26 +305,20 @@ public class SignInActivity extends AppCompatActivity {
     }
 
     private void resetPassword(String str) {
-        binding.progressBar3.setVisibility(View.VISIBLE);
-
         FirebaseAuth auth = FirebaseAuth.getInstance();
 
-        auth.sendPasswordResetEmail(str).addOnCompleteListener(new OnCompleteListener<Void>() {
-            @Override
-            public void onComplete(@NonNull Task<Void> task) {
-                binding.progressBar3.setVisibility(View.GONE);
-
-                if (task.isSuccessful()) {
-                    showToast("Check your email to reset your password!");
-                } else {
-                    showToast("Try again! Something wrong happened");
-                }
+        auth.sendPasswordResetEmail(str).addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                showToast("Check your email to reset your password!");
+            } else {
+                showToast("Try again! Something wrong happened.");
             }
         });
     }
 
     private Toast mToast;
     private long backPressedTime;
+
     @Override
     public void onBackPressed() {
         if (backPressedTime + 2000 > System.currentTimeMillis()) {

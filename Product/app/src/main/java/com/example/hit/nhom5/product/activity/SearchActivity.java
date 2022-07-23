@@ -1,14 +1,15 @@
 package com.example.hit.nhom5.product.activity;
 
+import android.app.SearchManager;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -45,28 +46,27 @@ public class SearchActivity extends AppCompatActivity {
 
         init();
 
-        setListener();
+        binding.back.setOnClickListener(v -> onBackPressed());
     }
 
     private void init() {
+        // Category
         binding.recyclerviewCategory.setLayoutManager(new LinearLayoutManager(getApplicationContext(),
                 RecyclerView.HORIZONTAL,
                 false));
 
         CategoryAdapter categoryAdapter = new CategoryAdapter(getListCategory());
         binding.recyclerviewCategory.setAdapter(categoryAdapter);
-        categoryAdapter.setOnClickCategory(new CategoryItemOnClick() {
-            @Override
-            public void onClickItemCategory(Category category) {
-                Intent intent = new Intent(getApplicationContext(), SearchActivity.class);
-                intent.putExtra("categoryItem", (Parcelable) category);
-                startActivity(intent);
-                overridePendingTransition(0, 0);
-                finish();
-            }
+        categoryAdapter.setOnClickCategory(category -> {
+            Intent intent = new Intent(getApplicationContext(), SearchActivity.class);
+            intent.putExtra("categoryItem", (Parcelable) category);
+            startActivity(intent);
+            overridePendingTransition(0, 0);
+            finish();
         });
 
         Category category = getIntent().getParcelableExtra("categoryItem");
+
         binding.recyclerViewSearch.setLayoutManager(new LinearLayoutManager(getApplicationContext(),
                 RecyclerView.VERTICAL,
                 false));
@@ -86,38 +86,30 @@ public class SearchActivity extends AppCompatActivity {
                         ProductAdapter adapter = new ProductAdapter(dataCategories.getData(), getApplicationContext());
                         binding.recyclerViewSearch.setAdapter(adapter);
 
-                        binding.inputSearch.addTextChangedListener(new TextWatcher() {
-                            @Override
-                            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                        binding.inputSearch.clearFocus();
+                        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+                        binding.inputSearch.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+                        binding.inputSearch.setMaxWidth(Integer.MAX_VALUE);
 
+                        binding.inputSearch.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+                            @Override
+                            public boolean onQueryTextSubmit(String query) {
+                                adapter.getFilter().filter(query);
+                                return true;
                             }
 
                             @Override
-                            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-                            }
-
-                            @Override
-                            public void afterTextChanged(Editable editable) {
-                                List<Product> filteredList = new ArrayList<>();
-
-                                for (Product item : dataCategories.getData()) {
-                                    if (item.getProductName().toLowerCase().contains(editable.toString().toLowerCase()))
-                                        filteredList.add(item);
-                                }
-
-                                adapter.filterList(filteredList);
+                            public boolean onQueryTextChange(String newText) {
+                                adapter.getFilter().filter(newText);
+                                return true;
                             }
                         });
 
-                        adapter.setProductItemOnClick(new ProductItemOnClick() {
-                            @Override
-                            public void onClickProduct(Product product) {
-                                Intent intent = new Intent(getApplicationContext(), ShowDetailActivity.class);
-                                intent.putExtra("popularItem", (Parcelable) product);
-                                startActivity(intent);
-                                overridePendingTransition(0, 0);
-                            }
+                        adapter.setProductItemOnClick(product -> {
+                            Intent intent = new Intent(getApplicationContext(), ShowDetailActivity.class);
+                            intent.putExtra("popularItem", (Parcelable) product);
+                            startActivity(intent);
+                            overridePendingTransition(0, 0);
                         });
                     }
                 }
@@ -139,49 +131,34 @@ public class SearchActivity extends AppCompatActivity {
                         binding.progressBar2.setVisibility(View.GONE);
 
                         List<Product> list = allProduct.getData();
-                        Collections.sort(list, new Comparator<Product>() {
-                            @Override
-                            public int compare(Product o1, Product o2) {
-                                return o2.getPurchases() - o1.getPurchases();
-                            }
-                        });
+                        list.sort((o1, o2) -> o2.getPurchases() - o1.getPurchases());
 
                         ProductAdapter adapter = new ProductAdapter(list, getApplicationContext());
-
                         binding.recyclerViewSearch.setAdapter(adapter);
 
-                        binding.inputSearch.addTextChangedListener(new TextWatcher() {
-                            @Override
-                            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+                        binding.inputSearch.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+                        binding.inputSearch.setMaxWidth(Integer.MAX_VALUE);
 
+                        binding.inputSearch.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+                            @Override
+                            public boolean onQueryTextSubmit(String query) {
+                                adapter.getFilter().filter(query);
+                                return false;
                             }
 
                             @Override
-                            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-                            }
-
-                            @Override
-                            public void afterTextChanged(Editable editable) {
-                                List<Product> filteredList = new ArrayList<>();
-
-                                for (Product item : list) {
-                                    if (item.getProductName().toLowerCase().contains(editable.toString().toLowerCase()))
-                                        filteredList.add(item);
-                                }
-
-                                adapter.filterList(filteredList);
+                            public boolean onQueryTextChange(String newText) {
+                                adapter.getFilter().filter(newText);
+                                return false;
                             }
                         });
 
-                        adapter.setProductItemOnClick(new ProductItemOnClick() {
-                            @Override
-                            public void onClickProduct(Product product) {
-                                Intent intent = new Intent(getApplicationContext(), ShowDetailActivity.class);
-                                intent.putExtra("popularItem", product);
-                                startActivity(intent);
-                                overridePendingTransition(0, 0);
-                            }
+                        adapter.setProductItemOnClick(product -> {
+                            Intent intent = new Intent(getApplicationContext(), ShowDetailActivity.class);
+                            intent.putExtra("popularItem", product);
+                            startActivity(intent);
+                            overridePendingTransition(0, 0);
                         });
                     }
                 }
@@ -191,13 +168,6 @@ public class SearchActivity extends AppCompatActivity {
                 }
             });
         }
-    }
-
-    private void setListener() {
-        binding.back.setOnClickListener(v -> {
-            onBackPressed();
-            finish();
-        });
     }
 
     private List<Category> getListCategory() {

@@ -45,6 +45,8 @@ public class UpdateInformationActivity extends AppCompatActivity {
         });
 
         binding.btUpdate.setOnClickListener(v -> Update());
+
+        binding.back.setOnClickListener(v -> onBackPressed());
     }
 
     private final ActivityResultLauncher<Intent> pickImage = registerForActivityResult(new
@@ -73,16 +75,15 @@ public class UpdateInformationActivity extends AppCompatActivity {
     private void Update() {
         if(binding.txtAddImage.getVisibility() == View.VISIBLE) {
             showToast("Select Image Avatar");
-        } else if(binding.dialogNumberPhone.getText().toString().isEmpty()) {
+        } else if(binding.updateNumberPhone.getText().toString().isEmpty()) {
             showToast("Enter Phone Number");
-        } else if(!binding.dialogPassword.getText().toString().trim().equals(binding.dialogConfirmPassword.getText().toString().trim())) {
-            showToast("Password && Confirm password must be same");
         }
     }
 
     @Override
     public void onBackPressed() {
         super.onBackPressed();
+        startActivity(new Intent(getApplicationContext(), MainActivity.class));
         overridePendingTransition(0, 0);
         finish();
     }

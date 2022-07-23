@@ -3,33 +3,35 @@ package com.example.hit.nhom5.product.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import androidx.annotation.NonNull;
+
 import java.util.List;
 
 public class User implements Parcelable {
     private Integer userId;
     private String avt;
-    private String firstName, lastName;
+    private String name;
     private String address;
     private String telephone;
     private Boolean status;
     private List<Role> roles;
     private ShoppingSession shoppingSession;
+    private String uid;
 
     public User() {
     }
 
-    public User(Integer userId, String avt, String firstName, String lastName,
-                String address, String telephone, Boolean status, List<Role> roles,
-                ShoppingSession shoppingSession) {
+    public User(Integer userId, String avt, String name, String address, String telephone,
+                Boolean status, List<Role> roles, ShoppingSession shoppingSession, String uid) {
         this.userId = userId;
         this.avt = avt;
-        this.firstName = firstName;
-        this.lastName = lastName;
+        this.name = name;
         this.address = address;
         this.telephone = telephone;
         this.status = status;
         this.roles = roles;
         this.shoppingSession = shoppingSession;
+        this.uid = uid;
     }
 
     protected User(Parcel in) {
@@ -39,12 +41,33 @@ public class User implements Parcelable {
             userId = in.readInt();
         }
         avt = in.readString();
-        firstName = in.readString();
-        lastName = in.readString();
+        name = in.readString();
         address = in.readString();
         telephone = in.readString();
         byte tmpStatus = in.readByte();
         status = tmpStatus == 0 ? null : tmpStatus == 1;
+        uid = in.readString();
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        if (userId == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeInt(userId);
+        }
+        dest.writeString(avt);
+        dest.writeString(name);
+        dest.writeString(address);
+        dest.writeString(telephone);
+        dest.writeByte((byte) (status == null ? 0 : status ? 1 : 2));
+        dest.writeString(uid);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
     }
 
     public static final Creator<User> CREATOR = new Creator<User>() {
@@ -75,20 +98,12 @@ public class User implements Parcelable {
         this.avt = avt;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getName() {
+        return name;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getAddress() {
@@ -131,39 +146,27 @@ public class User implements Parcelable {
         this.shoppingSession = shoppingSession;
     }
 
+    public String getUid() {
+        return uid;
+    }
+
+    public void setUid(String uid) {
+        this.uid = uid;
+    }
+
+    @NonNull
     @Override
     public String toString() {
         return "User{" +
                 "userId=" + userId +
                 ", avt='" + avt + '\'' +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
+                ", name='" + name + '\'' +
                 ", address='" + address + '\'' +
                 ", telephone='" + telephone + '\'' +
                 ", status=" + status +
-                ", roles=" + roles +
-                ", shoppingSession=" + shoppingSession +
+                ", roles=" + roles.toString() +
+                ", shoppingSession=" + shoppingSession.toString() +
+                ", uid='" + uid + '\'' +
                 '}';
-    }
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel parcel, int i) {
-        if (userId == null) {
-            parcel.writeByte((byte) 0);
-        } else {
-            parcel.writeByte((byte) 1);
-            parcel.writeInt(userId);
-        }
-        parcel.writeString(avt);
-        parcel.writeString(firstName);
-        parcel.writeString(lastName);
-        parcel.writeString(address);
-        parcel.writeString(telephone);
-        parcel.writeByte((byte) (status == null ? 0 : status ? 1 : 2));
     }
 }

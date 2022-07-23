@@ -25,21 +25,22 @@
             app:backgroundTint="@color/white"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="SpeakableTextPresentCheck" />
+            tools:ignore="ContentDescription,SpeakableTextPresentCheck" />
 
         <TextView
             android:id="@+id/textView6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_12sdp"
-            android:fontFamily="@font/consola"
+            android:fontFamily="@font/roboto_bold"
             android:text="Ví Voucher"
             android:textColor="@color/m1"
             android:textSize="@dimen/_18sdp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@+id/back"
             app:layout_constraintStart_toEndOf="@+id/back"
-            app:layout_constraintTop_toTopOf="@+id/back" />
+            app:layout_constraintTop_toTopOf="@+id/back"
+            tools:ignore="HardcodedText" />
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tabLayout"

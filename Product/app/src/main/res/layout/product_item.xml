@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/productLayout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -23,37 +25,40 @@
         android:layout_marginStart="@dimen/_16sdp"
         android:layout_marginTop="@dimen/_8sdp"
         android:layout_marginEnd="@dimen/_8sdp"
-        android:fontFamily="@font/consolab"
+        android:fontFamily="@font/roboto_regular"
         android:maxLines="2"
         android:text="Pizza"
         android:textColor="@color/black"
         android:textSize="@dimen/_18ssp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/product_image"
-        app:layout_constraintTop_toTopOf="@+id/product_image" />
+        app:layout_constraintTop_toTopOf="@+id/product_image"
+        tools:ignore="HardcodedText" />
 
     <TextView
         android:id="@+id/product_purchases"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_4sdp"
-        android:fontFamily="@font/consola"
+        android:fontFamily="@font/roboto_regular"
         android:text="999+"
         android:textColor="@color/drawable_tint"
         app:layout_constraintStart_toStartOf="@+id/product_name"
-        app:layout_constraintTop_toBottomOf="@+id/product_name" />
+        app:layout_constraintTop_toBottomOf="@+id/product_name"
+        tools:ignore="HardcodedText" />
 
     <TextView
         android:id="@+id/product_price"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/consolab"
+        android:fontFamily="@font/roboto_regular"
         android:text="150,000đ"
         android:textColor="@color/m1"
         android:textSize="@dimen/_16ssp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/product_image"
-        app:layout_constraintStart_toStartOf="@+id/product_purchases" />
+        app:layout_constraintStart_toStartOf="@+id/product_purchases"
+        tools:ignore="HardcodedText" />
 
     <ImageView
         android:id="@+id/plusBtn"
@@ -61,5 +66,6 @@
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="@+id/product_price"
         app:layout_constraintEnd_toEndOf="@+id/product_name"
-        app:srcCompat="@drawable/ic_add" />
+        app:srcCompat="@drawable/ic_add"
+        tools:ignore="ContentDescription" />
 </androidx.constraintlayout.widget.ConstraintLayout>

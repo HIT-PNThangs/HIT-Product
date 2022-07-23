@@ -2,6 +2,7 @@ package com.example.hit.nhom5.product.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,8 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.hit.nhom5.product.activity.AboutCremeActivity;
+import com.example.hit.nhom5.product.activity.AddressActivity;
+import com.example.hit.nhom5.product.activity.SettingActivity;
 import com.example.hit.nhom5.product.activity.SignInActivity;
 import com.example.hit.nhom5.product.activity.SupportCentralActivity;
 import com.example.hit.nhom5.product.activity.UpdateInformationActivity;
@@ -25,12 +28,13 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.Objects;
+
 public class PersonFragment extends Fragment {
     private FragmentPersonBinding binding;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentPersonBinding.inflate(getLayoutInflater());
 
         return binding.getRoot();
@@ -42,25 +46,22 @@ public class PersonFragment extends Fragment {
 
         FirebaseAuth auth = FirebaseAuth.getInstance();
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference reference = database.getReference().child("Users").child(auth.getUid().toString());
+        DatabaseReference reference = database.getReference().child("Users")
+                .child(Objects.requireNonNull(auth.getUid()));
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 Firebase firebase = snapshot.getValue(Firebase.class);
 
-                StringBuilder fullName = new StringBuilder();
-
-                fullName.append(firebase.getFirstName());
-                fullName.append(" ");
-                fullName.append(firebase.getLastName());
-
-                binding.txtUserName.setText(fullName.toString());
-                binding.txtEmail.setText(firebase.getEmail());
+                if(firebase != null) {
+                    binding.txtUserName.setText(firebase.getName());
+                    binding.txtEmail.setText(firebase.getEmail());
+                }
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
+                Log.d("Person: ", error.getMessage());
             }
         });
 
@@ -83,15 +84,16 @@ public class PersonFragment extends Fragment {
             startActivity(new Intent(getActivity(), SignInActivity.class));
         });
 
-        binding.aboutCreme.setOnClickListener(v -> {
-            startActivity(new Intent(getActivity(), AboutCremeActivity.class).
+
+        binding.voucher.setOnClickListener(v -> {
+            startActivity(new Intent(getActivity(), VoucherActivity.class).
                     addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP));
 
             getActivity().overridePendingTransition(0 ,0);
         });
 
-        binding.voucher.setOnClickListener(v -> {
-            startActivity(new Intent(getActivity(), VoucherActivity.class).
+        binding.address.setOnClickListener(v -> {
+            startActivity(new Intent(getActivity(), AddressActivity.class).
                     addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP));
 
             getActivity().overridePendingTransition(0 ,0);
@@ -104,6 +106,22 @@ public class PersonFragment extends Fragment {
             getActivity().overridePendingTransition(0 ,0);
         });
 
+<<<<<<< HEAD
+=======
+        binding.setting.setOnClickListener(v -> {
+            startActivity(new Intent(getActivity(), SettingActivity.class).
+                    addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP));
+
+            getActivity().overridePendingTransition(0 ,0);
+        });
+
+        binding.aboutCreme.setOnClickListener(v -> {
+            startActivity(new Intent(getActivity(), AboutCremeActivity.class).
+                    addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP));
+
+            getActivity().overridePendingTransition(0 ,0);
+        });
+>>>>>>> 38b874cad22cb82106cb8971865d9005462e493a
     }
 
     private void onClickImageAvatar() {

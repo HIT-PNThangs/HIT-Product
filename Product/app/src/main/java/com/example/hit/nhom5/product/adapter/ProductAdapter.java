@@ -5,10 +5,12 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -16,24 +18,23 @@ import com.example.hit.nhom5.product.R;
 import com.example.hit.nhom5.product.model.Product;
 import com.example.hit.nhom5.product.my_interface.ProductItemOnClick;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductViewHolder> {
     List<Product> list;
     Context context;
     ProductItemOnClick productItemOnClick;
+    List<Product> listOld;
 
     public void setProductItemOnClick(ProductItemOnClick itemOnClick) {
         this.productItemOnClick = itemOnClick;
     }
 
-    public ProductAdapter(List<Product> list) {
-        this.list = list;
-    }
-
     public ProductAdapter(List<Product> list, Context context) {
         this.list = list;
         this.context = context;
+        this.listOld = list;
     }
 
     @NonNull
@@ -61,7 +62,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
 
         holder.productPurchases.setText(str);
 
-        holder.add.setOnClickListener(v -> productItemOnClick.onClickProduct(list.get(position)));
+        holder.layout.setOnClickListener(v -> productItemOnClick.onClickProduct(list.get(position)));
     }
 
     @Override
@@ -76,17 +77,52 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
     }
 
     public static class ProductViewHolder extends RecyclerView.ViewHolder {
-        ImageView productImage, add;
+        ImageView productImage;
         TextView productName, productPurchases, productPrice;
+        ConstraintLayout layout;
 
         public ProductViewHolder(@NonNull View itemView) {
             super(itemView);
 
             productImage = itemView.findViewById(R.id.product_image);
-            add = itemView.findViewById(R.id.plusBtn);
             productName = itemView.findViewById(R.id.product_name);
             productPurchases = itemView.findViewById(R.id.product_purchases);
             productPrice = itemView.findViewById(R.id.product_price);
+            layout = itemView.findViewById(R.id.productLayout);
         }
+    }
+
+    public Filter getFilter() {
+        return new Filter() {
+            @Override
+            protected FilterResults performFiltering(CharSequence charSequence) {
+                String str = charSequence.toString();
+
+                if(str.isEmpty()) {
+                    list = listOld;
+                } else {
+                    List<Product> products = new ArrayList<>();
+
+                    for(Product item : listOld) {
+                        if(item.getProductName().toLowerCase().contains(str.toLowerCase())) {
+                            products.add(item);
+                        }
+                    }
+
+                    list = products;
+                }
+
+                FilterResults filterResults = new FilterResults();
+                filterResults.values = list;
+                return  filterResults;
+            }
+
+            @SuppressLint("NotifyDataSetChanged")
+            @Override
+            protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+                list = (List<Product>) filterResults.values;
+                notifyDataSetChanged();
+            }
+        };
     }
 }

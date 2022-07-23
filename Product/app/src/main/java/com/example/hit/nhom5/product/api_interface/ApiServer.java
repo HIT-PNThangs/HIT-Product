@@ -2,6 +2,7 @@ package com.example.hit.nhom5.product.api_interface;
 
 import com.example.hit.nhom5.product.model.AllProduct;
 import com.example.hit.nhom5.product.model.DataCategories;
+import com.example.hit.nhom5.product.model.GetUserByEmailResponse;
 import com.example.hit.nhom5.product.model.Login;
 import com.example.hit.nhom5.product.model.LoginResponse;
 import com.example.hit.nhom5.product.model.SignUp;
@@ -38,7 +39,7 @@ public interface ApiServer {
     Call<AllProduct> getAllProduct();
 
     @GET("api/v1/users/get-by/{email}")
-    Call<User> getUserByEmail(@Path("email") String email);
+    Call<GetUserByEmailResponse> getUserByEmail(@Path("email") String email);
 
     @POST("api/v1/users/add-user")
     Call<SignUpResponse> signUp(@Body SignUp signUp);

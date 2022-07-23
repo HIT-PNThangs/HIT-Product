@@ -11,4 +11,5 @@
     <color name="line">#82DCFB</color>
     <color name="background_search">#0F000000</color>
     <color name="input_background">#ececec</color>
+    <color name="fb_color">#3c5793</color>
 </resources>

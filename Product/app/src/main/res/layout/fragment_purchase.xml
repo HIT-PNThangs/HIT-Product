@@ -5,15 +5,57 @@
     android:id="@+id/frameLayout4"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:scrollbars="vertical"
     android:orientation="vertical"
+<<<<<<< HEAD
     tools:context=".fragment.fragment_purchase">
+=======
+    android:scrollbars="vertical"
+    tools:context=".fragment.PurchaseFragment">
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout16"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@drawable/border_bottom"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/imageView13"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:src="@drawable/ic_back"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="ContentDescription" />
+>>>>>>> 38b874cad22cb82106cb8971865d9005462e493a
+
+        <TextView
+            android:id="@+id/textView35"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:fontFamily="@font/roboto_regular"
+            android:text="Xác nhận đơn hàng"
+            android:textColor="#1587B8"
+            android:textSize="@dimen/_12sdp"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView13"
+            app:layout_constraintStart_toEndOf="@+id/imageView13"
+            app:layout_constraintTop_toTopOf="@+id/imageView13"
+            tools:ignore="HardcodedText" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ScrollView
         android:id="@+id/scrollView"
         android:layout_width="match_parent"
-        android:layout_height="660dp">
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout7"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout16">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/layoutparent"
@@ -21,75 +63,52 @@
             android:layout_height="wrap_content">
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/constraintLayout16"
+                android:id="@+id/constraintLayout17"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:background="@drawable/boder_bottom"
+                android:layout_height="wrap_content"
+                android:background="@drawable/border_bottom"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
-
-                <ImageView
-                    android:id="@+id/imageView13"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:src="@drawable/ic_back"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/textView35"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:text="Xác nhận đơn hàng"
-                    android:textColor="#1587B8"
-                    app:layout_constraintBottom_toBottomOf="@+id/imageView13"
-                    app:layout_constraintStart_toEndOf="@+id/imageView13"
-                    app:layout_constraintTop_toTopOf="@+id/imageView13" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/constraintLayout17"
-                android:layout_width="match_parent"
-                android:layout_height="137dp"
-                android:background="@drawable/boder_bottom"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/constraintLayout16">
 
                 <TextView
                     android:id="@+id/textView36"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="40dp"
-                    android:layout_marginTop="24dp"
-                    android:text="Địa chỉ giao hàng"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:fontFamily="@font/roboto_regular"
+                    android:text="Địa chỉ giao hàng: "
                     android:textColor="@color/black"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="HardcodedText" />
 
                 <TextView
                     android:id="@+id/textView37"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_20sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:fontFamily="@font/roboto_regular"
                     android:text="Nguyễn Đức Lâm - 0123456789"
                     android:textColor="@color/black"
                     app:layout_constraintStart_toStartOf="@+id/textView36"
-                    app:layout_constraintTop_toBottomOf="@+id/textView36" />
+                    app:layout_constraintTop_toBottomOf="@+id/textView36"
+                    tools:ignore="HardcodedText" />
 
                 <TextView
                     android:id="@+id/textView38"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginBottom="@dimen/_10sdp"
+                    android:fontFamily="@font/roboto_regular"
                     android:text="Nguyên Xá, Từ Liêm, Hà Nội, Việt Nam"
                     android:textColor="@color/black"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="@+id/textView37"
-                    app:layout_constraintTop_toBottomOf="@+id/textView37" />
+                    app:layout_constraintTop_toBottomOf="@+id/textView37"
+                    tools:ignore="HardcodedText" />
 
                 <ImageView
                     android:id="@+id/imageView14"
@@ -99,14 +118,15 @@
                     android:src="@drawable/arrow"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="ContentDescription" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constraintLayout18"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
-                android:background="@drawable/boder_bottom"
+                android:background="@drawable/border_bottom"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/constraintLayout17">
@@ -115,13 +135,15 @@
                     android:id="@+id/textView39"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="56dp"
-                    android:text="Giao ngay- 15h - Hôm nay 19/05"
+                    android:layout_marginStart="24dp"
+                    android:fontFamily="@font/roboto_regular"
+                    android:text="Giao ngay - 15h - Hôm nay 19/05"
                     android:textColor="@color/black"
-                    android:textSize="16dp"
+                    android:textSize="@dimen/_13sdp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="HardcodedText" />
 
                 <ImageView
                     android:id="@+id/imageView15"
@@ -131,7 +153,8 @@
                     android:src="@drawable/arrow"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="ContentDescription" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -148,15 +171,17 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="24dp"
                     android:layout_marginTop="16dp"
+                    android:fontFamily="@font/roboto_regular"
                     android:text="HIT Creme - P. Minh Khai"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="HardcodedText" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/constraintLayout19"
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
-                    android:background="@drawable/boder_bottom"
+                    android:background="@drawable/border_bottom"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView41">
@@ -165,37 +190,43 @@
                         android:id="@+id/imageView17"
                         android:layout_width="46dp"
                         android:layout_height="46dp"
-                        android:layout_marginStart="10dp"
+                        android:layout_marginStart="24dp"
+                        android:fontFamily="@font/roboto_regular"
                         android:src="@drawable/burger_popular"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:ignore="ContentDescription" />
 
                     <TextView
                         android:id="@+id/textView42"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
+                        android:fontFamily="@font/roboto_regular"
                         android:text="1 x Kem Việt Quất"
                         android:textColor="@color/black"
                         app:layout_constraintStart_toEndOf="@+id/imageView17"
-                        app:layout_constraintTop_toTopOf="@+id/imageView17" />
+                        app:layout_constraintTop_toTopOf="@+id/imageView17"
+                        tools:ignore="HardcodedText" />
 
                     <TextView
                         android:id="@+id/textView43"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="16dp"
+                        android:fontFamily="@font/roboto_regular"
                         android:text="55,000đ"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent" />
+                        app:layout_constraintEnd_toEndOf="parent"
+                        tools:ignore="HardcodedText" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/constraintLayout20"
                     android:layout_width="match_parent"
-                    android:layout_height="43dp"
-                    android:background="@drawable/boder_bottom"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/border_bottom"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/constraintLayout19">
@@ -205,27 +236,35 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="24dp"
-                        android:text="Tổng"
+                        android:fontFamily="@font/roboto_regular"
+                        android:paddingTop="@dimen/_8sdp"
+                        android:paddingBottom="@dimen/_8sdp"
+                        android:text="Tổng: "
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:ignore="HardcodedText" />
 
                     <TextView
                         android:id="@+id/textView45"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="16dp"
+                        android:fontFamily="@font/roboto_regular"
+                        android:paddingTop="@dimen/_8sdp"
+                        android:paddingBottom="@dimen/_8sdp"
                         android:text="55,000đ"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:ignore="HardcodedText" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/constraintLayout22"
                     android:layout_width="match_parent"
-                    android:layout_height="43dp"
-                    android:background="@drawable/boder_bottom"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/border_bottom"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/constraintLayout20">
@@ -235,27 +274,35 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="24dp"
+                        android:fontFamily="@font/roboto_regular"
+                        android:paddingTop="@dimen/_8sdp"
+                        android:paddingBottom="@dimen/_8sdp"
                         android:text="Phí giao hàng"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:ignore="HardcodedText" />
 
                     <TextView
                         android:id="@+id/textView47"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="16dp"
+                        android:fontFamily="@font/roboto_regular"
+                        android:paddingTop="@dimen/_8sdp"
+                        android:paddingBottom="@dimen/_8sdp"
                         android:text="55.000đ"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:ignore="HardcodedText" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/constraintLayout23"
                     android:layout_width="match_parent"
-                    android:layout_height="43dp"
-                    android:background="@drawable/boder_bottom"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/border_bottom"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/constraintLayout22">
@@ -265,20 +312,28 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="24dp"
+                        android:fontFamily="@font/roboto_regular"
+                        android:paddingTop="@dimen/_8sdp"
+                        android:paddingBottom="@dimen/_8sdp"
                         android:text="Phí vận chuyển"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:ignore="HardcodedText" />
 
                     <TextView
                         android:id="@+id/textView49"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="16dp"
+                        android:fontFamily="@font/roboto_regular"
+                        android:paddingTop="@dimen/_8sdp"
+                        android:paddingBottom="@dimen/_8sdp"
                         android:text="55.000đ"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:ignore="HardcodedText" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -294,32 +349,39 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="24dp"
                         android:layout_marginTop="13dp"
+                        android:fontFamily="@font/roboto_regular"
                         android:text="Tổng cộng"
                         android:textColor="@color/black"
-                        android:textSize="16dp"
+                        android:textSize="16sp"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:ignore="HardcodedText" />
 
                     <TextView
                         android:id="@+id/textView51"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="13dp"
+                        android:layout_marginEnd="16dp"
+                        android:fontFamily="@font/roboto_regular"
                         android:text="70.000đ"
-                        android:textColor="#1587B8"
-                        android:textSize="16dp"
+                        android:textColor="@color/m1"
+                        android:textSize="16sp"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:ignore="HardcodedText" />
 
                     <TextView
                         android:id="@+id/textView52"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
+                        android:fontFamily="@font/roboto_regular"
                         android:text="Đã bao gồm thuế"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/textView51" />
+                        app:layout_constraintTop_toBottomOf="@+id/textView51"
+                        tools:ignore="HardcodedText" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -332,13 +394,13 @@
                 android:orientation="vertical"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/constraintLayout24"></LinearLayout>
+                app:layout_constraintTop_toBottomOf="@+id/constraintLayout24" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constraintLayout25"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:background="@drawable/boder_bottom"
+                android:layout_height="wrap_content"
+                android:background="@drawable/border_bottom"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/linearLayout6">
@@ -348,21 +410,27 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="24dp"
+                    android:fontFamily="@font/roboto_regular"
+                    android:paddingTop="@dimen/_8sdp"
+                    android:paddingBottom="@dimen/_8sdp"
                     android:text="Khuyến mãi"
-                    android:textColor="#000000"
+                    android:textColor="@color/black"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="HardcodedText" />
 
                 <TextView
                     android:id="@+id/textView55"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="16dp"
+                    android:fontFamily="@font/roboto_regular"
                     android:text="Chọn voucher >"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="HardcodedText" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -370,7 +438,7 @@
                 android:id="@+id/constraintLayout26"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:background="@drawable/boder_bottom"
+                android:background="@drawable/border_bottom"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/constraintLayout25">
@@ -380,64 +448,88 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="24dp"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/roboto_regular"
                     android:text="Thưởng cho tài xế"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="HardcodedText" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="18dp"
                     android:layout_marginStart="24dp"
+                    android:layout_marginTop="8dp"
                     android:layout_marginEnd="16dp"
                     android:layout_marginBottom="4dp"
                     android:orientation="horizontal"
                     android:weightSum="5"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent">
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView57">
 
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_marginRight="19dp"
+                        android:layout_gravity="center"
                         android:layout_weight="1"
                         android:background=" #F5F5F5"
+                        android:fontFamily="@font/roboto_regular"
                         android:text="Chưa có"
-                        android:textColor="#1587B8"
-
                         android:textAlignment="center"
-                        tools:background="@drawable/bg_purchase" />
+                        android:textColor="#1587B8"
+                        android:textSize="@dimen/_10sdp"
+                        tools:background="@drawable/bg_purchase"
+                        tools:ignore="HardcodedText" />
 
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_marginRight="19dp"
+                        android:layout_gravity="center"
                         android:layout_weight="1"
                         android:background=" #F5F5F5"
-                        android:text="5K" />
+                        android:fontFamily="@font/roboto_regular"
+                        android:text="5K"
+                        android:textAlignment="center"
+                        android:textSize="@dimen/_10sdp"
+                        tools:ignore="HardcodedText" />
 
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_marginRight="19dp"
+                        android:layout_gravity="center"
                         android:layout_weight="1"
                         android:background=" #F5F5F5"
-                        android:text="10K" />
+                        android:fontFamily="@font/roboto_regular"
+                        android:text="10K"
+                        android:textAlignment="center"
+                        android:textSize="@dimen/_10sdp"
+                        tools:ignore="HardcodedText" />
 
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_marginRight="19dp"
+                        android:layout_gravity="center"
                         android:layout_weight="1"
                         android:background=" #F5F5F5"
-                        android:text="15K" />
+                        android:fontFamily="@font/roboto_regular"
+                        android:text="15K"
+                        android:textAlignment="center"
+                        android:textSize="@dimen/_10sdp"
+                        tools:ignore="HardcodedText" />
 
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
+                        android:layout_gravity="center"
                         android:layout_weight="1"
                         android:background=" #F5F5F5"
-                        android:text="20K" />
+                        android:fontFamily="@font/roboto_regular"
+                        android:text="20K"
+                        android:textAlignment="center"
+                        android:textSize="@dimen/_10sdp"
+                        tools:ignore="HardcodedText" />
                 </LinearLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -449,15 +541,14 @@
                 android:orientation="vertical"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/constraintLayout26"></LinearLayout>
-
-
+                app:layout_constraintTop_toBottomOf="@+id/constraintLayout26" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout7"
         android:layout_width="match_parent"
-        android:layout_height="152dp"
+        android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
@@ -465,45 +556,54 @@
         <TextView
             android:id="@+id/textView34"
             android:layout_width="match_parent"
-            android:layout_height="42dp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
+            android:layout_marginTop="@dimen/_8sdp"
             android:layout_marginEnd="16dp"
+            android:layout_marginBottom="@dimen/_8sdp"
             android:background="@drawable/bg_purchase"
-            android:paddingTop="10dp"
-            android:textColor="#1587B8"
+            android:fontFamily="@font/roboto_regular"
+            android:padding="@dimen/_10sdp"
             android:text="Tiền mặt"
             android:textAlignment="center"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:textColor="#1587B8"
+            app:layout_constraintBottom_toTopOf="@+id/textView40"
+            app:layout_constraintEnd_toEndOf="@+id/textView53"
+            app:layout_constraintStart_toStartOf="@+id/textView53"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="HardcodedText" />
 
         <TextView
             android:id="@+id/textView40"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-
+            android:layout_marginTop="@dimen/_8sdp"
+            android:layout_marginBottom="@dimen/_8sdp"
+            android:fontFamily="@font/roboto_regular"
             android:text="Chọn phương thức thanh toán"
-            app:layout_constraintEnd_toEndOf="@+id/textView34"
-            app:layout_constraintStart_toStartOf="@+id/textView34"
-            app:layout_constraintTop_toBottomOf="@+id/textView34" />
+            app:layout_constraintBottom_toTopOf="@+id/textView53"
+            app:layout_constraintEnd_toEndOf="@+id/textView53"
+            app:layout_constraintStart_toStartOf="@+id/textView53"
+            tools:ignore="HardcodedText" />
 
         <TextView
             android:id="@+id/textView53"
             android:layout_width="match_parent"
-            android:layout_height="55dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginTop="12dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_32sdp"
+            android:layout_marginEnd="@dimen/_32sdp"
+            android:layout_marginBottom="@dimen/_16sdp"
             android:background="#1587B8"
-            android:paddingTop="15dp"
+            android:fontFamily="@font/roboto_regular"
+            android:gravity="center"
+            android:padding="@dimen/_8sdp"
             android:text="Thanh toán"
             android:textColor="@color/white"
+            android:textSize="@dimen/_16sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView40"
+            tools:ignore="HardcodedText"
             tools:textAlignment="center" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>

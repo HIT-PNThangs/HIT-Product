@@ -2,7 +2,6 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activity.CardActivity">
@@ -10,97 +9,111 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout28"
         android:layout_width="match_parent"
-        android:layout_height="58dp"
-        android:background="@drawable/boder_bottom"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@drawable/border_bottom"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:id="@+id/imageView19"
+            android:id="@+id/back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_back" />
+            app:srcCompat="@drawable/ic_back"
+            tools:ignore="ContentDescription" />
 
         <TextView
             android:id="@+id/textView56"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
+            android:fontFamily="@font/roboto_medium"
             android:text="Giỏ hàng"
-            android:textColor="#1587B8"
-            app:layout_constraintBottom_toBottomOf="@+id/imageView19"
-            app:layout_constraintStart_toEndOf="@+id/imageView19"
-            app:layout_constraintTop_toTopOf="@+id/imageView19" />
+            android:textColor="#0277BD"
+            android:textSize="@dimen/_14sdp"
+            app:layout_constraintBottom_toBottomOf="@+id/back"
+            app:layout_constraintStart_toEndOf="@+id/back"
+            app:layout_constraintTop_toTopOf="@+id/back"
+            tools:ignore="HardcodedText" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <ScrollView
-        android:id="@+id/scrollcart"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recy_cart"
         android:layout_width="match_parent"
-        android:layout_height="696dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/_2sdp"
+        android:layout_marginBottom="@dimen/_2sdp"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout14"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout28">
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recy_cart"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            />
-    </ScrollView>
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout28" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout14"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="?attr/actionBarSize"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
         <TextView
-            android:id="@+id/textView58"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:text="Tất cả"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
             android:id="@+id/btnBuy"
-            android:layout_width="wrap_content"
+            android:layout_width="100dp"
             android:layout_height="match_parent"
             android:background="#1587B8"
+            android:fontFamily="@font/roboto_regular"
+            android:gravity="center"
             android:text="Mua hàng"
             android:textAlignment="center"
             android:textColor="@color/white"
+            android:textSize="@dimen/_14sdp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="HardcodedText" />
 
         <TextView
             android:id="@+id/total"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_6sdp"
+            android:fontFamily="@font/roboto_regular"
             android:text="0đ"
             android:textColor="#1587B8"
+            android:textSize="@dimen/_12sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/btnBuy"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="HardcodedText,TextContrastCheck,TextContrastCheck" />
 
         <TextView
             android:id="@+id/pay"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_6sdp"
+            android:fontFamily="@font/roboto_regular"
             android:text="Tổng thanh toán"
+            android:textSize="@dimen/_12sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/total"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="HardcodedText" />
+
+        <CheckBox
+            android:id="@+id/checkBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:fontFamily="@font/roboto_regular"
+            android:minHeight="48dp"
+            android:text="Tất cả"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="HardcodedText" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 </androidx.constraintlayout.widget.ConstraintLayout>
-
-

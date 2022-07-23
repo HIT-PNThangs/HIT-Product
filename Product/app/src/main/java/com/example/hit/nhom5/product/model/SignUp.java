@@ -3,10 +3,8 @@ package com.example.hit.nhom5.product.model;
 import com.google.gson.annotations.SerializedName;
 
 public class SignUp {
-    @SerializedName("firstName")
-    private String firstName;
-    @SerializedName("lastName")
-    private String lastName;
+    @SerializedName("fullName")
+    private String fullName;
     @SerializedName("email")
     private String email;
     @SerializedName("password")
@@ -15,27 +13,18 @@ public class SignUp {
     public SignUp() {
     }
 
-    public SignUp(String firstName, String lastName, String email, String password) {
-        this.firstName = firstName;
-        this.lastName = lastName;
+    public SignUp(String fullName, String email, String password) {
+        this.fullName = fullName;
         this.email = email;
         this.password = password;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getFullName() {
+        return fullName;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 
     public String getEmail() {

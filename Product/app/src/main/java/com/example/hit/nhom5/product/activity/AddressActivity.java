@@ -4,17 +4,17 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-import com.example.hit.nhom5.product.R;
-import com.example.hit.nhom5.product.databinding.ActivitySettingBinding;
+import com.example.hit.nhom5.product.databinding.ActivityAddressBinding;
 
-public class SettingActivity extends AppCompatActivity {
-    ActivitySettingBinding binding;
+public class AddressActivity extends AppCompatActivity {
+    ActivityAddressBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivitySettingBinding.inflate(getLayoutInflater());
+        binding = ActivityAddressBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
     }
 
     @Override

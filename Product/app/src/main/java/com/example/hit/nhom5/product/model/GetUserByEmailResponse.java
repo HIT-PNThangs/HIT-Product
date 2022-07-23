@@ -1,20 +1,14 @@
 package com.example.hit.nhom5.product.model;
 
-import com.google.gson.annotations.SerializedName;
-
-public class SignUpResponse {
-    @SerializedName("status")
+public class GetUserByEmailResponse {
     private Integer status;
-
-    @SerializedName("message")
     private String message;
-
-    @SerializedName("result")
     private User result;
 
-    public SignUpResponse() { }
+    public GetUserByEmailResponse() {
+    }
 
-    public SignUpResponse(Integer status, String message, User result) {
+    public GetUserByEmailResponse(Integer status, String message, User result) {
         this.status = status;
         this.message = message;
         this.result = result;
