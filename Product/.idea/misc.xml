@@ -3,7 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-<<<<<<< HEAD
+
         <entry key="..\:/App/HIT-PRODUCT/Product/app/src/main/res/layout/fragment_noti_voucher.xml" value="0.4" />
         <entry key="..\:/App/HIT-PRODUCT/Product/app/src/main/res/layout/fragment_notification.xml" value="0.264" />
         <entry key="..\:/App/HIT-PRODUCT/Product/app/src/main/res/layout/fragment_person.xml" value="0.17300724637681159" />
@@ -48,8 +48,6 @@
         <entry key="..\:/App/HIT-Product/Product/app/src/main/res/layout/item_draft.xml" value="0.21105072463768115" />
         <entry key="..\:/App/HIT-Product/Product/app/src/main/res/layout/item_valid_voucher.xml" value="0.264" />
         <entry key="..\:/App/HIT-Product/Product/app/src/main/res/menu/navigation.xml" value="0.25" />
-=======
->>>>>>> 38b874cad22cb82106cb8971865d9005462e493a
         <entry key="..\:/HIT-Product/Product/app/src/main/res/drawable-v24/background_edittext.xml" value="0.154" />
         <entry key="..\:/HIT-Product/Product/app/src/main/res/drawable-v24/background_forget_password.xml" value="0.154" />
         <entry key="..\:/HIT-Product/Product/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1955" />

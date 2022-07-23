@@ -106,8 +106,6 @@ public class PersonFragment extends Fragment {
             getActivity().overridePendingTransition(0 ,0);
         });
 
-<<<<<<< HEAD
-=======
         binding.setting.setOnClickListener(v -> {
             startActivity(new Intent(getActivity(), SettingActivity.class).
                     addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP));
@@ -121,7 +119,7 @@ public class PersonFragment extends Fragment {
 
             getActivity().overridePendingTransition(0 ,0);
         });
->>>>>>> 38b874cad22cb82106cb8971865d9005462e493a
+
     }
 
     private void onClickImageAvatar() {

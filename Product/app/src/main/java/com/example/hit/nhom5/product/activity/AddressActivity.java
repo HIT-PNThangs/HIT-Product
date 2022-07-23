@@ -14,7 +14,6 @@ public class AddressActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityAddressBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
     }
 
     @Override

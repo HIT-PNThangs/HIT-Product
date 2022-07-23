@@ -6,9 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-<<<<<<< HEAD
     tools:context=".fragment.fragment_purchase">
-=======
+
     android:scrollbars="vertical"
     tools:context=".fragment.PurchaseFragment">
 
@@ -31,8 +30,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="ContentDescription" />
->>>>>>> 38b874cad22cb82106cb8971865d9005462e493a
-
+            
         <TextView
             android:id="@+id/textView35"
             android:layout_width="wrap_content"
