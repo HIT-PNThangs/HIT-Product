@@ -11,6 +11,7 @@ public class User implements Parcelable {
     private Integer userId;
     private String avt;
     private String name;
+    private String email;
     private String address;
     private String telephone;
     private Boolean status;
@@ -21,11 +22,12 @@ public class User implements Parcelable {
     public User() {
     }
 
-    public User(Integer userId, String avt, String name, String address, String telephone,
-                Boolean status, List<Role> roles, ShoppingSession shoppingSession, String uid) {
+    public User(Integer userId, String avt, String name, String email,
+                String address, String telephone, Boolean status, List<Role> roles, ShoppingSession shoppingSession, String uid) {
         this.userId = userId;
         this.avt = avt;
         this.name = name;
+        this.email = email;
         this.address = address;
         this.telephone = telephone;
         this.status = status;
@@ -42,32 +44,12 @@ public class User implements Parcelable {
         }
         avt = in.readString();
         name = in.readString();
+        email = in.readString();
         address = in.readString();
         telephone = in.readString();
         byte tmpStatus = in.readByte();
         status = tmpStatus == 0 ? null : tmpStatus == 1;
         uid = in.readString();
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        if (userId == null) {
-            dest.writeByte((byte) 0);
-        } else {
-            dest.writeByte((byte) 1);
-            dest.writeInt(userId);
-        }
-        dest.writeString(avt);
-        dest.writeString(name);
-        dest.writeString(address);
-        dest.writeString(telephone);
-        dest.writeByte((byte) (status == null ? 0 : status ? 1 : 2));
-        dest.writeString(uid);
-    }
-
-    @Override
-    public int describeContents() {
-        return 0;
     }
 
     public static final Creator<User> CREATOR = new Creator<User>() {
@@ -104,6 +86,14 @@ public class User implements Parcelable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getAddress() {
@@ -154,19 +144,25 @@ public class User implements Parcelable {
         this.uid = uid;
     }
 
-    @NonNull
     @Override
-    public String toString() {
-        return "User{" +
-                "userId=" + userId +
-                ", avt='" + avt + '\'' +
-                ", name='" + name + '\'' +
-                ", address='" + address + '\'' +
-                ", telephone='" + telephone + '\'' +
-                ", status=" + status +
-                ", roles=" + roles.toString() +
-                ", shoppingSession=" + shoppingSession.toString() +
-                ", uid='" + uid + '\'' +
-                '}';
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        if (userId == null) {
+            parcel.writeByte((byte) 0);
+        } else {
+            parcel.writeByte((byte) 1);
+            parcel.writeInt(userId);
+        }
+        parcel.writeString(avt);
+        parcel.writeString(name);
+        parcel.writeString(email);
+        parcel.writeString(address);
+        parcel.writeString(telephone);
+        parcel.writeByte((byte) (status == null ? 0 : status ? 1 : 2));
+        parcel.writeString(uid);
     }
 }

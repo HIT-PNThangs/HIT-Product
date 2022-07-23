@@ -16,7 +16,9 @@ import com.example.hit.nhom5.product.api_interface.ApiServer;
 import com.example.hit.nhom5.product.databinding.ActivitySignUpBinding;
 import com.example.hit.nhom5.product.model.SignUp;
 import com.example.hit.nhom5.product.model.SignUpResponse;
+import com.example.hit.nhom5.product.model.User;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -87,12 +89,12 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     public boolean isEmail(String email) {
-        String EMAIL_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+        String EMAIL_PATTERN = "^[_A-Za-z0-9-+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
         return Pattern.compile(EMAIL_PATTERN).matcher(email).matches();
     }
 
     public boolean isPassword(String password) {
-        String PASSWORD_PATTERN = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#&()–[{}]:;',?/*~$^+=<>]).{8,20}$";
+        String PASSWORD_PATTERN = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#&()–[{}]:;',?/*~$^+=<>]).{6,20}$";
         return Pattern.compile(PASSWORD_PATTERN).matcher(password).matches();
     }
 
@@ -146,9 +148,30 @@ public class SignUpActivity extends AppCompatActivity {
                             map.put("email", email);
                             map.put("status", false);
 
+                            User user = new User();
+
+                            user.setEmail(email);
+                            user.setName(name);
+                            user.setStatus(false);
+
                             String id = Objects.requireNonNull(task.getResult().getUser()).getUid();
                             database.getReference().child("Users").child(id).setValue(map);
+
+                            Intent intent = new Intent(SignUpActivity.this, SignInActivity.class);
+
+                            intent.putExtra("data", user);
+
+                            startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP));
+                            overridePendingTransition(0, 0);
+                            finishAffinity();
                         }
+                    })
+                    .addOnFailureListener(e -> {
+                        binding.progressBar4.setVisibility(View.GONE);
+                        binding.btSignUp.setVisibility(View.VISIBLE);
+
+                        showToast(e.getMessage());
+                        Log.d("Sign Up", "onFailure: " + e.getMessage());
                     });
 
 //            // Create user on Database

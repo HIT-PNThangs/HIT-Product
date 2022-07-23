@@ -40,12 +40,14 @@ public class CardActivity extends AppCompatActivity {
 
     private List<Card> getListCart() {
         List<Card> list = new ArrayList<>();
+
         list.add(new Card(R.drawable.image_slider_1, "kem", "hà nội", "10000", 1));
         list.add(new Card(R.drawable.image_slider_1, "kem", "hà nội", "10000", 1));
         list.add(new Card(R.drawable.image_slider_1, "kem", "hà nội", "10000", 1));
         list.add(new Card(R.drawable.image_slider_1, "kem", "hà nội", "10000", 1));
         list.add(new Card(R.drawable.image_slider_1, "kem", "hà nội", "10000", 1));
         list.add(new Card(R.drawable.image_slider_1, "kem", "hà nội", "10000", 1));
+
         return list;
     }
 

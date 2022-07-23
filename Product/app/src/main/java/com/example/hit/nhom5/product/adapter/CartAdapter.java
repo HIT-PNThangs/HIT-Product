@@ -42,19 +42,19 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
         holder.tvAddress.setText(card.getAddress());
         holder.tvPrice.setText(card.getPrice());
 
-        holder.btnMinus.setOnClickListener(view -> {
-            if(card.getNumberFood() >= 1) card.setNumberFood(card.getNumberFood() - 1);
+//        holder.btnMinus.setOnClickListener(view -> {
+//            if(card.getNumberFood() >= 1) card.setNumberFood(card.getNumberFood() - 1);
+//
+//            holder.tvNumFood.setText(String.valueOf(card.getNumberFood()));
+//        });
+//
+//        holder.btnPlus.setOnClickListener(view -> {
+//            card.setNumberFood(card.getNumberFood() + 1);
+//
+//            holder.tvNumFood.setText(String.valueOf(card.getNumberFood()));
+//        });
 
-            holder.tvNumFood.setText(String.valueOf(card.getNumberFood()));
-        });
-
-        holder.btnPlus.setOnClickListener(view -> {
-            card.setNumberFood(card.getNumberFood() + 1);
-
-            holder.tvNumFood.setText(String.valueOf(card.getNumberFood()));
-        });
-
-        holder.tvNumFood.setText(String.valueOf(card.getNumberFood()));
+//        holder.tvNumFood.setText(String.valueOf(card.getNumberFood()));
     }
 
     @Override
@@ -63,8 +63,8 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        ImageView imageCart, btnMinus, btnPlus;
-        TextView tvTitle, tvAddress, tvPrice, tvNumFood;
+        ImageView imageCart;
+        TextView tvTitle, tvAddress, tvPrice;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -73,9 +73,6 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
             tvTitle = itemView.findViewById(R.id.title_cart);
             tvAddress = itemView.findViewById(R.id.address_cart);
             tvPrice = itemView.findViewById(R.id.price_cart);
-            tvNumFood = itemView.findViewById(R.id.numberOrder);
-            btnMinus = itemView.findViewById(R.id.minusBtn);
-            btnPlus = itemView.findViewById(R.id.plusBtn);
         }
     }
 }
