@@ -9,8 +9,12 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.hit.nhom5.product.R;
-public class fragment_purchase extends Fragment {
+<<<<<<< HEAD:Product/app/src/main/java/com/example/hit/nhom5/product/fragment/fragment_purchase.java
 
+
+public class fragment_purchase extends Fragment {
+=======
+>>>>>>> 38b874cad22cb82106cb8971865d9005462e493a:Product/app/src/main/java/com/example/hit/nhom5/product/fragment/PurchaseFragment.java
 
 
 public class PurchaseFragment extends Fragment {

@@ -6,6 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    tools:context=".fragment.fragment_purchase">
+
     android:scrollbars="vertical"
     tools:context=".fragment.PurchaseFragment">
 
@@ -28,7 +30,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="ContentDescription" />
-
+            
         <TextView
             android:id="@+id/textView35"
             android:layout_width="wrap_content"

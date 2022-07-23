@@ -56,6 +56,15 @@ public class HomeFragment extends Fragment {
                         .child("Users")
                         .child(Objects.requireNonNull(auth.getUid()));
 
+
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                Firebase firebase = snapshot.getValue(Firebase.class);
+
+                if (firebase != null) {
+                    binding.txtName.setText(firebase.getName());
+
 //        reference.addValueEventListener(new ValueEventListener() {
 //            @Override
 //            public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -88,6 +97,12 @@ public class HomeFragment extends Fragment {
             }
         });
 
+
+        // Search
+        binding.search.setOnClickListener(v -> {
+            startActivity(new Intent(getContext(), SearchActivity.class));
+            getActivity().overridePendingTransition(0, 0);
+
         User user = requireActivity().getIntent().getParcelableExtra("data");
 //        binding.txtName.setText(user.getName());
 //        Log.d("Home: ", user.toString());
@@ -97,6 +112,7 @@ public class HomeFragment extends Fragment {
         binding.search.setOnClickListener(v -> {
             startActivity(new Intent(getContext(), SearchActivity.class));
             requireActivity().overridePendingTransition(0, 0);
+
         });
 
         // Category
@@ -112,7 +128,11 @@ public class HomeFragment extends Fragment {
             Intent intent = new Intent(getActivity(), SearchActivity.class);
             intent.putExtra("categoryItem", (Parcelable) category);
             startActivity(intent);
+
+            getActivity().overridePendingTransition(0, 0);
+
             requireActivity().overridePendingTransition(0, 0);
+
         });
 
         // Popular

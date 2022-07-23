@@ -119,6 +119,7 @@ public class PersonFragment extends Fragment {
 
             getActivity().overridePendingTransition(0 ,0);
         });
+
     }
 
     private void onClickImageAvatar() {

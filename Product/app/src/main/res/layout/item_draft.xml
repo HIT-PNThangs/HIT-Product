@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/_8sdp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView
+        android:id="@+id/type_draft"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="Đồ ăn"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/img_draft"
+        android:layout_width="72dp"
+        android:layout_height="72dp"
+        android:src="@drawable/burger_popular"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/type_draft" />
+
+    <TextView
+        android:id="@+id/name_draft"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Kem trà sữa"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:layout_marginTop="8dp"
+        android:layout_marginLeft="16dp"
+        app:layout_constraintStart_toEndOf="@+id/img_draft"
+        app:layout_constraintTop_toBottomOf="@+id/type_draft" />
+
+    <TextView
+        android:id="@+id/address_draft"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nguyên Xá, P.Minh Khai, Bắc Từ Liêm Hà, Nội"
+        app:layout_constraintStart_toStartOf="@+id/name_draft"
+        app:layout_constraintTop_toBottomOf="@+id/name_draft" />
+
+    <TextView
+        android:id="@+id/price_draft"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="55,000đ (1 chiếc) "
+        android:layout_marginTop="16dp"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="@+id/address_draft"
+        app:layout_constraintTop_toBottomOf="@+id/address_draft" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

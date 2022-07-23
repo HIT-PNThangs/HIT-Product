@@ -22,6 +22,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.hit.nhom5.product.R;
 import com.example.hit.nhom5.product.databinding.ActivitySignInBinding;
 import com.example.hit.nhom5.product.model.User;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -112,6 +118,22 @@ public class SignInActivity extends AppCompatActivity {
                             .addListenerForSingleValueEvent(new ValueEventListener() {
                                 @Override
                                 public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                    User user = snapshot.getValue(User.class);
+
+                                    if (user == null) {
+                                        showToast("Login Failure.");
+                                    } else {
+                                        Intent intent;
+
+                                        if (!user.getStatus()) {
+                                            intent = new Intent(getApplicationContext(), UpdateInformationActivity.class);
+                                        } else {
+                                            intent = new Intent(getApplicationContext(), MainActivity.class);
+                                        }
+
+                                        startActivity(intent);
+                                        overridePendingTransition(0, 0);
+                                    }
 //                                    User user = snapshot.getValue(User.class);
 
                                     User user = getIntent().getParcelableExtra("data");

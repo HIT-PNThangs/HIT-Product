@@ -90,6 +90,7 @@ public class SignUpActivity extends AppCompatActivity {
 
     public boolean isEmail(String email) {
         String EMAIL_PATTERN = "^[_A-Za-z0-9-+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+
         return Pattern.compile(EMAIL_PATTERN).matcher(email).matches();
     }
 
@@ -147,6 +148,12 @@ public class SignUpActivity extends AppCompatActivity {
                             map.put("name", name);
                             map.put("email", email);
                             map.put("status", false);
+
+
+                            String id = Objects.requireNonNull(task.getResult().getUser()).getUid();
+                            database.getReference().child("Users").child(id).setValue(map);
+                        }
+                    });
 
                             User user = new User();
 

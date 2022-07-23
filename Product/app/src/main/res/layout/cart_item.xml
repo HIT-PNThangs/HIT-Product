@@ -12,16 +12,21 @@
         <CheckBox
             android:id="@+id/checkBox4"
             android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:fontFamily="@font/roboto_regular"
             android:layout_height="wrap_content"
             android:fontFamily="@font/roboto_regular"
             android:paddingTop="@dimen/_6sdp"
             android:paddingBottom="@dimen/_6sdp"
+
             android:text="HIT Creme"
             android:textSize="@dimen/_14sdp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="HardcodedText,TouchTargetSizeCheck" />
 
+
+        <androidx.constraintlayout.widget.ConstraintLayout
         <View
             android:id="@+id/view1"
             android:layout_width="match_parent"
@@ -37,9 +42,12 @@
             android:layout_height="wrap_content"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
+
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/view1">
+            app:layout_constraintTop_toBottomOf="@+id/checkBox4">
+            app:layout_constraintEnd_toEndOf="parent"
 
             <CheckBox
                 android:id="@+id/checkBox5"
@@ -78,6 +86,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_4sdp"
+                android:layout_marginEnd="@dimen/_14sdp"
+                android:fontFamily="@font/roboto_regular"
                 android:layout_marginEnd="8dp"
                 android:fontFamily="@font/roboto_regular"
                 android:maxLines="2"
@@ -92,6 +102,52 @@
                 android:id="@+id/price_cart"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+
+                android:layout_marginTop="18dp"
+                android:text="55,000đ"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@+id/address_cart"
+                app:layout_constraintTop_toBottomOf="@+id/address_cart"
+                tools:ignore="HardcodedText" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                app:layout_constraintStart_toStartOf="@+id/price_cart"
+                app:layout_constraintTop_toBottomOf="@+id/price_cart">
+
+                <ImageView
+                    android:id="@+id/minusBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@drawable/ic_minus"
+                    tools:ignore="ContentDescription" />
+
+                <TextView
+                    android:id="@+id/numberOrder"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:fontFamily="@font/roboto_bold"
+                    android:text="1"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_14ssp"
+                    android:textStyle="bold"
+                    tools:ignore="HardcodedText" />
+
+                <ImageView
+                    android:id="@+id/plusBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@drawable/ic_add"
+                    tools:ignore="ContentDescription" />
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
                 android:text="55,000đ"
                 android:textColor="@color/black"
                 android:textStyle="bold"
