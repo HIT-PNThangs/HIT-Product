@@ -26,12 +26,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class OrderFragment extends Fragment {
-    private TabLayout tabLayout;
     private FragmentOrderBinding binding;
-    private ViewPager2 viewPager2;
     private OrderAdapter orderAdapter;
-    private RecyclerView recyclerView;
-    private DeliveredAdapter deliveredAdapter;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
@@ -39,27 +35,12 @@ public class OrderFragment extends Fragment {
         binding = FragmentOrderBinding.inflate(getLayoutInflater());
         orderAdapter = new OrderAdapter(this);
 
-
-
-
-
-
-
-
         return binding.getRoot();
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-//        recyclerView=view.findViewById(R.id.recy_delivered);
-
-//        recyclerDelivered();
-
-
-
-
-
         binding.viewPagerOrder.setAdapter(orderAdapter);
 
         new TabLayoutMediator(binding.tabLayout, binding.viewPagerOrder, (tab, position) -> {
@@ -71,17 +52,15 @@ public class OrderFragment extends Fragment {
                 case 1:
                     tab.setText("Đã giao");
                     break;
-                    case 2:
+
+                case 2:
                     tab.setText("Đánh giá");
                     break;
-                    case 3:
+
+                case 3:
                     tab.setText("Đơn nháp");
                     break;
             }
         }).attach();
-
     }
-
-
-
 }

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:layout_marginBottom="@dimen/_8sdp"
-
     android:padding="@dimen/_8sdp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -31,7 +31,8 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:text="#19052002-lamdz"
-            app:layout_constraintStart_toEndOf="@+id/type" />
+            app:layout_constraintStart_toEndOf="@+id/type"
+            tools:ignore="MissingConstraints" />
 
         <TextView
             android:id="@+id/date"
@@ -46,7 +47,6 @@
         android:id="@+id/constraintLayout27"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/boder_bottom"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout21">
 
         <ImageView
@@ -109,7 +109,6 @@
             android:background="#1587B8"
             android:text="Đặt lại "
             android:textAlignment="center"
-
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>

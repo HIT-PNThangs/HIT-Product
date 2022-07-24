@@ -8,29 +8,17 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.hit.nhom5.product.R;
-import com.example.hit.nhom5.product.api_interface.ApiServer;
 import com.example.hit.nhom5.product.databinding.ActivitySignUpBinding;
-import com.example.hit.nhom5.product.model.SignUp;
-import com.example.hit.nhom5.product.model.SignUpResponse;
 import com.example.hit.nhom5.product.model.User;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.HashMap;
 import java.util.Objects;
 import java.util.regex.Pattern;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class SignUpActivity extends AppCompatActivity {
 
@@ -149,12 +137,6 @@ public class SignUpActivity extends AppCompatActivity {
                             map.put("email", email);
                             map.put("status", false);
 
-
-                            String id = Objects.requireNonNull(task.getResult().getUser()).getUid();
-                            database.getReference().child("Users").child(id).setValue(map);
-                        }
-                    });
-
                             User user = new User();
 
                             user.setEmail(email);
@@ -172,8 +154,7 @@ public class SignUpActivity extends AppCompatActivity {
                             overridePendingTransition(0, 0);
                             finishAffinity();
                         }
-                    })
-                    .addOnFailureListener(e -> {
+                    }).addOnFailureListener(e -> {
                         binding.progressBar4.setVisibility(View.GONE);
                         binding.btSignUp.setVisibility(View.VISIBLE);
 

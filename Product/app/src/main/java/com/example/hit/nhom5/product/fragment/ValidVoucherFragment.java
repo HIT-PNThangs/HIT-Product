@@ -24,21 +24,23 @@ public class ValidVoucherFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View view=inflater.inflate(R.layout.fragment_valid_voucher, container, false);
-        recyclerView=view.findViewById(R.id.recy_valid);
-        LinearLayoutManager linearLayoutManager=new LinearLayoutManager(getContext(),RecyclerView.VERTICAL,false);
+
+        View view = inflater.inflate(R.layout.fragment_valid_voucher, container, false);
+        recyclerView = view.findViewById(R.id.recy_valid);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false);
         recyclerView.setLayoutManager(linearLayoutManager);
-        validVoucherAdapter=new ValidVoucherAdapter(gegListValidvoucher());
+        validVoucherAdapter = new ValidVoucherAdapter(gegListValidvoucher());
         recyclerView.setAdapter(validVoucherAdapter);
         return view;
     }
 
     private List<ValidVoucher> gegListValidvoucher() {
-        List<ValidVoucher> list=new ArrayList<>();
+        List<ValidVoucher> list = new ArrayList<>();
+
         list.add(new ValidVoucher());
         list.add(new ValidVoucher());
         list.add(new ValidVoucher());
+
         return list;
     }
 }

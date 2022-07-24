@@ -1,10 +1,9 @@
 package com.example.hit.nhom5.product.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 
-import com.example.hit.nhom5.product.R;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.hit.nhom5.product.databinding.ActivitySettingBinding;
 
 public class SettingActivity extends AppCompatActivity {
@@ -15,6 +14,8 @@ public class SettingActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivitySettingBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        binding.back.setOnClickListener(view -> onBackPressed());
     }
 
     @Override

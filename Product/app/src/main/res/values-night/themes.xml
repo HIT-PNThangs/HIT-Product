@@ -3,6 +3,7 @@
     <style name="Theme.Product" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/m1</item>
         <item name="colorPrimaryVariant">@color/m1</item>
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
     </style>
 
     <style name="FullScreen" parent="Theme.Product">
@@ -11,4 +12,13 @@
         <item name="android:windowFullscreen">true</item>
         <item name='android:windowContentOverlay'>@null</item>
     </style>
+
+    <style name="Theme.Product.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.Product.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme.Product.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>

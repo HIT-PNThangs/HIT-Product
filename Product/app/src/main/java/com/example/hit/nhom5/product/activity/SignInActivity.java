@@ -118,23 +118,23 @@ public class SignInActivity extends AppCompatActivity {
                             .addListenerForSingleValueEvent(new ValueEventListener() {
                                 @Override
                                 public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                    User user = snapshot.getValue(User.class);
-
-                                    if (user == null) {
-                                        showToast("Login Failure.");
-                                    } else {
-                                        Intent intent;
-
-                                        if (!user.getStatus()) {
-                                            intent = new Intent(getApplicationContext(), UpdateInformationActivity.class);
-                                        } else {
-                                            intent = new Intent(getApplicationContext(), MainActivity.class);
-                                        }
-
-                                        startActivity(intent);
-                                        overridePendingTransition(0, 0);
-                                    }
 //                                    User user = snapshot.getValue(User.class);
+//
+//                                    if (user == null) {
+//                                        showToast("Login Failure.");
+//                                    } else {
+//                                        Intent intent;
+//
+//                                        if (!user.getStatus()) {
+//                                            intent = new Intent(getApplicationContext(), UpdateInformationActivity.class);
+//                                        } else {
+//                                            intent = new Intent(getApplicationContext(), MainActivity.class);
+//                                        }
+//
+//                                        startActivity(intent);
+//                                        overridePendingTransition(0, 0);
+//                                    }
+////                                    User user = snapshot.getValue(User.class);
 
                                     User user = getIntent().getParcelableExtra("data");
                                     Log.d("Sign In: ", user.toString());

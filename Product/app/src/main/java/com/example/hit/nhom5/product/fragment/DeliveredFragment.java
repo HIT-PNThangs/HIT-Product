@@ -40,16 +40,17 @@ public class DeliveredFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
     }
 
     private List<Delivered> getListDelivered() {
         List<Delivered> list= new ArrayList<>();
+
         list.add(new Delivered(R.drawable.image_slider_1,"Đồ ăn","Kem trà sữa","nguyên xá","30000"));
         list.add(new Delivered(R.drawable.image_slider_1,"Đồ ăn","Kem trà sữa","nguyên xá","30000"));
         list.add(new Delivered(R.drawable.image_slider_1,"Đồ ăn","Kem trà sữa","nguyên xá","30000"));
         list.add(new Delivered(R.drawable.image_slider_1,"Đồ ăn","Kem trà sữa","nguyên xá","30000"));
         list.add(new Delivered(R.drawable.image_slider_1,"Đồ ăn","Kem trà sữa","nguyên xá","30000"));
+
         return list;
     }
 }

@@ -14,6 +14,7 @@ import androidx.fragment.app.Fragment;
 
 import com.example.hit.nhom5.product.activity.AboutCremeActivity;
 import com.example.hit.nhom5.product.activity.AddressActivity;
+import com.example.hit.nhom5.product.activity.FriendInviteActivity;
 import com.example.hit.nhom5.product.activity.SettingActivity;
 import com.example.hit.nhom5.product.activity.SignInActivity;
 import com.example.hit.nhom5.product.activity.SupportCentralActivity;
@@ -53,7 +54,7 @@ public class PersonFragment extends Fragment {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 Firebase firebase = snapshot.getValue(Firebase.class);
 
-                if(firebase != null) {
+                if (firebase != null) {
                     binding.txtUserName.setText(firebase.getName());
                     binding.txtEmail.setText(firebase.getEmail());
                 }
@@ -71,11 +72,11 @@ public class PersonFragment extends Fragment {
     private void setListener() {
         binding.imageAvatar.setOnClickListener(v -> onClickImageAvatar());
 
-        binding.updateInfomation.setOnClickListener(v -> {
+        binding.updateInformation.setOnClickListener(v -> {
             startActivity(new Intent(getActivity(), UpdateInformationActivity.class)
                     .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP));
 
-            getActivity().overridePendingTransition(0 ,0);
+            getActivity().overridePendingTransition(0, 0);
         });
 
         binding.signUpPerson.setOnClickListener(v -> {
@@ -89,35 +90,42 @@ public class PersonFragment extends Fragment {
             startActivity(new Intent(getActivity(), VoucherActivity.class).
                     addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP));
 
-            getActivity().overridePendingTransition(0 ,0);
+            getActivity().overridePendingTransition(0, 0);
         });
 
         binding.address.setOnClickListener(v -> {
             startActivity(new Intent(getActivity(), AddressActivity.class).
                     addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP));
 
-            getActivity().overridePendingTransition(0 ,0);
+            getActivity().overridePendingTransition(0, 0);
         });
 
         binding.support.setOnClickListener(v -> {
             startActivity(new Intent(getActivity(), SupportCentralActivity.class).
                     addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP));
 
-            getActivity().overridePendingTransition(0 ,0);
+            getActivity().overridePendingTransition(0, 0);
         });
 
         binding.setting.setOnClickListener(v -> {
             startActivity(new Intent(getActivity(), SettingActivity.class).
                     addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP));
 
-            getActivity().overridePendingTransition(0 ,0);
+            getActivity().overridePendingTransition(0, 0);
+        });
+
+        binding.friend.setOnClickListener(v -> {
+            startActivity(new Intent(getActivity(), FriendInviteActivity.class).
+                    addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP));
+
+            getActivity().overridePendingTransition(0, 0);
         });
 
         binding.aboutCreme.setOnClickListener(v -> {
             startActivity(new Intent(getActivity(), AboutCremeActivity.class).
                     addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP));
 
-            getActivity().overridePendingTransition(0 ,0);
+            getActivity().overridePendingTransition(0, 0);
         });
 
     }

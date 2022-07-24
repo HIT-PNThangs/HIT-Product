@@ -57,7 +57,7 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/updateInfomation"
+            android:id="@+id/updateInformation"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/border_bottom"
@@ -77,7 +77,8 @@
                 android:textSize="@dimen/_12ssp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="HardcodedText" />
 
             <ImageView
                 android:layout_width="@dimen/_15sdp"
@@ -97,8 +98,8 @@
             android:paddingTop="@dimen/_10sdp"
             android:paddingBottom="@dimen/_10sdp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/updateInfomation"
-            app:layout_constraintTop_toBottomOf="@+id/updateInfomation">
+            app:layout_constraintStart_toStartOf="@+id/updateInformation"
+            app:layout_constraintTop_toBottomOf="@+id/updateInformation">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -144,7 +145,8 @@
                 android:textSize="@dimen/_12ssp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="HardcodedText" />
 
             <ImageView
                 android:layout_width="@dimen/_15sdp"
@@ -157,7 +159,7 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintLayout3"
+            android:id="@+id/friend"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/border_bottom"
@@ -177,7 +179,8 @@
                 android:textSize="@dimen/_12ssp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="HardcodedText" />
 
             <ImageView
                 android:layout_width="@dimen/_15sdp"
@@ -197,9 +200,9 @@
             android:background="@drawable/border_bottom"
             android:paddingTop="@dimen/_10sdp"
             android:paddingBottom="@dimen/_10sdp"
-            app:layout_constraintEnd_toEndOf="@+id/constraintLayout3"
-            app:layout_constraintStart_toStartOf="@+id/constraintLayout3"
-            app:layout_constraintTop_toBottomOf="@+id/constraintLayout3">
+            app:layout_constraintEnd_toEndOf="@+id/friend"
+            app:layout_constraintStart_toStartOf="@+id/friend"
+            app:layout_constraintTop_toBottomOf="@+id/friend">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -211,7 +214,8 @@
                 android:textSize="@dimen/_12ssp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="HardcodedText" />
 
             <ImageView
                 android:layout_width="@dimen/_15sdp"
@@ -224,7 +228,7 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintLayout5"
+            android:id="@+id/chuQuan"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/border_bottom"
@@ -244,7 +248,8 @@
                 android:textSize="@dimen/_12ssp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="HardcodedText" />
 
             <ImageView
                 android:layout_width="@dimen/_15sdp"
@@ -257,15 +262,15 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintLayout6"
+            android:id="@+id/chinhSach"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/border_bottom"
             android:paddingTop="@dimen/_10sdp"
             android:paddingBottom="@dimen/_10sdp"
-            app:layout_constraintEnd_toEndOf="@+id/constraintLayout5"
-            app:layout_constraintStart_toStartOf="@+id/constraintLayout5"
-            app:layout_constraintTop_toBottomOf="@+id/constraintLayout5">
+            app:layout_constraintEnd_toEndOf="@+id/chuQuan"
+            app:layout_constraintStart_toStartOf="@+id/chuQuan"
+            app:layout_constraintTop_toBottomOf="@+id/chuQuan">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -277,7 +282,8 @@
                 android:textSize="@dimen/_12ssp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="HardcodedText" />
 
             <ImageView
                 android:layout_width="@dimen/_15sdp"
@@ -298,7 +304,7 @@
             android:paddingBottom="@dimen/_10sdp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/constraintLayout6">
+            app:layout_constraintTop_toBottomOf="@+id/chinhSach">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -310,7 +316,8 @@
                 android:textSize="@dimen/_12ssp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="HardcodedText" />
 
             <ImageView
                 android:layout_width="@dimen/_15sdp"
@@ -343,7 +350,8 @@
                 android:textSize="@dimen/_12ssp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="HardcodedText" />
 
             <ImageView
                 android:layout_width="@dimen/_15sdp"

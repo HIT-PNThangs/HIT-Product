@@ -9,9 +9,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.hit.nhom5.product.R;
-public class fragment_purchase extends Fragment {
-
-
 
 public class PurchaseFragment extends Fragment {
 

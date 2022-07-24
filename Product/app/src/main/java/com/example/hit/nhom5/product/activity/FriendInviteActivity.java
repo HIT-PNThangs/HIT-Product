@@ -4,18 +4,19 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-import com.example.hit.nhom5.product.databinding.ActivityAddressBinding;
+import com.example.hit.nhom5.product.R;
+import com.example.hit.nhom5.product.databinding.ActivityFriendInviteBinding;
 
-public class AddressActivity extends AppCompatActivity {
-    ActivityAddressBinding binding;
+public class FriendInviteActivity extends AppCompatActivity {
+    ActivityFriendInviteBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityAddressBinding.inflate(getLayoutInflater());
+        binding = ActivityFriendInviteBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        binding.back.setOnClickListener(view -> onBackPressed());
+        binding.back.setOnClickListener(v -> onBackPressed());
     }
 
     @Override

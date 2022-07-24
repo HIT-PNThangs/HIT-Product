@@ -81,8 +81,8 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
         ImageView imageCart, btnMinus, btnPlus;
         TextView tvTitle, tvAddress, tvPrice, tvNumFood;
 
-        ImageView imageCart;
-        TextView tvTitle, tvAddress, tvPrice;
+//        ImageView imageCart;
+//        TextView tvTitle, tvAddress, tvPrice;
 
 
         public ViewHolder(@NonNull View itemView) {
