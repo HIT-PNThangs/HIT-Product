@@ -7,33 +7,38 @@
     tools:context=".activity.SettingActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout30"
+        android:id="@+id/header"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
+        android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <ImageView
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_6sdp"
+            android:layout_marginBottom="@dimen/_6sdp"
+            android:src="@drawable/ic_back"
+            android:tint="@color/black"
+            app:backgroundTint="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_back"
-            tools:ignore="ContentDescription" />
+            tools:ignore="ContentDescription, SpeakableTextPresentCheck" />
 
         <TextView
-            android:id="@+id/textView29"
+            android:id="@+id/textView6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:fontFamily="@font/roboto_regular"
+            android:layout_marginStart="@dimen/_12sdp"
+            android:fontFamily="@font/roboto_bold"
             android:text="Cài đặt"
-            android:textColor="#1587B8"
-            android:textSize="@dimen/_16sdp"
+            android:textColor="@color/m1"
+            android:textSize="@dimen/_18sdp"
+            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@+id/back"
             app:layout_constraintStart_toEndOf="@+id/back"
             app:layout_constraintTop_toTopOf="@+id/back"
@@ -47,15 +52,13 @@
         android:background="@color/background_search"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout30" />
-
+        app:layout_constraintTop_toBottomOf="@+id/header" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/settingAccount"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/view">
 
@@ -86,7 +89,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/informatin"
+        android:id="@+id/information"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         app:layout_constraintEnd_toEndOf="parent"
@@ -125,7 +128,7 @@
         android:layout_height="?attr/actionBarSize"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/informatin">
+        app:layout_constraintTop_toBottomOf="@+id/information">
 
         <TextView
             android:id="@+id/textView34"
@@ -223,7 +226,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
             android:fontFamily="@font/roboto_regular"
-            android:text="Tiếng việt"
+            android:text="Tiếng Việt"
             android:textSize="@dimen/_12sdp"
             app:layout_constraintBottom_toBottomOf="@+id/imageView20"
             app:layout_constraintEnd_toStartOf="@+id/imageView20"

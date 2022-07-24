@@ -7,34 +7,38 @@
     tools:context=".activity.CardActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout28"
+        android:id="@+id/header"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="@drawable/border_bottom"
+        android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <ImageView
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_6sdp"
+            android:layout_marginBottom="@dimen/_6sdp"
+            android:src="@drawable/ic_back"
+            android:tint="@color/black"
+            app:backgroundTint="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_back"
-            tools:ignore="ContentDescription" />
+            tools:ignore="ContentDescription, SpeakableTextPresentCheck" />
 
         <TextView
-            android:id="@+id/textView56"
+            android:id="@+id/textView6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:fontFamily="@font/roboto_medium"
+            android:layout_marginStart="@dimen/_12sdp"
+            android:fontFamily="@font/roboto_bold"
             android:text="Giỏ hàng"
-            android:textColor="#0277BD"
-            android:textSize="@dimen/_14sdp"
+            android:textColor="@color/m1"
+            android:textSize="@dimen/_18sdp"
+            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@+id/back"
             app:layout_constraintStart_toEndOf="@+id/back"
             app:layout_constraintTop_toTopOf="@+id/back"
@@ -45,12 +49,12 @@
         android:id="@+id/recy_cart"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="@dimen/_2sdp"
+        android:layout_marginTop="@dimen/_4sdp"
         android:layout_marginBottom="@dimen/_2sdp"
         app:layout_constraintBottom_toTopOf="@+id/constraintLayout14"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout28" />
+        app:layout_constraintTop_toBottomOf="@+id/header" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout14"

@@ -96,7 +96,6 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
             tvNumFood = itemView.findViewById(R.id.numberOrder);
             btnMinus = itemView.findViewById(R.id.minusBtn);
             btnPlus = itemView.findViewById(R.id.plusBtn);
-
         }
     }
 }
