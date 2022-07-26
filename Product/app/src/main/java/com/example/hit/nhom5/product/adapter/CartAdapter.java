@@ -10,16 +10,17 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.hit.nhom5.product.R;
-import com.example.hit.nhom5.product.model.Card;
+import com.example.hit.nhom5.product.model.Cart;
 
 import java.util.List;
 
 public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
     private Context mContext;
-    private List<Card> mCards;
+    private List<Cart> mCards;
 
-    public CartAdapter(Context context, List<Card> list) {
+    public CartAdapter(Context context, List<Cart> list) {
         this.mContext = context;
         this.mCards = list;
     }
@@ -34,42 +35,35 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Card card = mCards.get(position);
-        if (card == null) return;
+        Cart cart = mCards.get(position);
+        if (cart == null)
+            return;
 
-        holder.imageCart.setImageResource(card.getResourceId());
-        holder.tvTitle.setText(card.getTitle());
-        holder.tvAddress.setText(card.getAddress());
-        holder.tvPrice.setText(card.getPrice());
+        holder.tvTitle.setText(cart.getProduct().getProductName());
+        holder.tvPrice.setText(String.valueOf(
+                cart.getProduct().getRealPrice() * cart.getSoLuong()));
+
+        Glide.with(mContext).load(cart.getProduct().getImage()).into(holder.imageCart);
+
+//        holder.tvAddress.setText(card.getAddress());
 
         holder.btnMinus.setOnClickListener(view -> {
-            if(card.getNumberFood() >= 1) card.setNumberFood(card.getNumberFood() - 1);
+            if (cart.getSoLuong() > 1)
+                cart.setSoLuong(cart.getSoLuong() - 1);
 
-            holder.tvNumFood.setText(String.valueOf(card.getNumberFood()));
+            holder.tvNumFood.setText(String.valueOf(cart.getSoLuong()));
+            holder.tvPrice.setText(String.valueOf(cart.getProduct().getRealPrice() * cart.getSoLuong()));
         });
 
         holder.btnPlus.setOnClickListener(view -> {
-            card.setNumberFood(card.getNumberFood() + 1);
+            cart.setSoLuong(cart.getSoLuong() + 1);
 
-            holder.tvNumFood.setText(String.valueOf(card.getNumberFood()));
+            holder.tvNumFood.setText(String.valueOf(cart.getSoLuong()));
+            holder.tvPrice.setText(String.valueOf(cart.getProduct().getRealPrice() * cart.getSoLuong()));
         });
 
-        holder.tvNumFood.setText(String.valueOf(card.getNumberFood()));
-
-//        holder.btnMinus.setOnClickListener(view -> {
-//            if(card.getNumberFood() >= 1) card.setNumberFood(card.getNumberFood() - 1);
-//
-//            holder.tvNumFood.setText(String.valueOf(card.getNumberFood()));
-//        });
-//
-//        holder.btnPlus.setOnClickListener(view -> {
-//            card.setNumberFood(card.getNumberFood() + 1);
-//
-//            holder.tvNumFood.setText(String.valueOf(card.getNumberFood()));
-//        });
-
-//        holder.tvNumFood.setText(String.valueOf(card.getNumberFood()));
-   }
+        holder.tvNumFood.setText(String.valueOf(cart.getSoLuong()));
+    }
 
     @Override
     public int getItemCount() {
@@ -77,13 +71,11 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-
         ImageView imageCart, btnMinus, btnPlus;
         TextView tvTitle, tvAddress, tvPrice, tvNumFood;
 
 //        ImageView imageCart;
 //        TextView tvTitle, tvAddress, tvPrice;
-
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);

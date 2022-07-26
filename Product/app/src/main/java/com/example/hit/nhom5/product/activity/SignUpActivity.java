@@ -12,11 +12,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.hit.nhom5.product.R;
 import com.example.hit.nhom5.product.databinding.ActivitySignUpBinding;
+import com.example.hit.nhom5.product.model.Role;
 import com.example.hit.nhom5.product.model.User;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Objects;
 import java.util.regex.Pattern;
 
@@ -131,20 +134,20 @@ public class SignUpActivity extends AppCompatActivity {
                             binding.progressBar4.setVisibility(View.GONE);
                             binding.btSignUp.setVisibility(View.VISIBLE);
 
-                            HashMap<String, Object> map = new HashMap<>();
-
-                            map.put("name", name);
-                            map.put("email", email);
-                            map.put("status", false);
-
                             User user = new User();
 
-                            user.setEmail(email);
                             user.setName(name);
+                            user.setEmail(email);
                             user.setStatus(false);
+                            user.setAddress("");
+                            user.setTelephone("");
+                            user.setCarts(new ArrayList<>());
+                            List<Role> roles = new ArrayList<>();
+                            roles.add(new Role(2, "ROLE_USER"));
+                            user.setRoles(roles);
 
                             String id = Objects.requireNonNull(task.getResult().getUser()).getUid();
-                            database.getReference().child("Users").child(id).setValue(map);
+                            database.getReference().child("Users").child(id).setValue(user);
 
                             Intent intent = new Intent(SignUpActivity.this, SignInActivity.class);
 
@@ -196,20 +199,11 @@ public class SignUpActivity extends AppCompatActivity {
         }
     }
 
-    private Toast mToast;
-    private long backPressedTime;
-
     @Override
     public void onBackPressed() {
-        if (backPressedTime + 2000 > System.currentTimeMillis()) {
-            mToast.cancel();
-            super.onBackPressed();
-            return;
-        } else {
-            mToast = Toast.makeText(getApplicationContext(), "Press back again to exit the application", Toast.LENGTH_LONG);
-            mToast.show();
-        }
+        super.onBackPressed();
 
-        backPressedTime = System.currentTimeMillis();
+        overridePendingTransition(0, 0);
+        finish();
     }
 }

@@ -41,6 +41,7 @@ public class SignInActivity extends AppCompatActivity {
     private ActivitySignInBinding binding;
     FirebaseAuth auth;
     FirebaseDatabase database;
+    Dialog dialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,7 +59,6 @@ public class SignInActivity extends AppCompatActivity {
         binding.txtSignUp.setOnClickListener(v -> {
                     startActivity(new Intent(SignInActivity.this, SignUpActivity.class));
                     overridePendingTransition(0, 0);
-                    finish();
                 }
         );
 
@@ -113,57 +113,66 @@ public class SignInActivity extends AppCompatActivity {
             binding.btLogin.setVisibility(View.INVISIBLE);
 
             auth.signInWithEmailAndPassword(email, password)
-                    .addOnCompleteListener(this, task -> database.getReference().child("Users")
-                            .child(Objects.requireNonNull(task.getResult().getUser()).getUid())
-                            .addListenerForSingleValueEvent(new ValueEventListener() {
-                                @Override
-                                public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                                    User user = snapshot.getValue(User.class);
-//
-//                                    if (user == null) {
-//                                        showToast("Login Failure.");
-//                                    } else {
-//                                        Intent intent;
-//
-//                                        if (!user.getStatus()) {
-//                                            intent = new Intent(getApplicationContext(), UpdateInformationActivity.class);
-//                                        } else {
-//                                            intent = new Intent(getApplicationContext(), MainActivity.class);
-//                                        }
-//
-//                                        startActivity(intent);
-//                                        overridePendingTransition(0, 0);
-//                                    }
-////                                    User user = snapshot.getValue(User.class);
+                    .addOnCompleteListener(this, task -> {
 
-                                    User user = getIntent().getParcelableExtra("data");
-                                    Log.d("Sign In: ", user.toString());
-
-                                    Intent intent;
-
-                                    if (!user.getStatus()) {
-                                        intent = new Intent(getApplicationContext(), UpdateInformationActivity.class);
-                                    } else {
-                                        intent = new Intent(getApplicationContext(), MainActivity.class);
-                                    }
-
-                                    intent.putExtra("data", user);
-                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-
-                                    startActivity(intent);
-                                    overridePendingTransition(0, 0);
-                                }
-
-                                @Override
-                                public void onCancelled(@NonNull DatabaseError error) {
-                                    Log.d("Sign In: ", error.getMessage());
-                                    showToast("Sign in: " + error.getMessage());
-                                }
-                            }))
-                    .addOnFailureListener(this, e -> {
+                    })
+                    .addOnFailureListener(e -> {
                         Log.d("Sign In: ", e.getMessage());
                         showToast("Sign in: " + e.getMessage());
                     });
+
+//            auth.signInWithEmailAndPassword(email, password)
+//                    .addOnCompleteListener(this, task -> database.getReference().child("Users")
+//                            .child(Objects.requireNonNull(task.getResult().getUser()).getUid())
+//                            .addListenerForSingleValueEvent(new ValueEventListener() {
+//                                @Override
+//                                public void onDataChange(@NonNull DataSnapshot snapshot) {
+////                                    User user = snapshot.getValue(User.class);
+////
+////                                    if (user == null) {
+////                                        showToast("Login Failure.");
+////                                    } else {
+////                                        Intent intent;
+////
+////                                        if (!user.getStatus()) {
+////                                            intent = new Intent(getApplicationContext(), UpdateInformationActivity.class);
+////                                        } else {
+////                                            intent = new Intent(getApplicationContext(), MainActivity.class);
+////                                        }
+////
+////                                        startActivity(intent);
+////                                        overridePendingTransition(0, 0);
+////                                    }
+//////                                    User user = snapshot.getValue(User.class);
+//
+//                                    User user = getIntent().getParcelableExtra("data");
+//                                    Log.d("Sign In: ", user.toString());
+//
+//                                    Intent intent;
+//
+//                                    if (!user.getStatus()) {
+//                                        intent = new Intent(getApplicationContext(), UpdateInformationActivity.class);
+//                                    } else {
+//                                        intent = new Intent(getApplicationContext(), MainActivity.class);
+//                                    }
+//
+//                                    intent.putExtra("data", user);
+//                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//
+//                                    startActivity(intent);
+//                                    overridePendingTransition(0, 0);
+//                                }
+//
+//                                @Override
+//                                public void onCancelled(@NonNull DatabaseError error) {
+//                                    Log.d("Sign In: ", error.getMessage());
+//                                    showToast("Sign in: " + error.getMessage());
+//                                }
+//                            }))
+//                    .addOnFailureListener(this, e -> {
+//                        Log.d("Sign In: ", e.getMessage());
+//                        showToast("Sign in: " + e.getMessage());
+//                    });
 
 //            database.getReference().child("Users")
 //                    .child(auth.getUid())
@@ -282,7 +291,7 @@ public class SignInActivity extends AppCompatActivity {
     }
 
     private void onClickForgetPassword() {
-        Dialog dialog = new Dialog(SignInActivity.this);
+        dialog = new Dialog(SignInActivity.this);
 
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.dialog_forget_password);
@@ -331,8 +340,10 @@ public class SignInActivity extends AppCompatActivity {
         auth.sendPasswordResetEmail(str).addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
                 showToast("Check your email to reset your password!");
+                dialog.cancel();
             } else {
                 showToast("Try again! Something wrong happened.");
+                dialog.cancel();
             }
         });
     }
@@ -342,7 +353,7 @@ public class SignInActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        if (backPressedTime + 2000 > System.currentTimeMillis()) {
+        if (backPressedTime + 1500 > System.currentTimeMillis()) {
             mToast.cancel();
             super.onBackPressed();
             return;

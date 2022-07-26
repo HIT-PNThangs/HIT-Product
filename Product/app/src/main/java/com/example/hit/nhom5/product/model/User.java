@@ -5,7 +5,10 @@ import android.os.Parcelable;
 
 import androidx.annotation.NonNull;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 
 public class User implements Parcelable {
     private Integer userId;
@@ -16,14 +19,13 @@ public class User implements Parcelable {
     private String telephone;
     private Boolean status;
     private List<Role> roles;
-    private ShoppingSession shoppingSession;
+    private List<Cart> carts;
     private String uid;
 
-    public User() {
-    }
+    public User() { }
 
     public User(Integer userId, String avt, String name, String email, String address, String telephone,
-                Boolean status, List<Role> roles, ShoppingSession shoppingSession, String uid) {
+                Boolean status, List<Role> roles, List<Cart> carts, String uid) {
         this.userId = userId;
         this.avt = avt;
         this.name = name;
@@ -32,7 +34,7 @@ public class User implements Parcelable {
         this.telephone = telephone;
         this.status = status;
         this.roles = roles;
-        this.shoppingSession = shoppingSession;
+        this.carts = carts;
         this.uid = uid;
     }
 
@@ -128,12 +130,12 @@ public class User implements Parcelable {
         this.roles = roles;
     }
 
-    public ShoppingSession getShoppingSession() {
-        return shoppingSession;
+    public List<Cart> getCarts() {
+        return carts;
     }
 
-    public void setShoppingSession(ShoppingSession shoppingSession) {
-        this.shoppingSession = shoppingSession;
+    public void setCarts(List<Cart> carts) {
+        this.carts = carts;
     }
 
     public String getUid() {
@@ -142,6 +144,22 @@ public class User implements Parcelable {
 
     public void setUid(String uid) {
         this.uid = uid;
+    }
+
+    public Map<String, Object> toMap() {
+        HashMap<String, Object> ans = new HashMap<>();
+
+        ans.put("userId", userId);
+        ans.put("avt", avt);
+        ans.put("name", name);
+        ans.put("email", email);
+        ans.put("address", address);
+        ans.put("status", status);
+        ans.put("roles", roles);
+        ans.put("carts", carts);
+        ans.put("uid", uid);
+
+        return ans;
     }
 
     @Override

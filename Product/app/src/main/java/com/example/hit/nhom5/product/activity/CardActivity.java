@@ -2,10 +2,6 @@ package com.example.hit.nhom5.product.activity;
 
 import android.os.Bundle;
 
-import android.widget.ScrollView;
-import android.widget.TextView;
-
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -13,20 +9,20 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.hit.nhom5.product.R;
 import com.example.hit.nhom5.product.adapter.CartAdapter;
-
 import com.example.hit.nhom5.product.databinding.ActivityCardBinding;
-
-
 import com.example.hit.nhom5.product.fragment.PurchaseFragment;
 import com.example.hit.nhom5.product.model.Card;
+import com.example.hit.nhom5.product.model.User;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Objects;
 
 public class CardActivity extends AppCompatActivity {
     ActivityCardBinding binding;
     RecyclerView recyclerView;
-    ScrollView scrollView;
     CartAdapter cartAdapter;
     ArrayList<Card> cards;
 
@@ -42,21 +38,25 @@ public class CardActivity extends AppCompatActivity {
     }
 
     private void recyclerCart() {
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
-        binding.recyCart.setLayoutManager(linearLayoutManager);
-        cartAdapter = new CartAdapter(this, getListCart());
-        binding.recyCart.setAdapter(cartAdapter);
-    }
+        FirebaseAuth auth = FirebaseAuth.getInstance();
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference reference =
+                database.getReference()
+                        .child("Users")
+                        .child(Objects.requireNonNull(auth.getUid()));
 
-    private List<Card> getListCart() {
-        List<Card> list = new ArrayList<>();
-        list.add(new Card(R.drawable.image_slider_1, "kem", "hà nội", "10000", 1));
-        list.add(new Card(R.drawable.image_slider_1, "kem", "hà nội", "10000", 1));
-        list.add(new Card(R.drawable.image_slider_1, "kem", "hà nội", "10000", 1));
-        list.add(new Card(R.drawable.image_slider_1, "kem", "hà nội", "10000", 1));
-        list.add(new Card(R.drawable.image_slider_1, "kem", "hà nội", "10000", 1));
-        list.add(new Card(R.drawable.image_slider_1, "kem", "hà nội", "10000", 1));
-        return list;
+        reference.get().addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                User user = task.getResult().getValue(User.class);
+
+                if (user != null) {
+                    LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+                    binding.recyCart.setLayoutManager(linearLayoutManager);
+                    cartAdapter = new CartAdapter(this, user.getCarts());
+                    binding.recyCart.setAdapter(cartAdapter);
+                }
+            }
+        });
     }
 
     private void setListener() {
@@ -75,14 +75,4 @@ public class CardActivity extends AppCompatActivity {
         overridePendingTransition(0, 0);
         finish();
     }
-
-
-    private void initview(){
-        recyclerView=findViewById(R.id.recy_cart);
-//        scrollView=findViewById(R.id.scrollcart);
-//        btnbuy=findViewById(R.id.btnBuy);
-    }
-
-
-
 }

@@ -1,16 +1,15 @@
 package com.example.hit.nhom5.product.fragment;
 
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -24,8 +23,8 @@ import com.example.hit.nhom5.product.api_interface.ApiServer;
 import com.example.hit.nhom5.product.databinding.FragmentHomeBinding;
 import com.example.hit.nhom5.product.model.AllProduct;
 import com.example.hit.nhom5.product.model.Category;
-import com.example.hit.nhom5.product.model.Firebase;
 import com.example.hit.nhom5.product.model.Product;
+import com.example.hit.nhom5.product.model.User;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -60,10 +59,10 @@ public class HomeFragment extends Fragment {
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                Firebase firebase = snapshot.getValue(Firebase.class);
+                User user = snapshot.getValue(User.class);
 
-                if (firebase != null) {
-                    binding.txtName.setText(firebase.getName());
+                if (user != null) {
+                    binding.txtName.setText(user.getName());
                 }
             }
 
@@ -76,7 +75,7 @@ public class HomeFragment extends Fragment {
         // Search
         binding.search.setOnClickListener(v -> {
             startActivity(new Intent(getContext(), SearchActivity.class));
-            getActivity().overridePendingTransition(0, 0);
+            requireActivity().overridePendingTransition(0, 0);
         });
 
         // Category
@@ -89,9 +88,9 @@ public class HomeFragment extends Fragment {
         binding.recyclerCategory.setAdapter(categoryAdapter);
         categoryAdapter.setOnClickCategory(category -> {
             Intent intent = new Intent(getActivity(), SearchActivity.class);
-            intent.putExtra("categoryItem", (Parcelable) category);
+            intent.putExtra("categoryItem", category);
             startActivity(intent);
-            getActivity().overridePendingTransition(0, 0);
+            requireActivity().overridePendingTransition(0, 0);
         });
 
         // Popular
@@ -117,17 +116,19 @@ public class HomeFragment extends Fragment {
                     for (int i = 0; i < 10; i++)
                         list1.add(list.get(i));
 
-                    PopularAdapter adapter = new PopularAdapter(list1, getActivity());
+                    PopularAdapter adapter = new PopularAdapter(list1, requireActivity().getApplicationContext());
 
                     binding.recyclerPopular.setAdapter(adapter);
 
                     adapter.setPopularItemOnClick(product -> {
                         Intent intent = new Intent(getActivity(), ShowDetailActivity.class);
-                        intent.putExtra("popularItem", (Parcelable) product);
+                        intent.putExtra("popularItem", product);
                         startActivity(intent);
-                        getActivity().overridePendingTransition(0, 0);
+                        requireActivity().overridePendingTransition(0, 0);
                     });
                 } else {
+                    Toast.makeText(requireActivity().getApplicationContext(), "Popular: " +
+                            response.code() + ": " + response.message(), Toast.LENGTH_LONG).show();
                     Log.d("Popular: ", String.valueOf(response.code()));
                     Log.d("Popular: ", response.message());
                 }
@@ -135,6 +136,7 @@ public class HomeFragment extends Fragment {
 
             @Override
             public void onFailure(@NonNull Call<AllProduct> call, @NonNull Throwable t) {
+                Toast.makeText(requireActivity().getApplicationContext(), "Popular: " + t.getMessage(), Toast.LENGTH_LONG).show();
                 Log.d("Popular: ", t.getMessage());
             }
         });
