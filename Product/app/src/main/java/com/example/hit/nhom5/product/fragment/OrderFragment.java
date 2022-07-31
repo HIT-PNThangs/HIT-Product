@@ -8,22 +8,10 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.viewpager.widget.ViewPager;
-import androidx.viewpager2.widget.ViewPager2;
 
-import com.example.hit.nhom5.product.R;
-import com.example.hit.nhom5.product.adapter.CartAdapter;
-import com.example.hit.nhom5.product.adapter.DeliveredAdapter;
 import com.example.hit.nhom5.product.adapter.OrderAdapter;
 import com.example.hit.nhom5.product.databinding.FragmentOrderBinding;
-import com.example.hit.nhom5.product.model.Delivered;
-import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class OrderFragment extends Fragment {
     private FragmentOrderBinding binding;

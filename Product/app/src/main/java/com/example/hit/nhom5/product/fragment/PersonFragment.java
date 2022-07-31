@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.bumptech.glide.Glide;
 import com.example.hit.nhom5.product.activity.AboutCremeActivity;
 import com.example.hit.nhom5.product.activity.AddressActivity;
 import com.example.hit.nhom5.product.activity.FriendInviteActivity;
@@ -21,7 +22,6 @@ import com.example.hit.nhom5.product.activity.SupportCentralActivity;
 import com.example.hit.nhom5.product.activity.UpdateInformationActivity;
 import com.example.hit.nhom5.product.activity.VoucherActivity;
 import com.example.hit.nhom5.product.databinding.FragmentPersonBinding;
-import com.example.hit.nhom5.product.model.Firebase;
 import com.example.hit.nhom5.product.model.User;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -59,6 +59,8 @@ public class PersonFragment extends Fragment {
                 if (user != null) {
                     binding.txtUserName.setText(user.getName());
                     binding.txtEmail.setText(user.getEmail());
+                    if(user.getAvt() != null) Glide.with(requireContext()).load(user.getAvt()).into(binding.imageAvatar);
+
                 }
             }
 
@@ -129,7 +131,6 @@ public class PersonFragment extends Fragment {
 
             requireActivity().overridePendingTransition(0, 0);
         });
-
     }
 
     private void onClickImageAvatar() {

@@ -22,9 +22,8 @@ import java.util.Objects;
 
 public class CardActivity extends AppCompatActivity {
     ActivityCardBinding binding;
-    RecyclerView recyclerView;
     CartAdapter cartAdapter;
-    ArrayList<Card> cards;
+    Long tongTien;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +33,6 @@ public class CardActivity extends AppCompatActivity {
 
         setListener();
         recyclerCart();
-
     }
 
     private void recyclerCart() {

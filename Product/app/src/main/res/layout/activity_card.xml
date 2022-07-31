@@ -66,12 +66,14 @@
 
         <TextView
             android:id="@+id/btnBuy"
-            android:layout_width="100dp"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:background="#1587B8"
             android:fontFamily="@font/roboto_regular"
             android:gravity="center"
             android:text="Mua hàng"
+            android:paddingStart="@dimen/_12sdp"
+            android:paddingEnd="@dimen/_12sdp"
             android:textAlignment="center"
             android:textColor="@color/white"
             android:textSize="@dimen/_14sdp"
@@ -86,9 +88,9 @@
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/_6sdp"
             android:fontFamily="@font/roboto_regular"
-            android:text="0đ"
+            android:text="0VND"
             android:textColor="#1587B8"
-            android:textSize="@dimen/_12sdp"
+            android:textSize="@dimen/_11sdp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/btnBuy"
             app:layout_constraintTop_toTopOf="parent"
@@ -101,24 +103,24 @@
             android:layout_margin="@dimen/_6sdp"
             android:fontFamily="@font/roboto_regular"
             android:text="Tổng thanh toán"
-            android:textSize="@dimen/_12sdp"
+            android:textSize="@dimen/_11sdp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/total"
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="HardcodedText" />
 
-        <CheckBox
-            android:id="@+id/checkBox"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:fontFamily="@font/roboto_regular"
-            android:minHeight="48dp"
-            android:text="Tất cả"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="HardcodedText" />
+<!--        <CheckBox-->
+<!--            android:id="@+id/checkBox"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginStart="10dp"-->
+<!--            android:fontFamily="@font/roboto_regular"-->
+<!--            android:minHeight="48dp"-->
+<!--            android:text="Tất cả"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="parent"-->
+<!--            tools:ignore="HardcodedText" />-->
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ProgressBar

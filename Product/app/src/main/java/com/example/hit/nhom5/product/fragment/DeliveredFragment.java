@@ -28,7 +28,6 @@ public class DeliveredFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_delivered, container, false);
         recyclerView = view.findViewById(R.id.recy_delivered);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
-//        LinearLayoutManager linearLayoutManager=new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
 
         recyclerView.setLayoutManager(linearLayoutManager);
         deliveredAdapter = new DeliveredAdapter(getListDelivered());

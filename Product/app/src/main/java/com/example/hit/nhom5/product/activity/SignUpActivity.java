@@ -139,6 +139,7 @@ public class SignUpActivity extends AppCompatActivity {
                             user.setName(name);
                             user.setEmail(email);
                             user.setStatus(false);
+                            user.setAvt("");
                             user.setAddress("");
                             user.setTelephone("");
                             user.setCarts(new ArrayList<>());

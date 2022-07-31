@@ -14,6 +14,8 @@ import com.bumptech.glide.Glide;
 import com.example.hit.nhom5.product.R;
 import com.example.hit.nhom5.product.model.Cart;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.List;
 
 public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
@@ -39,9 +41,12 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
         if (cart == null)
             return;
 
+        NumberFormat numberFormatter = new DecimalFormat("###,###,###VND");
+
         holder.tvTitle.setText(cart.getProduct().getProductName());
-        holder.tvPrice.setText(String.valueOf(
-                cart.getProduct().getRealPrice() * cart.getSoLuong()));
+        holder.tvPrice.setText(numberFormatter.format(
+                (long) cart.getProduct().getRealPrice() * cart.getSoLuong()
+        ));
 
         Glide.with(mContext).load(cart.getProduct().getImage()).into(holder.imageCart);
 
@@ -52,14 +57,16 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
                 cart.setSoLuong(cart.getSoLuong() - 1);
 
             holder.tvNumFood.setText(String.valueOf(cart.getSoLuong()));
-            holder.tvPrice.setText(String.valueOf(cart.getProduct().getRealPrice() * cart.getSoLuong()));
+            holder.tvPrice.setText(numberFormatter.format(
+                    (long) cart.getProduct().getRealPrice() * cart.getSoLuong()));
         });
 
         holder.btnPlus.setOnClickListener(view -> {
             cart.setSoLuong(cart.getSoLuong() + 1);
 
             holder.tvNumFood.setText(String.valueOf(cart.getSoLuong()));
-            holder.tvPrice.setText(String.valueOf(cart.getProduct().getRealPrice() * cart.getSoLuong()));
+            holder.tvPrice.setText(numberFormatter.format(
+                    (long) cart.getProduct().getRealPrice() * cart.getSoLuong()));
         });
 
         holder.tvNumFood.setText(String.valueOf(cart.getSoLuong()));
@@ -82,7 +89,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
 
             imageCart = itemView.findViewById(R.id.image_cart);
             tvTitle = itemView.findViewById(R.id.title_cart);
-            tvAddress = itemView.findViewById(R.id.address_cart);
+//            tvAddress = itemView.findViewById(R.id.address_cart);
             tvPrice = itemView.findViewById(R.id.price_cart);
 
             tvNumFood = itemView.findViewById(R.id.numberOrder);

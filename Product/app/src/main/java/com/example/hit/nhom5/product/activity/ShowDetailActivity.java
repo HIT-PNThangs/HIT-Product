@@ -27,6 +27,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -49,10 +51,12 @@ public class ShowDetailActivity extends AppCompatActivity {
 
     @SuppressLint("SetTextI18n")
     private void init() {
+        NumberFormat numberFormatter = new DecimalFormat("###,###,###VND");
+
         product = getIntent().getParcelableExtra("popularItem");
 
         binding.name.setText(product.getProductName());
-        binding.price.setText(product.getPrice());
+        binding.price.setText(numberFormatter.format(product.getRealPrice()));
         binding.purchases.setText("Đã bán: " + product.getPurchases().toString());
         Glide.with(getApplicationContext()).load(product.getImage()).into(binding.pictureFood);
     }

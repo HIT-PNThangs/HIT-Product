@@ -2,7 +2,6 @@ package com.example.hit.nhom5.product.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +13,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.hit.nhom5.product.R;
 import com.example.hit.nhom5.product.activity.SearchActivity;
 import com.example.hit.nhom5.product.activity.ShowDetailActivity;
@@ -51,10 +51,8 @@ public class HomeFragment extends Fragment {
 
         FirebaseAuth auth = FirebaseAuth.getInstance();
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference reference =
-                database.getReference()
-                        .child("Users")
-                        .child(Objects.requireNonNull(auth.getUid()));
+        DatabaseReference reference = database.getReference().child("Users")
+                .child(Objects.requireNonNull(auth.getUid()));
 
         reference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -63,6 +61,9 @@ public class HomeFragment extends Fragment {
 
                 if (user != null) {
                     binding.txtName.setText(user.getName());
+                    if(user.getAvt() != null) {
+                        Glide.with(requireContext()).load(user.getAvt()).into(binding.image);
+                    }
                 }
             }
 
@@ -116,7 +117,7 @@ public class HomeFragment extends Fragment {
                     for (int i = 0; i < 10; i++)
                         list1.add(list.get(i));
 
-                    PopularAdapter adapter = new PopularAdapter(list1, requireActivity().getApplicationContext());
+                    PopularAdapter adapter = new PopularAdapter(list1, getActivity().getApplicationContext());
 
                     binding.recyclerPopular.setAdapter(adapter);
 
@@ -136,10 +137,21 @@ public class HomeFragment extends Fragment {
 
             @Override
             public void onFailure(@NonNull Call<AllProduct> call, @NonNull Throwable t) {
-                Toast.makeText(requireActivity().getApplicationContext(), "Popular: " + t.getMessage(), Toast.LENGTH_LONG).show();
+                Toast.makeText(requireActivity().getApplicationContext(),
+                        "Popular: " + t.getMessage(), Toast.LENGTH_LONG).show();
                 Log.d("Popular: ", t.getMessage());
             }
         });
+
+//        binding.txtName.setOnClickListener(view ->
+//                startActivity(new Intent(getActivity(), PersonFragment.class)
+//                .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK))
+//        );
+//
+//        binding.image.setOnClickListener(view ->
+//                startActivity(new Intent(getActivity(), PersonFragment.class)
+//                .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK))
+//        );
 
         return binding.getRoot();
     }
