@@ -44,10 +44,10 @@
     <string name="support_central">Trung tâm hỗ trợ</string>
     <string name="first_name">First Name</string>
     <string name="last_name">Last Name</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="name">Name</string>
     <string name="google">Google</string>
     <string name="facebook">Facebook</string>
+    <string name="internet_connection">Internet connection</string>
+    <string name="connection">Connection</string>
 </resources>

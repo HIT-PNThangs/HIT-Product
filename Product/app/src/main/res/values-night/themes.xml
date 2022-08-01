@@ -3,6 +3,7 @@
     <style name="Theme.Product" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/m1</item>
         <item name="colorPrimaryVariant">@color/m1</item>
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
     </style>
 
     <style name="FullScreen" parent="Theme.Product">

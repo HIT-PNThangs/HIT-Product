@@ -25,13 +25,12 @@ public class DeliveredFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view=inflater.inflate(R.layout.fragment_delivered, container, false);
-        recyclerView=view.findViewById(R.id.recy_delivered);
-        LinearLayoutManager linearLayoutManager=new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false);
-//        LinearLayoutManager linearLayoutManager=new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
+        View view = inflater.inflate(R.layout.fragment_delivered, container, false);
+        recyclerView = view.findViewById(R.id.recy_delivered);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
 
         recyclerView.setLayoutManager(linearLayoutManager);
-        deliveredAdapter=new DeliveredAdapter(getListDelivered());
+        deliveredAdapter = new DeliveredAdapter(getListDelivered());
         recyclerView.setAdapter(deliveredAdapter);
 
         return view;
@@ -40,16 +39,17 @@ public class DeliveredFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
     }
 
     private List<Delivered> getListDelivered() {
-        List<Delivered> list= new ArrayList<>();
-        list.add(new Delivered(R.drawable.image_slider_1,"Đồ ăn","Kem trà sữa","nguyên xá","30000"));
-        list.add(new Delivered(R.drawable.image_slider_1,"Đồ ăn","Kem trà sữa","nguyên xá","30000"));
-        list.add(new Delivered(R.drawable.image_slider_1,"Đồ ăn","Kem trà sữa","nguyên xá","30000"));
-        list.add(new Delivered(R.drawable.image_slider_1,"Đồ ăn","Kem trà sữa","nguyên xá","30000"));
-        list.add(new Delivered(R.drawable.image_slider_1,"Đồ ăn","Kem trà sữa","nguyên xá","30000"));
+        List<Delivered> list = new ArrayList<>();
+
+        list.add(new Delivered(R.drawable.image_slider_1, "Đồ ăn", "Kem trà sữa", "nguyên xá", "30000"));
+        list.add(new Delivered(R.drawable.image_slider_1, "Đồ ăn", "Kem trà sữa", "nguyên xá", "30000"));
+        list.add(new Delivered(R.drawable.image_slider_1, "Đồ ăn", "Kem trà sữa", "nguyên xá", "30000"));
+        list.add(new Delivered(R.drawable.image_slider_1, "Đồ ăn", "Kem trà sữa", "nguyên xá", "30000"));
+        list.add(new Delivered(R.drawable.image_slider_1, "Đồ ăn", "Kem trà sữa", "nguyên xá", "30000"));
+
         return list;
     }
 }

@@ -22,12 +22,8 @@ import com.example.hit.nhom5.product.model.AllProduct;
 import com.example.hit.nhom5.product.model.Category;
 import com.example.hit.nhom5.product.model.DataCategories;
 import com.example.hit.nhom5.product.model.Product;
-import com.example.hit.nhom5.product.my_interface.CategoryItemOnClick;
-import com.example.hit.nhom5.product.my_interface.ProductItemOnClick;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 import retrofit2.Call;

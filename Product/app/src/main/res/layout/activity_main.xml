@@ -45,10 +45,10 @@
                 android:elevation="@dimen/cardview_compat_inset_shadow"
                 android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
                 app:itemHorizontalTranslationEnabled="false"
+                app:itemIconSize="@dimen/_20ssp"
                 app:itemIconTint="@color/color_navigation"
                 app:itemTextColor="@color/color_navigation"
                 app:labelVisibilityMode="unlabeled"
-                app:itemIconSize="@dimen/_20ssp"
                 app:menu="@menu/navigation" />
         </com.google.android.material.bottomappbar.BottomAppBar>
 
@@ -61,6 +61,6 @@
             app:labelVisibilityMode="unlabeled"
             app:layout_anchor="@id/bottom_app_bar"
             app:maxImageSize="@dimen/_36sdp"
-            tools:ignore="SpeakableTextPresentCheck,ImageContrastCheck" />
+            tools:ignore="ContentDescription,ImageContrastCheck,SpeakableTextPresentCheck" />
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

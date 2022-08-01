@@ -16,6 +16,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Product">
         <activity
+            android:name=".activity.FriendInviteActivity"
+            android:exported="false"
+            android:theme="@style/FullScreen" />
+        <activity
             android:name=".activity.AddressActivity"
             android:exported="false"
             android:theme="@style/FullScreen" />

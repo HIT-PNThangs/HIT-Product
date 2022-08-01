@@ -7,34 +7,38 @@
     tools:context=".activity.CardActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout28"
+        android:id="@+id/header"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="@drawable/border_bottom"
+        android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <ImageView
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_6sdp"
+            android:layout_marginBottom="@dimen/_6sdp"
+            android:src="@drawable/ic_back"
+            android:tint="@color/black"
+            app:backgroundTint="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_back"
-            tools:ignore="ContentDescription" />
+            tools:ignore="ContentDescription, SpeakableTextPresentCheck" />
 
         <TextView
-            android:id="@+id/textView56"
+            android:id="@+id/textView6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:fontFamily="@font/roboto_medium"
+            android:layout_marginStart="@dimen/_12sdp"
+            android:fontFamily="@font/roboto_bold"
             android:text="Giỏ hàng"
-            android:textColor="#0277BD"
-            android:textSize="@dimen/_14sdp"
+            android:textColor="@color/m1"
+            android:textSize="@dimen/_18sdp"
+            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@+id/back"
             app:layout_constraintStart_toEndOf="@+id/back"
             app:layout_constraintTop_toTopOf="@+id/back"
@@ -45,12 +49,12 @@
         android:id="@+id/recy_cart"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="@dimen/_2sdp"
+        android:layout_marginTop="@dimen/_4sdp"
         android:layout_marginBottom="@dimen/_2sdp"
         app:layout_constraintBottom_toTopOf="@+id/constraintLayout14"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout28" />
+        app:layout_constraintTop_toBottomOf="@+id/header" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout14"
@@ -62,12 +66,14 @@
 
         <TextView
             android:id="@+id/btnBuy"
-            android:layout_width="100dp"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:background="#1587B8"
             android:fontFamily="@font/roboto_regular"
             android:gravity="center"
             android:text="Mua hàng"
+            android:paddingStart="@dimen/_12sdp"
+            android:paddingEnd="@dimen/_12sdp"
             android:textAlignment="center"
             android:textColor="@color/white"
             android:textSize="@dimen/_14sdp"
@@ -82,9 +88,9 @@
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/_6sdp"
             android:fontFamily="@font/roboto_regular"
-            android:text="0đ"
+            android:text="0VND"
             android:textColor="#1587B8"
-            android:textSize="@dimen/_12sdp"
+            android:textSize="@dimen/_11sdp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/btnBuy"
             app:layout_constraintTop_toTopOf="parent"
@@ -97,47 +103,34 @@
             android:layout_margin="@dimen/_6sdp"
             android:fontFamily="@font/roboto_regular"
             android:text="Tổng thanh toán"
-            android:textSize="@dimen/_12sdp"
+            android:textSize="@dimen/_11sdp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/total"
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="HardcodedText" />
-        <CheckBox
-            android:id="@+id/checkBox"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:fontFamily="@font/roboto_regular"
-            android:minHeight="48dp"
-            android:text="Tất cả"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="HardcodedText" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <CheckBox
-            android:id="@+id/checkBox"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:fontFamily="@font/roboto_regular"
-            android:minHeight="48dp"
-            android:text="Tất cả"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="HardcodedText" />
+<!--        <CheckBox-->
+<!--            android:id="@+id/checkBox"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginStart="10dp"-->
+<!--            android:fontFamily="@font/roboto_regular"-->
+<!--            android:minHeight="48dp"-->
+<!--            android:text="Tất cả"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="parent"-->
+<!--            tools:ignore="HardcodedText" />-->
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ProgressBar
-        android:id="@+id/progressBar5"
+        android:id="@+id/progressBar"
         style="?android:attr/progressBarStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="@+id/recy_cart"
-        app:layout_constraintEnd_toEndOf="@+id/recy_cart"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/recy_cart"
         app:layout_constraintTop_toTopOf="@+id/recy_cart" />
 

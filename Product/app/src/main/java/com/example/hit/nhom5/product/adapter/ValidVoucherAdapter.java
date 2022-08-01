@@ -22,14 +22,15 @@ public class ValidVoucherAdapter extends RecyclerView.Adapter<ValidVoucherAdapte
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.item_valid_voucher,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_valid_voucher, parent, false);
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        ValidVoucher validVoucher=validVouchers.get(position);
-        if(validVoucher==null) return;
+        ValidVoucher validVoucher = validVouchers.get(position);
+        if (validVoucher == null)
+            return;
     }
 
     @Override

@@ -18,6 +18,8 @@ import com.example.hit.nhom5.product.R;
 import com.example.hit.nhom5.product.model.Product;
 import com.example.hit.nhom5.product.my_interface.ProductItemOnClick;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,8 +49,10 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
 
     @Override
     public void onBindViewHolder(@NonNull ProductViewHolder holder, int position) {
+        NumberFormat numberFormatter = new DecimalFormat("###,###,###VND");
+
         holder.productName.setText(list.get(position).getProductName());
-        holder.productPrice.setText(list.get(position).getPrice());
+        holder.productPrice.setText(numberFormatter.format(list.get(position).getRealPrice()));
 
         Glide.with(context).load(list.get(position).getImage()).into(holder.productImage);
 

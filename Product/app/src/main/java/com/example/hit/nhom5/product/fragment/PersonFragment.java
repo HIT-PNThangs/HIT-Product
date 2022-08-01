@@ -12,15 +12,17 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.bumptech.glide.Glide;
 import com.example.hit.nhom5.product.activity.AboutCremeActivity;
 import com.example.hit.nhom5.product.activity.AddressActivity;
+import com.example.hit.nhom5.product.activity.FriendInviteActivity;
 import com.example.hit.nhom5.product.activity.SettingActivity;
 import com.example.hit.nhom5.product.activity.SignInActivity;
 import com.example.hit.nhom5.product.activity.SupportCentralActivity;
 import com.example.hit.nhom5.product.activity.UpdateInformationActivity;
 import com.example.hit.nhom5.product.activity.VoucherActivity;
 import com.example.hit.nhom5.product.databinding.FragmentPersonBinding;
-import com.example.hit.nhom5.product.model.Firebase;
+import com.example.hit.nhom5.product.model.User;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -48,14 +50,17 @@ public class PersonFragment extends Fragment {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference reference = database.getReference().child("Users")
                 .child(Objects.requireNonNull(auth.getUid()));
+
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                Firebase firebase = snapshot.getValue(Firebase.class);
+                User user = snapshot.getValue(User.class);
 
-                if(firebase != null) {
-                    binding.txtUserName.setText(firebase.getName());
-                    binding.txtEmail.setText(firebase.getEmail());
+                if (user != null) {
+                    binding.txtUserName.setText(user.getName());
+                    binding.txtEmail.setText(user.getEmail());
+                    if(user.getAvt() != null) Glide.with(requireContext()).load(user.getAvt()).into(binding.imageAvatar);
+
                 }
             }
 
@@ -71,11 +76,11 @@ public class PersonFragment extends Fragment {
     private void setListener() {
         binding.imageAvatar.setOnClickListener(v -> onClickImageAvatar());
 
-        binding.updateInfomation.setOnClickListener(v -> {
+        binding.updateInformation.setOnClickListener(v -> {
             startActivity(new Intent(getActivity(), UpdateInformationActivity.class)
                     .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP));
 
-            getActivity().overridePendingTransition(0 ,0);
+            requireActivity().overridePendingTransition(0, 0);
         });
 
         binding.signUpPerson.setOnClickListener(v -> {
@@ -89,37 +94,43 @@ public class PersonFragment extends Fragment {
             startActivity(new Intent(getActivity(), VoucherActivity.class).
                     addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP));
 
-            getActivity().overridePendingTransition(0 ,0);
+            requireActivity().overridePendingTransition(0, 0);
         });
 
         binding.address.setOnClickListener(v -> {
             startActivity(new Intent(getActivity(), AddressActivity.class).
                     addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP));
 
-            getActivity().overridePendingTransition(0 ,0);
+            requireActivity().overridePendingTransition(0, 0);
         });
 
         binding.support.setOnClickListener(v -> {
             startActivity(new Intent(getActivity(), SupportCentralActivity.class).
                     addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP));
 
-            getActivity().overridePendingTransition(0 ,0);
+            requireActivity().overridePendingTransition(0, 0);
         });
 
         binding.setting.setOnClickListener(v -> {
             startActivity(new Intent(getActivity(), SettingActivity.class).
                     addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP));
 
-            getActivity().overridePendingTransition(0 ,0);
+            requireActivity().overridePendingTransition(0, 0);
+        });
+
+        binding.friend.setOnClickListener(v -> {
+            startActivity(new Intent(getActivity(), FriendInviteActivity.class).
+                    addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP));
+
+            requireActivity().overridePendingTransition(0, 0);
         });
 
         binding.aboutCreme.setOnClickListener(v -> {
             startActivity(new Intent(getActivity(), AboutCremeActivity.class).
                     addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP));
 
-            getActivity().overridePendingTransition(0 ,0);
+            requireActivity().overridePendingTransition(0, 0);
         });
-
     }
 
     private void onClickImageAvatar() {
