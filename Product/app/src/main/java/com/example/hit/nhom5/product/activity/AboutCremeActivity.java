@@ -18,11 +18,7 @@ public class AboutCremeActivity extends AppCompatActivity {
         binding = ActivityAboutCremeBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        binding.back.setOnClickListener(v -> {
-            onBackPressed();
-            overridePendingTransition(0, 0);
-            finish();
-        });
+        binding.back.setOnClickListener(v -> onBackPressed());
     }
 
     @Override

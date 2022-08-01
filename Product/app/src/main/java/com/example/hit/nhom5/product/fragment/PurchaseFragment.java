@@ -10,7 +10,6 @@ import android.view.ViewGroup;
 
 import com.example.hit.nhom5.product.R;
 
-
 public class PurchaseFragment extends Fragment {
 
     @Override

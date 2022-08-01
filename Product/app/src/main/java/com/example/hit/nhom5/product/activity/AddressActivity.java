@@ -15,6 +15,7 @@ public class AddressActivity extends AppCompatActivity {
         binding = ActivityAddressBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        binding.back.setOnClickListener(view -> onBackPressed());
     }
 
     @Override

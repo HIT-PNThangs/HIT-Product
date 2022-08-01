@@ -7,10 +7,27 @@
     tools:context=".fragment.UsedVoucherFragment">
 
     <TextView
+        android:id="@+id/textView89"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Voucher đã sử dụng"
+        android:text="Bạn chưa có mã khuyến mãi nào!"
+        android:textColor="@color/black"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <TextView
+        android:id="@+id/textView90"
+        android:layout_width="348dp"
+        android:layout_height="52dp"
+        android:layout_marginTop="8dp"
+        android:gravity="center"
+        android:text="Có thể bạn chưa biết: Hàng tuần có nhiều mã khuyễn mãi đang đợi bạn! Cùng khám phá nhé!"
+        app:layout_constraintEnd_toEndOf="@+id/textView89"
+        app:layout_constraintHorizontal_bias="0.519"
+        app:layout_constraintStart_toStartOf="@+id/textView89"
+        app:layout_constraintTop_toBottomOf="@+id/textView89" />
 </androidx.constraintlayout.widget.ConstraintLayout>

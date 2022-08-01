@@ -14,15 +14,14 @@ import com.example.hit.nhom5.product.databinding.FragmentOrderBinding;
 import com.google.android.material.tabs.TabLayoutMediator;
 
 public class OrderFragment extends Fragment {
-
     private FragmentOrderBinding binding;
-    private OrderAdapter adapter;
+    private OrderAdapter orderAdapter;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = FragmentOrderBinding.inflate(getLayoutInflater());
-        adapter = new OrderAdapter(getActivity());
+        orderAdapter = new OrderAdapter(this);
 
         return binding.getRoot();
     }
@@ -30,17 +29,24 @@ public class OrderFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-        binding.viewPagerOrder.setAdapter(adapter);
+        binding.viewPagerOrder.setAdapter(orderAdapter);
 
         new TabLayoutMediator(binding.tabLayout, binding.viewPagerOrder, (tab, position) -> {
             switch (position) {
                 case 0:
-                    tab.setText("First");
+                    tab.setText("Đang giao");
                     break;
 
                 case 1:
-                    tab.setText("Second");
+                    tab.setText("Đã giao");
+                    break;
+
+                case 2:
+                    tab.setText("Đánh giá");
+                    break;
+
+                case 3:
+                    tab.setText("Đơn nháp");
                     break;
             }
         }).attach();

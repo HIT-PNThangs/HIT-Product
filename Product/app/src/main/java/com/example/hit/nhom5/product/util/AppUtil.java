@@ -1,35 +1,21 @@
 package com.example.hit.nhom5.product.util;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.net.ConnectivityManager;
-import android.net.Network;
-import android.net.NetworkCapabilities;
 import android.net.NetworkInfo;
-import android.os.Build;
 
 // Check connection Internet
 public class AppUtil {
     public static boolean isNetworkAvailable(Context context) {
-        if(context == null) return false;
+        if (context == null) return false;
 
-        ConnectivityManager connectivityManager =
-                (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        ConnectivityManager connectivityManager
+                = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
 
-        if(connectivityManager == null) return false;
+        @SuppressLint("MissingPermission")
+        NetworkInfo activeNetworkInfo = connectivityManager != null ? connectivityManager.getActiveNetworkInfo() : null;
 
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-            Network network = connectivityManager.getActiveNetwork();
-
-            if(network == null) return false;
-
-            NetworkCapabilities capabilities = connectivityManager.getNetworkCapabilities(network);
-
-            return capabilities != null && (capabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI)
-                    || capabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR));
-        } else {
-            NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
-
-            return networkInfo != null && networkInfo.isConnected();
-        }
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
     }
 }
